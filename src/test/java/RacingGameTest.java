@@ -36,4 +36,18 @@ class RacingGameTest {
         assertThat(exception.getMessage()).isEqualToIgnoringCase("자동차 대수와 시도 횟수는 항상 0보다 커야 합니다");
     }
 
+    @Test
+    @DisplayName("게임을 시작하면 RacingResult 객체를 반환한다")
+    void testStart() {
+        //given
+        int numberOfCars = 3;
+        int countOfTry = 5;
+        RacingGame racingGame = RacingGame.newInstance(numberOfCars, countOfTry);
+
+        //when
+        RacingResult racingResult = racingGame.start();
+
+        //then
+        assertThat(racingResult).isNotNull();
+    }
 }
