@@ -4,14 +4,14 @@ import game.racing.car.model.CarList;
 import game.racing.car.view.RacingGameView;
 
 public class RacingGame {
-    private Integer moveAttemptCount;
     private CarList carList;
+    private Integer moveAttemptCount;
 
     private RacingGameView racingGameView;
 
-    public RacingGame(Integer moveAttemptCount, Integer carListSize, RacingGameView racingGameView) {
-        this.moveAttemptCount = moveAttemptCount;
+    public RacingGame(Integer carListSize, Integer moveAttemptCount, RacingGameView racingGameView) {
         this.carList = new CarList(carListSize);
+        this.moveAttemptCount = moveAttemptCount;
         this.racingGameView = racingGameView;
     }
 
