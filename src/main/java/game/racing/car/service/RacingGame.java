@@ -4,6 +4,8 @@ import game.racing.car.model.CarList;
 import game.racing.car.view.RacingGameView;
 
 public class RacingGame {
+    private static final Long WAIT_NEXT_ATTEMPT = 500L;
+
     private CarList carList;
     private Integer moveAttemptCount;
 
@@ -15,9 +17,11 @@ public class RacingGame {
         this.racingGameView = racingGameView;
     }
 
-    public void start() {
+    public void start() throws InterruptedException {
+        System.out.println("\n실행 결과\n");
         for (int i = 0; i < moveAttemptCount; i++) {
             moveAttempt();
+            Thread.sleep(WAIT_NEXT_ATTEMPT);
         }
     }
 

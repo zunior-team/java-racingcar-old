@@ -5,7 +5,7 @@ import static game.racing.car.view.InputView.inputAttemptCount;
 import static game.racing.car.view.InputView.inputCarCount;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Integer carCount = inputCarCount();
         Integer attemptCount = inputAttemptCount();
         RacingGame racingGame = new RacingGame(carCount, attemptCount, new RacingGameConsoleView());
