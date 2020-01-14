@@ -1,7 +1,8 @@
 package game.racing.car.model;
 
+import game.racing.car.service.impl.RandomMovingStrategy;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,11 +10,10 @@ public class CarList {
     private List<Car> cars;
 
     public CarList(int capacity) {
-        cars = new ArrayList<>(capacity);
-    }
-
-    public CarList(Car... cars) {
-        this.cars = Arrays.asList(cars);
+        cars = new ArrayList<>();
+        for (int i = 0; i < capacity; i++) {
+            cars.add(new Car(new RandomMovingStrategy()));
+        }
     }
 
     public CarList(List<Car> cars) {

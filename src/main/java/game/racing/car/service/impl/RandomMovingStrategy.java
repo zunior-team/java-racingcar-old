@@ -12,9 +12,12 @@ public class RandomMovingStrategy implements MovingStrategy {
         this.random = random;
     }
 
+    public RandomMovingStrategy() {
+        this.random = new Random();
+    }
+
     @Override
     public Boolean isMovable() {
-        random.setSeed(System.currentTimeMillis());
         return random.nextInt(10) >= 4;
     }
 }
