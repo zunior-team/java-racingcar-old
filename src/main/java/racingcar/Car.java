@@ -1,7 +1,10 @@
+package racingcar;
+
 import java.util.stream.IntStream;
 
 public class Car {
     public static final String DASH_MARK = "-";
+
     private Integer position = 0;
     private MoveStrategy moveStrategy;
 

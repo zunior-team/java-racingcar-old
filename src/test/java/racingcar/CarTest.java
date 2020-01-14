@@ -1,3 +1,5 @@
+package racingcar;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -6,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static racingcar.Car.DASH_MARK;
 
 public class CarTest {
 
@@ -22,7 +25,7 @@ public class CarTest {
 
         assertThat(car.printPosition()).isEqualTo("");
         car.move();
-        assertThat(car.printPosition()).isEqualTo(Car.DASH_MARK);
+        assertThat(car.printPosition()).isEqualTo(DASH_MARK);
     }
 
     @ParameterizedTest
@@ -36,7 +39,7 @@ public class CarTest {
 
     private static Stream moveStrategyTest() {
         return Stream.of(
-                Arguments.of((MoveStrategy) () -> true, "-"),
+                Arguments.of((MoveStrategy) () -> true, DASH_MARK),
                 Arguments.of((MoveStrategy) () -> false, "")
         );
     }
