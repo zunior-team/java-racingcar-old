@@ -7,11 +7,15 @@ public class RacingGame {
     private List<Car> cars = new ArrayList<>();
     private int countOfTurns;
 
-    public RacingGame(int numberOfCars, int countOfTurns) {
+    private RacingGame(int numberOfCars, int countOfTurns) {
         validate(numberOfCars, countOfTurns);
 
         this.countOfTurns = countOfTurns;
         cars.addAll(createCars(numberOfCars));
+    }
+
+    public static RacingGame newInstance(int numberOfCars, int countOfTry) {
+        return new RacingGame(numberOfCars, countOfTry);
     }
 
     private List<Car> createCars(int numberOfCars) {
@@ -25,9 +29,5 @@ public class RacingGame {
         if (numberOfCars < 0 || countOfTry < 0) {
             throw new IllegalArgumentException("자동차 대수와 시도 횟수는 항상 0보다 크거나 같아야 합니다");
         }
-    }
-
-    public static RacingGame newInstance(int numberOfCars, int countOfTry) {
-        return new RacingGame(numberOfCars, countOfTry);
     }
 }
