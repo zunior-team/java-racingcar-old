@@ -1,9 +1,14 @@
 public class Car {
     public static final int MOVE_DISTANCE = 1;
     private int position = 0;
+    private int carNumber;
 
-    public static Car newInstance() {
-        return new Car();
+    private Car(int carNumber) {
+        this.carNumber = carNumber;
+    }
+
+    public static Car newInstance(int carNumber) {
+        return new Car(carNumber);
     }
 
     public int currentPosition() {

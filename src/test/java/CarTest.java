@@ -12,7 +12,7 @@ class CarTest {
     @DisplayName("Car 객체를 생성한다.")
     void createCarTest() {
         //when
-        Car car = Car.newInstance();
+        Car car = Car.newInstance(0);
 
         //then
         assertThat(car).isNotNull();
@@ -24,7 +24,7 @@ class CarTest {
     @CsvSource({"true,1", "false,0"})
     void testMove(boolean movingCondition, int result) {
         //when
-        Car car = Car.newInstance();
+        Car car = Car.newInstance(1);
         int positionBeforeMove = car.currentPosition();
         car.move(() -> movingCondition);
         int positionAfterMove = car.currentPosition();

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -21,7 +22,7 @@ public class RacingGame {
     private List<Car> createCars(int numberOfCars) {
         return Stream.iterate(0, seed -> seed + 1)
                 .limit(numberOfCars)
-                .map(value -> Car.newInstance())
+                .map(Car::newInstance)
                 .collect(Collectors.toList());
     }
 
