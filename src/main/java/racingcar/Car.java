@@ -1,5 +1,6 @@
 package racingcar;
 
+import java.util.Random;
 import java.util.stream.IntStream;
 
 public class Car {
@@ -8,7 +9,9 @@ public class Car {
     private Integer position = 0;
     private MoveStrategy moveStrategy;
 
-    Car() {}
+    Car() {
+        this.moveStrategy = new RandomMoveStrategy(new Random());
+    }
 
     Car(MoveStrategy moveStrategy) {
         this.moveStrategy = moveStrategy;
