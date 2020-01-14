@@ -23,6 +23,6 @@ public class RacingGame {
 
     private void moveAttempt() {
         carList.moveAll();
-        racingGameView.showNowPosition(carList);
+        racingGameView.showCurrentPosition(carList);
     }
 }

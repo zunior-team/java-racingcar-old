@@ -8,7 +8,7 @@ import java.util.List;
 public class RacingGameConsoleView implements RacingGameView {
 
     @Override
-    public void showNowPosition(CarList carList) {
+    public void showCurrentPosition(CarList carList) {
         List<Integer> carPositionList = carList.positionAll();
         carPositionList.stream().forEach(position -> printPositionMarker(position));
         System.out.println();
