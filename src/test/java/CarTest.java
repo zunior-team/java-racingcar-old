@@ -2,7 +2,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,9 +25,9 @@ class CarTest {
     void testMove(boolean movingCondition, int result) {
         //when
         Car car = Car.newInstance();
-        int positionBeforeMove = car.currentPositon();
+        int positionBeforeMove = car.currentPosition();
         car.move(() -> movingCondition);
-        int positionAfterMove = car.currentPositon();
+        int positionAfterMove = car.currentPosition();
 
         //then
         assertThat(positionAfterMove - positionBeforeMove).isEqualTo(result);
