@@ -3,18 +3,20 @@ package com.zuniorteam.racingcar.gui;
 import com.zuniorteam.racingcar.core.RacingGame;
 import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
 import com.zuniorteam.racingcar.core.vo.GameResult;
-import com.zuniorteam.racingcar.core.vo.StepResult;
+import com.zuniorteam.racingcar.gui.drawer.PositionDrawer;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class RacingGameBoard {
 
     private final MovingStrategy movingStrategy;
+    private final PositionDrawer positionDrawer;
 
-    public RacingGameBoard(MovingStrategy movingStrategy) {
+    public RacingGameBoard(MovingStrategy movingStrategy, PositionDrawer positionDrawer) {
         assert movingStrategy != null;
+        assert positionDrawer != null;
 
+        this.positionDrawer = positionDrawer;
         this.movingStrategy = movingStrategy;
     }
 
@@ -41,7 +43,7 @@ public class RacingGameBoard {
 
     private void printResult(GameResult result) {
         System.out.println("실행 결과");
-        System.out.println();
+        System.out.println(result.print(positionDrawer));
     }
 
     private GameResult doGame(int numberOfCars, int numberOfStep) {

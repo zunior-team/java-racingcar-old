@@ -1,5 +1,7 @@
 package com.zuniorteam.racingcar.core.vo;
 
+import com.zuniorteam.racingcar.gui.drawer.PositionDrawer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,5 +13,9 @@ public class GameResult {
         assert stepResult != null;
 
         stepResults = new ArrayList<>(stepResult);
+    }
+
+    public String print(PositionDrawer positionDrawer) {
+        return "";
     }
 }

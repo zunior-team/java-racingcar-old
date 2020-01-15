@@ -21,4 +21,11 @@ class GameResultTest {
     void testNewInstance02(){
         assertThrows(AssertionError.class, () -> new GameResult(null));
     }
+
+    @DisplayName("print")
+    @Test
+    void testPrint(){
+
+    }
+
 }
