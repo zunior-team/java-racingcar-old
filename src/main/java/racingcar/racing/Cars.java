@@ -30,7 +30,7 @@ public class Cars {
 
         cars.forEach(car ->
                 stringBuilder.append(car.printPosition())
-                        .append("\n")
+                        .append('\n')
         );
 
         return stringBuilder.toString();
