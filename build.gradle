@@ -10,6 +10,7 @@ repositories {
 test { useJUnitPlatform() }
 
 dependencies {
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.2.4'
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
     testImplementation('org.junit.jupiter:junit-jupiter-api:5.2.0')
     testImplementation('org.junit.jupiter:junit-jupiter-params:5.2.0')

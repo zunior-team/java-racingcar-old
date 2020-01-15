@@ -1,15 +1,15 @@
 package com.zuniorteam.racingcar.core.strategy;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class RandomMovingStrategyTest {
 
+    @DisplayName("New")
     @Test
-    void isMoving() {
-        final com.zuniorteam.racingcar.core.strategy.MovingStrategy randomMovingStrategy = new com.zuniorteam.racingcar.core.strategy.RandomMovingStrategy();
-
-        assertThat(randomMovingStrategy.isMoving()).isFalse();
+    void testNewInstance() {
+        assertDoesNotThrow(RandomMovingStrategy::new);
     }
 }
