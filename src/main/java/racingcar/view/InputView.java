@@ -1,27 +1,20 @@
-package racingcar;
+package racingcar.view;
+
+import racingcar.dto.RacingCarInput;
 
 import java.util.Scanner;
 
-public class Main {
+public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static RacingCarInput receiveInput() {
         printRequestNumberOfCar();
         int numberOfCar = scanner.nextInt();
 
         printRequestNumberOfRound();
         int numberOfRound = scanner.nextInt();
 
-        // racing game
-        // init(number of car, number of round)
-        // RacingGame racingGame = RacingGame.init(#c, #r);
-
-        // play()
-        // racingGame.play();
-
-        // showResult()
-        // racingGame.showResult();
-
+        return new RacingCarInput(numberOfCar, numberOfRound);
     }
 
     private static void printRequestNumberOfCar() {

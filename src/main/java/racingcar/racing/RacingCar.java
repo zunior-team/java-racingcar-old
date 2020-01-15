@@ -1,10 +1,17 @@
 package racingcar.racing;
 
+import racingcar.dto.RacingCarInput;
+import racingcar.dto.RacingCarResult;
+
 public class RacingCar {
     private Cars cars;
     private StringBuilder raceHistory;
     private int round;
     private int currentRound;
+
+    public RacingCar(RacingCarInput racingCarInput) {
+        this(racingCarInput.getNumberOfCar(), racingCarInput.getNumberOfRound());
+    }
 
     public RacingCar(int numberOfCar, int round) {
         this(new Cars(numberOfCar), round);
@@ -18,7 +25,8 @@ public class RacingCar {
         this.cars = cars;
         this.round = round;
         this.currentRound = 0;
-        this.raceHistory = new StringBuilder(cars.showCurrentState());
+        this.raceHistory = new StringBuilder();
+        registerHistory(cars.showCurrentState());
     }
 
     public void race() {
@@ -31,7 +39,7 @@ public class RacingCar {
 
     private void registerHistory(String state) {
         raceHistory.append(state)
-                .append('n');
+                .append('\n');
     }
 
     public String getRaceHistory() {
@@ -40,5 +48,9 @@ public class RacingCar {
 
     public String showCurrentState() {
         return cars.showCurrentState();
+    }
+
+    public RacingCarResult result() {
+        return new RacingCarResult(getRaceHistory());
     }
 }
