@@ -1,3 +1,7 @@
+package car;
+
+import strategy.MovingStrategy;
+
 public class Car {
     public static final int MOVE_DISTANCE = 1;
     private int position = 0;
