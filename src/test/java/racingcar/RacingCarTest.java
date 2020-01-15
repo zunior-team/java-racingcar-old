@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.racing.Car;
+import racingcar.racing.Cars;
+import racingcar.racing.RacingCar;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +17,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static racingcar.Car.DASH_MARK;
+import static racingcar.racing.Car.DASH_MARK;
 
 public class RacingCarTest {
     private static Car car;

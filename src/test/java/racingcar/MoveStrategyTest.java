@@ -5,13 +5,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import racingcar.strategy.RandomMoveStrategy;
 
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
-import static racingcar.RandomMoveStrategy.MOVE_CRITERIA;
+import static racingcar.strategy.RandomMoveStrategy.MOVE_CRITERIA;
 
 @ExtendWith(MockitoExtension.class)
 public class MoveStrategyTest {

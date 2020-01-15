@@ -4,11 +4,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.racing.Car;
+import racingcar.strategy.MoveStrategy;
 
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static racingcar.Car.DASH_MARK;
+import static racingcar.racing.Car.DASH_MARK;
 
 public class CarTest {
 

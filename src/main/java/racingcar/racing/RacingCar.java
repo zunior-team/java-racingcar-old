@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.racing;
 
 public class RacingCar {
     private Cars cars;

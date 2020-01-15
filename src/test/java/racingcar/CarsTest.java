@@ -2,6 +2,8 @@ package racingcar;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import racingcar.racing.Car;
+import racingcar.racing.Cars;
 
 import java.util.List;
 import java.util.stream.Collectors;
