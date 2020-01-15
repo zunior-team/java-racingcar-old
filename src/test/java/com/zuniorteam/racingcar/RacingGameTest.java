@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -37,12 +39,10 @@ class RacingGameTest {
 
         final RacingGame racingGame = new RacingGame(numberOfCars, numberOfStep);
 
-        final String expected = "-";
-
         //when
-        final String result = racingGame.doGame(new RandomMovingStrategy());
+        final List<List<Integer>> result = racingGame.doGame(new RandomMovingStrategy());
 
-        assertThat(result.trim()).isEqualTo(expected);
+        assertThat(result.size()).isEqualTo(numberOfStep);
     }
 
     @DisplayName("DoGame, 전략이 null 일 때")

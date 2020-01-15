@@ -1,4 +1,4 @@
-package com.zuniorteam.racingcar;
+package com.zuniorteam.racingcar.gui;
 
 import com.zuniorteam.racingcar.strategy.RandomMovingStrategy;
 import org.junit.jupiter.api.DisplayName;

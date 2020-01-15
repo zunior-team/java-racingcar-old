@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -19,8 +20,14 @@ class CarTest {
     @DisplayName("move 테스트")
     @Test
     void testMove01(){
+        //given
         final Car car = Car.newInstance();
-        car.move(new RandomMovingStrategy());
+
+        //when
+        final int result = car.move(new RandomMovingStrategy());
+
+        //then
+        assertThat(result).isEqualTo(1);
     }
 
     @DisplayName("Move, 전략이 null 일 때")

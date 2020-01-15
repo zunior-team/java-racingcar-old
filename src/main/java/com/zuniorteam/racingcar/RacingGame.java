@@ -2,6 +2,7 @@ package com.zuniorteam.racingcar;
 
 import com.zuniorteam.racingcar.strategy.MovingStrategy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -36,30 +37,25 @@ public class RacingGame {
     }
 
 
-    public String doGame(MovingStrategy movingStrategy) {
+    public List<List<Integer>> doGame(MovingStrategy movingStrategy) {
         assert movingStrategy != null : "MovingStrategy is null";
 
-        final StringBuilder gameResult = new StringBuilder();
+        final List<List<Integer>> gameResult = new ArrayList<>();
 
         for(int step = 0; step < numberOfStep; step++){
-            gameResult
-                    .append(doStep(movingStrategy))
-                    .append("\n");
+            gameResult.add(doStep(movingStrategy));
         }
 
-        return gameResult.toString().trim();
+        return gameResult;
     }
 
-    private String doStep(MovingStrategy movingStrategy) {
-        final StringBuilder stepResult = new StringBuilder();
+    private List<Integer> doStep(MovingStrategy movingStrategy) {
+        final ArrayList<Integer> stepResult = new ArrayList<>();
 
         for (Car car : cars) {
-            car.move(movingStrategy);
-            stepResult
-                    .append(car.printPosition())
-                    .append("\n");
+            stepResult.add(car.move(movingStrategy));
         }
 
-        return stepResult.toString();
+        return stepResult;
     }
 }

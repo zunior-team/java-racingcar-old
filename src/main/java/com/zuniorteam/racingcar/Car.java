@@ -14,21 +14,14 @@ public class Car {
         return new Car();
     }
 
-    public void move(@NotNull MovingStrategy movingStrategy) {
+    public int move(@NotNull MovingStrategy movingStrategy) {
         assert movingStrategy != null;
 
         if (movingStrategy.isMoving()) {
             position++;
         }
+
+        return position;
     }
 
-    public String printPosition() {
-        final StringBuilder print = new StringBuilder();
-
-        for(int i =0; i < position; i++){
-            print.append("-");
-        }
-
-        return print.toString();
-    }
 }
