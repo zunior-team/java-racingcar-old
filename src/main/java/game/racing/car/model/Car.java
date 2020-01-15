@@ -11,8 +11,8 @@ public class Car {
         this.movingStrategy = movingStrategy;
     }
 
-    public Car(Integer position, MovingStrategy movingStrategy) {
-        this.position = position;
+    public Car(Integer currentPosition, MovingStrategy movingStrategy) {
+        this.position = currentPosition;
         this.movingStrategy = movingStrategy;
     }
 

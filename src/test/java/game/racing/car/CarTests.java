@@ -1,7 +1,7 @@
 package game.racing.car;
 
 import game.racing.car.model.Car;
-import game.racing.car.model.CarList;
+import game.racing.car.model.Cars;
 import game.racing.car.service.MovingStrategy;
 import game.racing.car.service.impl.RandomMovingStrategy;
 import org.junit.jupiter.api.DisplayName;
@@ -22,7 +22,6 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -47,7 +46,7 @@ public class CarTests {
     @MethodSource
     @ExtendWith(MockitoExtension.class)
     void carListMovingTests(List<Integer> initPosition, List<Integer> randomNumbers, List<Integer> result) {
-        CarList cars = new CarList(createCarList(initPosition, randomNumbers));
+        Cars cars = new Cars(createCarList(initPosition, randomNumbers));
         cars.moveAll();
         assertThat(cars.positionAll()).isEqualTo(result);
     }

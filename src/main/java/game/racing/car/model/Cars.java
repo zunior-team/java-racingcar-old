@@ -6,17 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarList {
+public class Cars {
     private List<Car> cars;
 
-    public CarList(int capacity) {
+    public Cars(int capacity) {
         cars = new ArrayList<>();
         for (int i = 0; i < capacity; i++) {
             cars.add(new Car(new RandomMovingStrategy()));
         }
     }
 
-    public CarList(List<Car> cars) {
+    public Cars(List<Car> cars) {
         this.cars = cars;
     }
 

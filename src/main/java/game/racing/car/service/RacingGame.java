@@ -1,18 +1,18 @@
 package game.racing.car.service;
 
-import game.racing.car.model.CarList;
+import game.racing.car.model.Cars;
 import game.racing.car.view.RacingGameView;
 
 public class RacingGame {
     private static final Long WAIT_NEXT_ATTEMPT = 500L;
 
-    private CarList cars;
+    private Cars cars;
     private final Integer moveAttemptCount;
 
     private final RacingGameView racingGameView;
 
-    public RacingGame(Integer carListSize, Integer moveAttemptCount, RacingGameView racingGameView) {
-        this.cars = new CarList(carListSize);
+    public RacingGame(Integer carCount, Integer moveAttemptCount, RacingGameView racingGameView) {
+        this.cars = new Cars(carCount);
         this.moveAttemptCount = moveAttemptCount;
         this.racingGameView = racingGameView;
     }
