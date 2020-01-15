@@ -5,6 +5,7 @@ import strategy.MovingStrategy;
 public class Car {
     public static final int MOVE_DISTANCE = 1;
     public static final String PATH_MARK = "-";
+    public static final String START_LINE = "|";
     private int position = 0;
     private int carNumber;
 
@@ -17,7 +18,7 @@ public class Car {
     }
 
     public String getHistory() {
-        StringBuilder history = new StringBuilder();
+        StringBuilder history = new StringBuilder(START_LINE);
         for (int i = 0; i < position; i++) {
             history.append(PATH_MARK);
         }
