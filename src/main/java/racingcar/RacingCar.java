@@ -11,10 +11,14 @@ public class RacingCar {
     }
 
     public RacingCar(Cars cars, int round) {
+        if(round < 0) {
+            throw new IllegalArgumentException("Round must be greater than 0");
+        }
+
         this.cars = cars;
         this.round = round;
         this.currentRound = 0;
-        this.raceHistory = new StringBuilder();
+        this.raceHistory = new StringBuilder(cars.showCurrentState());
     }
 
     public void race() {
@@ -30,7 +34,7 @@ public class RacingCar {
                 .append('n');
     }
 
-    public String raceHistory() {
+    public String getRaceHistory() {
         return raceHistory.toString();
     }
 
