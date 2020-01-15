@@ -1,16 +1,22 @@
 package game;
 
-import game.RacingGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import random.RandomGenerator;
+import strategy.RandomMovingStrategy;
+
+import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("game.RacingGame 단위 테스트")
 class RacingGameTest {
+
+    private RandomMovingStrategy movingStrategy = new RandomMovingStrategy(RandomGenerator.generate());
+
 
     @Test
     @DisplayName("자동차의 대수와, 실행할 횟수를 전하면 RacingGame을 만들 수 있다")
@@ -20,7 +26,7 @@ class RacingGameTest {
         int countOfTry = 5;
 
         //when
-        RacingGame racingGame = RacingGame.newInstance(numberOfCars, countOfTry);
+        RacingGame racingGame = RacingGame.newInstance(numberOfCars, countOfTry, movingStrategy);
 
         //then
         assertThat(racingGame).isNotNull();
@@ -35,7 +41,7 @@ class RacingGameTest {
         //then
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 //when
-                () -> RacingGame.newInstance(numberOfCars, countOfTry));
+                () -> RacingGame.newInstance(numberOfCars, countOfTry, movingStrategy));
         assertThat(exception.getMessage()).isEqualToIgnoringCase("자동차 대수와 시도 횟수는 항상 0보다 커야 합니다");
     }
 
@@ -45,10 +51,10 @@ class RacingGameTest {
         //given
         int numberOfCars = 3;
         int countOfTry = 5;
-        RacingGame racingGame = RacingGame.newInstance(numberOfCars, countOfTry);
+        RacingGame racingGame = RacingGame.newInstance(numberOfCars, countOfTry, movingStrategy);
 
         //when
-        RacingResult racingResult = racingGame.start();
+        RacingResult racingResult = racingGame.proceedAll();
 
         //then
         assertThat(racingResult).isNotNull();

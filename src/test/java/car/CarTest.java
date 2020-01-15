@@ -1,6 +1,5 @@
 package car;
 
-import car.Car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,12 +27,12 @@ class CarTest {
     void testMove(boolean movingCondition, int result) {
         //when
         Car car = Car.newInstance(1);
-        int positionBeforeMove = car.currentPosition();
+        String historyBeforeMove = car.getHistory();
         car.move(() -> movingCondition);
-        int positionAfterMove = car.currentPosition();
+        String historyAfterMove = car.getHistory();
 
         //then
-        assertThat(positionAfterMove - positionBeforeMove).isEqualTo(result);
+        assertThat(historyAfterMove.length() - historyBeforeMove.length()).isEqualTo(result);
     }
 
 }

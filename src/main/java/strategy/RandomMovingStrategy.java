@@ -7,7 +7,7 @@ public class RandomMovingStrategy implements MovingStrategy {
     public static final int MINIMUM_STANDARD = 4;
     private Random random;
 
-    RandomMovingStrategy(Random random) {
+    public RandomMovingStrategy(Random random) {
         this.random = random;
     }
 
