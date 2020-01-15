@@ -42,6 +42,7 @@ public class RacingGameBoard {
     }
 
     private void printResult(GameResult result) {
+        System.out.println("\n");
         System.out.println("실행 결과");
         System.out.println(result.print(positionDrawer));
     }

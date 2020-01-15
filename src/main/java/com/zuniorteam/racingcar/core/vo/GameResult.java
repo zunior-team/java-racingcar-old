@@ -16,6 +16,14 @@ public class GameResult {
     }
 
     public String print(PositionDrawer positionDrawer) {
-        return "";
+        final StringBuilder gameResultString = new StringBuilder();
+
+        for (StepResult stepResult : stepResults) {
+            gameResultString
+                    .append(stepResult.print(positionDrawer))
+                    .append("\n");
+        }
+
+        return gameResultString.toString().trim();
     }
 }
