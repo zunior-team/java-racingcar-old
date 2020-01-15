@@ -20,4 +20,16 @@ public class Cars {
     public Cars(List<Car> cars) {
         this.cars = cars;
     }
+
+    public void moveCars() {
+        cars.forEach(Car::move);
+    }
+
+    public String showCurrentState() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        cars.forEach(car -> stringBuilder.append(car.printPosition()).append("\n"));
+
+        return stringBuilder.toString();
+    }
 }
