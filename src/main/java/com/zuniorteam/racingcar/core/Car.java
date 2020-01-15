@@ -5,7 +5,9 @@ import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
 
 public class Car {
 
-    private int position = 1;
+    private static final int START_POSITION = 0;
+
+    private int position = START_POSITION;
 
     private Car() {
     }

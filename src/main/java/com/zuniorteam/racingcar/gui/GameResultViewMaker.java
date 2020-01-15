@@ -21,14 +21,14 @@ public class GameResultViewMaker {
 
         for (Integer position : stepResult) {
             stepResultString
-                    .append(createLine(position))
+                    .append(makeLine(position))
                     .append("\n");
         }
 
         return stepResultString.toString();
     }
 
-    private static String createLine(Integer position) {
+    private static String makeLine(Integer position) {
         final StringBuilder line = new StringBuilder();
 
         for(int i = 0 ;i < position; i++){
