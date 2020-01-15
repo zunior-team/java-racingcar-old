@@ -1,7 +1,7 @@
 package game.racing.car.view;
 
-import game.racing.car.model.CarList;
+import java.util.List;
 
 public interface RacingGameView {
-    void showCurrentPosition(CarList carList);
+    void showCurrentPosition(List<Integer> positions);
 }

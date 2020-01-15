@@ -6,13 +6,13 @@ import game.racing.car.view.RacingGameView;
 public class RacingGame {
     private static final Long WAIT_NEXT_ATTEMPT = 500L;
 
-    private CarList carList;
-    private Integer moveAttemptCount;
+    private CarList cars;
+    private final Integer moveAttemptCount;
 
-    private RacingGameView racingGameView;
+    private final RacingGameView racingGameView;
 
     public RacingGame(Integer carListSize, Integer moveAttemptCount, RacingGameView racingGameView) {
-        this.carList = new CarList(carListSize);
+        this.cars = new CarList(carListSize);
         this.moveAttemptCount = moveAttemptCount;
         this.racingGameView = racingGameView;
     }
@@ -26,7 +26,7 @@ public class RacingGame {
     }
 
     private void moveAttempt() {
-        carList.moveAll();
-        racingGameView.showCurrentPosition(carList);
+        cars.moveAll();
+        racingGameView.showCurrentPosition(cars.positionAll());
     }
 }

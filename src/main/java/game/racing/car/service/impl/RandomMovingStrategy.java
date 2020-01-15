@@ -6,7 +6,9 @@ import java.util.Random;
 
 public class RandomMovingStrategy implements MovingStrategy {
 
-    private Random random;
+    private final Random random;
+    private static final int RANDOM_INT_BOUNDED = 10;
+    private static final int MIN_MOVABLE_RANDOM_NUMBER = 4;
 
     public RandomMovingStrategy(Random random) {
         this.random = random;
@@ -18,6 +20,6 @@ public class RandomMovingStrategy implements MovingStrategy {
 
     @Override
     public Boolean isMovable() {
-        return random.nextInt(10) >= 4;
+        return random.nextInt(RANDOM_INT_BOUNDED) >= MIN_MOVABLE_RANDOM_NUMBER;
     }
 }
