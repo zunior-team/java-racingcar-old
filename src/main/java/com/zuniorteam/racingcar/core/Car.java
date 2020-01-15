@@ -1,7 +1,7 @@
-package com.zuniorteam.racingcar;
+package com.zuniorteam.racingcar.core;
 
 import com.sun.istack.internal.NotNull;
-import com.zuniorteam.racingcar.strategy.MovingStrategy;
+import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
 
 public class Car {
 

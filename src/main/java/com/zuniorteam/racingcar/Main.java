@@ -1,8 +1,8 @@
 package com.zuniorteam.racingcar;
 
+import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
+import com.zuniorteam.racingcar.core.strategy.RandomMovingStrategy;
 import com.zuniorteam.racingcar.gui.RacingGameBoard;
-import com.zuniorteam.racingcar.strategy.MovingStrategy;
-import com.zuniorteam.racingcar.strategy.RandomMovingStrategy;
 
 public class Main {
 

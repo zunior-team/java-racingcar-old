@@ -1,6 +1,6 @@
 package com.zuniorteam.racingcar.gui;
 
-import com.zuniorteam.racingcar.strategy.RandomMovingStrategy;
+import com.zuniorteam.racingcar.core.strategy.RandomMovingStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

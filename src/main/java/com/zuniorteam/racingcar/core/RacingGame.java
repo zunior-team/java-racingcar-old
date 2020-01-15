@@ -1,6 +1,6 @@
-package com.zuniorteam.racingcar;
+package com.zuniorteam.racingcar.core;
 
-import com.zuniorteam.racingcar.strategy.MovingStrategy;
+import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
 
 import java.util.ArrayList;
 import java.util.List;

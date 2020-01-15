@@ -1,7 +1,7 @@
 package com.zuniorteam.racingcar.gui;
 
-import com.zuniorteam.racingcar.RacingGame;
-import com.zuniorteam.racingcar.strategy.MovingStrategy;
+import com.zuniorteam.racingcar.core.RacingGame;
+import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
 
 import java.util.List;
 import java.util.Scanner;

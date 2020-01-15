@@ -1,4 +1,4 @@
-package com.zuniorteam.racingcar.strategy;
+package com.zuniorteam.racingcar.core.strategy;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +8,7 @@ class RandomMovingStrategyTest {
 
     @Test
     void isMoving() {
-        final MovingStrategy randomMovingStrategy = new RandomMovingStrategy();
+        final com.zuniorteam.racingcar.core.strategy.MovingStrategy randomMovingStrategy = new com.zuniorteam.racingcar.core.strategy.RandomMovingStrategy();
 
         assertThat(randomMovingStrategy.isMoving()).isFalse();
     }

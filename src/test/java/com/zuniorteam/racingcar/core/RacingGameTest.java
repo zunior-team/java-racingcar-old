@@ -1,6 +1,7 @@
-package com.zuniorteam.racingcar;
+package com.zuniorteam.racingcar.core;
 
-import com.zuniorteam.racingcar.strategy.RandomMovingStrategy;
+import com.zuniorteam.racingcar.core.RacingGame;
+import com.zuniorteam.racingcar.core.strategy.RandomMovingStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
