@@ -16,16 +16,16 @@ public class CarTest {
     public void carConstructTest() {
         Car car = new Car();
 
-        assertThat(car.printPosition()).isEqualTo("");
+        assertThat(car.printPosition()).isEqualTo(DASH_MARK);
     }
 
     @Test
     public void moveCarTest() {
-        Car car = new Car();
+        Car car = new Car(() -> true);
 
-        assertThat(car.printPosition()).isEqualTo("");
-        car.move();
         assertThat(car.printPosition()).isEqualTo(DASH_MARK);
+        car.move();
+        assertThat(car.printPosition()).isEqualTo(DASH_MARK + DASH_MARK);
     }
 
     @ParameterizedTest
@@ -39,8 +39,8 @@ public class CarTest {
 
     private static Stream moveStrategyTest() {
         return Stream.of(
-                Arguments.of((MoveStrategy) () -> true, DASH_MARK),
-                Arguments.of((MoveStrategy) () -> false, "")
+                Arguments.of((MoveStrategy) () -> true, DASH_MARK + DASH_MARK),
+                Arguments.of((MoveStrategy) () -> false, DASH_MARK)
         );
     }
 }

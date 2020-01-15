@@ -1,6 +1,5 @@
 package racingcar;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -47,19 +46,19 @@ public class CarsTest {
         StringBuilder outputs = new StringBuilder();
         candidates.forEach(car -> outputs.append(car.printPosition()));
 
-        assertThat(outputs.toString()).isEqualTo("-----");
+        assertThat(outputs.toString()).isEqualTo("----------");
     }
 
 
     @Test
     public void showCurrentStateTest() {
-        assertThat(cars.showCurrentState()).isEqualTo("\n\n\n\n\n");
+        assertThat(cars.showCurrentState()).isEqualTo("-\n-\n-\n-\n-\n");
 
-        String expectedString = "-\n" +
-                "-\n" +
-                "-\n" +
-                "-\n" +
-                "-\n";
+        String expectedString = "--\n" +
+                "--\n" +
+                "--\n" +
+                "--\n" +
+                "--\n";
 
         cars.moveCars();
 
