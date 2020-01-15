@@ -27,7 +27,12 @@ public class RacingGame {
         while(true) {
 
             console.printAskCarNumberMessage();
+            car.initRacingCarNumber(console.listen());
 
+            console.printAskTryCountMessage();
+            car.initRacingCarTryCount(console.listen());
+
+            console.printGameResultMessage();
 
         }
     }
