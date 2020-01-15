@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 public class Car {
     public static final String DASH_MARK = "-";
 
-    private Integer position = 1;
+    private Integer position = 0;
     private MoveStrategy moveStrategy;
 
     Car() {
@@ -26,7 +26,7 @@ public class Car {
     public String printPosition() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        IntStream.range(0, position)
+        IntStream.rangeClosed(0, position)
                 .forEach(x -> stringBuilder.append(DASH_MARK));
 
         return stringBuilder.toString();
