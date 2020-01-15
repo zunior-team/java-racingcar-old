@@ -4,8 +4,6 @@ import com.zuniorteam.racingcar.gui.drawer.SimplePositionDrawer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -27,15 +25,15 @@ class StepResultTest {
         assertThrows(AssertionError.class, () -> new StepResult(null));
     }
 
-    @DisplayName("Print Result")
+    @DisplayName("Get Drawing")
     @Test
-    void testPrint(){
+    void testGetDrawing(){
         //given
         final List<Integer> positions = Collections.singletonList(3);
         final StepResult stepResult = new StepResult(positions);
 
         //when
-        final String result = stepResult.print(new SimplePositionDrawer());
+        final String result = stepResult.getDrawing(new SimplePositionDrawer());
 
         //then
         assertThat(result).isEqualTo("---\n");

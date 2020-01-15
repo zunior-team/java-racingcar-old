@@ -15,12 +15,12 @@ public class GameResult {
         stepResults = new ArrayList<>(stepResult);
     }
 
-    public String print(PositionDrawer positionDrawer) {
+    public String getDrawing(PositionDrawer positionDrawer) {
         final StringBuilder gameResultString = new StringBuilder();
 
         for (StepResult stepResult : stepResults) {
             gameResultString
-                    .append(stepResult.print(positionDrawer))
+                    .append(stepResult.getDrawing(positionDrawer))
                     .append("\n");
         }
 

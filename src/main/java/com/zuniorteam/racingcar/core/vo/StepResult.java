@@ -15,7 +15,7 @@ public class StepResult {
         this.carPositions = new ArrayList<>(carPositions);
     }
 
-    public String print(PositionDrawer positionDrawer) {
+    public String getDrawing(PositionDrawer positionDrawer) {
         final StringBuilder stepResultString = new StringBuilder();
 
         for (Integer position : carPositions) {

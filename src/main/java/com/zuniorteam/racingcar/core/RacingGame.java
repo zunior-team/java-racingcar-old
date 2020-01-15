@@ -52,12 +52,12 @@ public class RacingGame {
     }
 
     private StepResult doStep(MovingStrategy movingStrategy) {
-        final ArrayList<Integer> stepResult = new ArrayList<>();
+        final List<Integer> carPositions = new ArrayList<>();
 
         for (Car car : cars) {
-            stepResult.add(car.move(movingStrategy));
+            carPositions.add(car.move(movingStrategy));
         }
 
-        return new StepResult(stepResult);
+        return new StepResult(carPositions);
     }
 }

@@ -26,9 +26,9 @@ class GameResultTest {
         assertThrows(AssertionError.class, () -> new GameResult(null));
     }
 
-    @DisplayName("Print Result")
+    @DisplayName("Get Draw")
     @Test
-    void testPrint(){
+    void testGetDrawing(){
         //given
         final List<Integer> positionsA = Collections.singletonList(3);
         final StepResult stepResultA = new StepResult(positionsA);
@@ -39,7 +39,7 @@ class GameResultTest {
         final GameResult gameResult = new GameResult(Arrays.asList(stepResultA, stepResultB));
 
         //when
-        final String result = gameResult.print(new SimplePositionDrawer());
+        final String result = gameResult.getDrawing(new SimplePositionDrawer());
 
         //then
         assertThat(result).isEqualTo("---\n\n--");
