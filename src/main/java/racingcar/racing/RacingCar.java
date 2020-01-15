@@ -1,7 +1,7 @@
 package racingcar.racing;
 
 import racingcar.dto.RacingCarInput;
-import racingcar.dto.RacingCarResult;
+import racingcar.dto.RacingResult;
 
 public class RacingCar {
     private Cars cars;
@@ -50,7 +50,7 @@ public class RacingCar {
         return cars.showCurrentState();
     }
 
-    public RacingCarResult result() {
-        return new RacingCarResult(getRaceHistory());
+    public RacingResult result() {
+        return new RacingResult(getRaceHistory());
     }
 }

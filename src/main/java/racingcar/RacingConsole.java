@@ -2,7 +2,7 @@ package racingcar;
 
 
 import racingcar.dto.RacingCarInput;
-import racingcar.dto.RacingCarResult;
+import racingcar.dto.RacingResult;
 import racingcar.racing.RacingCar;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -13,7 +13,7 @@ public class RacingConsole {
 
         RacingCar racingCar = new RacingCar(racingCarInput);
         racingCar.race();
-        RacingCarResult result = racingCar.result();
+        RacingResult result = racingCar.result();
 
         OutputView.printResult(result);
     }
