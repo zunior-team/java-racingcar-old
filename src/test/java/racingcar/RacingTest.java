@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.racing.Car;
 import racingcar.racing.Cars;
-import racingcar.racing.RacingCar;
+import racingcar.racing.Racing;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,11 +19,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static racingcar.racing.Car.DASH_MARK;
 
-public class RacingCarTest {
+public class RacingTest {
     private static Car car;
     private static List<Car> candidates;
     private static Cars cars;
-    private static RacingCar racingCar;
+    private static Racing racing;
 
     @BeforeAll
     static void init() {
@@ -31,17 +31,17 @@ public class RacingCarTest {
         candidates = Arrays.asList(car);
         cars = new Cars(candidates);
 
-        racingCar = new RacingCar(cars, 1);
+        racing = new Racing(cars, 1);
     }
     @Test
-    public void racingCarConstructorTest() {
-        new RacingCar(cars, 10);
+    void racingCarConstructorTest() {
+        new Racing(cars, 10);
     }
 
     @ParameterizedTest
     @MethodSource
-    public void constructorTest(int numberOfCar, int round) {
-        assertThatThrownBy(() -> new RacingCar(numberOfCar, round)).isInstanceOf(IllegalArgumentException.class);
+    void constructorTest(int numberOfCar, int round) {
+        assertThatThrownBy(() -> new Racing(numberOfCar, round)).isInstanceOf(IllegalArgumentException.class);
     }
 
     private static Stream constructorTest() {
@@ -52,23 +52,23 @@ public class RacingCarTest {
     }
 
     @Test
-    public void raceTest() {
+    void raceTest() {
         assertThat(car.printPosition()).isEqualTo(DASH_MARK);
 
-        racingCar.race();
+        racing.race();
 
         assertThat(car.printPosition()).isEqualTo(DASH_MARK + DASH_MARK);
     }
 
     @Test
-    public void showRacingResultTest() {
+    void showRacingResultTest() {
         List<Car> candidates = IntStream.range(0, 10)
                 .mapToObj(x -> new Car(() -> x % 2 == 0))
                 .collect(Collectors.toList());
 
-        RacingCar racingCar = new RacingCar(new Cars(candidates), 2);
+        Racing racing = new Racing(new Cars(candidates), 2);
 
-        assertThat(racingCar.showCurrentState()).isEqualTo(
+        assertThat(racing.showCurrentState()).isEqualTo(
                         "-\n" +
                         "-\n" +
                         "-\n" +
@@ -81,9 +81,9 @@ public class RacingCarTest {
                         "-\n"
         );
 
-        racingCar.race();
+        racing.race();
 
-        assertThat(racingCar.showCurrentState()).isEqualTo(
+        assertThat(racing.showCurrentState()).isEqualTo(
                         "---\n" +
                         "-\n" +
                         "---\n" +
@@ -98,21 +98,21 @@ public class RacingCarTest {
     }
 
     @Test
-    public void getRacingHistoryTest() {
+    void getRacingHistoryTest() {
         List<Car> candidates = IntStream.range(0, 1)
                 .mapToObj(x -> new Car(() -> x % 2 == 0))
                 .collect(Collectors.toList());
 
-        RacingCar racingCar = new RacingCar(new Cars(candidates), 3);
+        Racing racing = new Racing(new Cars(candidates), 3);
 
-        assertThat(racingCar.getRaceHistory()).isEqualTo(
+        assertThat(racing.getRaceHistory()).isEqualTo(
                         "-\n" +
                         "-\n"
         );
 
-        racingCar.race();
+        racing.race();
 
-        assertThat(racingCar.showCurrentState()).isEqualTo(
+        assertThat(racing.showCurrentState()).isEqualTo(
                         "-\n" +
                         "-\n\n" +
                         "--\n" +

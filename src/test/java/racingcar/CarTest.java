@@ -15,14 +15,14 @@ import static racingcar.racing.Car.DASH_MARK;
 public class CarTest {
 
     @Test
-    public void carConstructTest() {
+    void carConstructTest() {
         Car car = new Car();
 
         assertThat(car.printPosition()).isEqualTo(DASH_MARK);
     }
 
     @Test
-    public void moveCarTest() {
+    void moveCarTest() {
         Car car = new Car(() -> true);
 
         assertThat(car.printPosition()).isEqualTo(DASH_MARK);
@@ -32,7 +32,7 @@ public class CarTest {
 
     @ParameterizedTest
     @MethodSource
-    public void moveStrategyTest(MoveStrategy moveStrategy, String moveFootprint) {
+    void moveStrategyTest(MoveStrategy moveStrategy, String moveFootprint) {
         Car car = new Car(moveStrategy);
 
         car.move();

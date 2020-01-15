@@ -21,7 +21,7 @@ public class MoveStrategyTest {
 
     @ParameterizedTest
     @ValueSource(ints = {0, 3, 4, 5, 9})
-    public void moveStrategyTest(int randomNumber) {
+    void moveStrategyTest(int randomNumber) {
         RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy(random);
 
         given(random.nextInt(anyInt())).willReturn(randomNumber);

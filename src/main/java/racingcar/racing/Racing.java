@@ -3,21 +3,21 @@ package racingcar.racing;
 import racingcar.dto.RacingCarInput;
 import racingcar.dto.RacingResult;
 
-public class RacingCar {
+public class Racing {
     private Cars cars;
     private StringBuilder raceHistory;
     private int round;
     private int currentRound;
 
-    public RacingCar(RacingCarInput racingCarInput) {
+    public Racing(RacingCarInput racingCarInput) {
         this(racingCarInput.getNumberOfCar(), racingCarInput.getNumberOfRound());
     }
 
-    public RacingCar(int numberOfCar, int round) {
+    public Racing(int numberOfCar, int round) {
         this(new Cars(numberOfCar), round);
     }
 
-    public RacingCar(Cars cars, int round) {
+    public Racing(Cars cars, int round) {
         if(round < 0) {
             throw new IllegalArgumentException("Round must be greater than 0");
         }

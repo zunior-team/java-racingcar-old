@@ -26,7 +26,7 @@ public class CarsTest {
     }
 
     @Test
-    public void constructorTest() {
+    void constructorTest() {
         List<Car> candidates = IntStream.range(0, 5)
                 .mapToObj(x -> new Car(() -> true))
                 .collect(Collectors.toList());
@@ -36,12 +36,12 @@ public class CarsTest {
     }
 
     @Test
-    public void constructorFailTest() {
+    void constructorFailTest() {
         assertThrows(IllegalArgumentException.class, () -> new Cars(-1));
     }
 
     @Test
-    public void moveCarsTest() {
+    void moveCarsTest() {
         cars.moveCars();
 
 
@@ -53,7 +53,7 @@ public class CarsTest {
 
 
     @Test
-    public void showCurrentStateTest() {
+    void showCurrentStateTest() {
         assertThat(cars.showCurrentState()).isEqualTo("-\n-\n-\n-\n-\n");
 
         String expectedString = "--\n" +
