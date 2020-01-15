@@ -7,8 +7,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import random.RandomGenerator;
 import strategy.RandomMovingStrategy;
 
-import java.util.Random;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
