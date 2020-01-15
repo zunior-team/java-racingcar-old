@@ -16,6 +16,7 @@ public class Cars {
                 .mapToObj(x -> new Car())
                 .collect(Collectors.toList());
     }
+
     public Cars(List<Car> cars) {
         this.cars = cars;
     }
