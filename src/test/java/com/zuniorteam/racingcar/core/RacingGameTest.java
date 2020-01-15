@@ -3,6 +3,8 @@ package com.zuniorteam.racingcar.core;
 import com.zuniorteam.racingcar.core.RacingGame;
 import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
 import com.zuniorteam.racingcar.core.strategy.RandomMovingStrategy;
+import com.zuniorteam.racingcar.core.vo.GameResult;
+import com.zuniorteam.racingcar.core.vo.StepResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -46,10 +48,8 @@ class RacingGameTest {
         final MovingStrategy mockMovingStrategy = Mockito.mock(MovingStrategy.class);
         given(mockMovingStrategy.isMoving()).willReturn(true);
 
-        //when
-        final List<List<Integer>> result = racingGame.doGame(mockMovingStrategy);
-
-        assertThat(result.size()).isEqualTo(numberOfStep);
+        //when, then
+        assertDoesNotThrow(() -> racingGame.doGame(mockMovingStrategy));
     }
 
     @DisplayName("DoGame, 전략이 null 일 때")

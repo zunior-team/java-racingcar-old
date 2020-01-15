@@ -1,6 +1,8 @@
 package com.zuniorteam.racingcar.core;
 
 import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
+import com.zuniorteam.racingcar.core.vo.GameResult;
+import com.zuniorteam.racingcar.core.vo.StepResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,25 +39,25 @@ public class RacingGame {
     }
 
 
-    public List<List<Integer>> doGame(MovingStrategy movingStrategy) {
+    public GameResult doGame(MovingStrategy movingStrategy) {
         assert movingStrategy != null : "MovingStrategy is null";
 
-        final List<List<Integer>> gameResult = new ArrayList<>();
+        final List<StepResult> stepResults = new ArrayList<>();
 
         for(int step = 0; step < numberOfStep; step++){
-            gameResult.add(doStep(movingStrategy));
+            stepResults.add(doStep(movingStrategy));
         }
 
-        return gameResult;
+        return new GameResult(stepResults);
     }
 
-    private List<Integer> doStep(MovingStrategy movingStrategy) {
+    private StepResult doStep(MovingStrategy movingStrategy) {
         final ArrayList<Integer> stepResult = new ArrayList<>();
 
         for (Car car : cars) {
             stepResult.add(car.move(movingStrategy));
         }
 
-        return stepResult;
+        return new StepResult(stepResult);
     }
 }

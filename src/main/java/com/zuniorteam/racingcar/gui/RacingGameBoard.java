@@ -2,6 +2,8 @@ package com.zuniorteam.racingcar.gui;
 
 import com.zuniorteam.racingcar.core.RacingGame;
 import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
+import com.zuniorteam.racingcar.core.vo.GameResult;
+import com.zuniorteam.racingcar.core.vo.StepResult;
 
 import java.util.List;
 import java.util.Scanner;
@@ -22,7 +24,7 @@ public class RacingGameBoard {
         final int numberOfCars = scanNumberOfCars(scanner);
         final int numberOfStep = scanNumberOfStep(scanner);
 
-        final List<List<Integer>> result = doGame(numberOfCars, numberOfStep);
+        final GameResult result = doGame(numberOfCars, numberOfStep);
 
         printResult(result);
     }
@@ -37,12 +39,12 @@ public class RacingGameBoard {
         return scanner.nextInt();
     }
 
-    private void printResult(List<List<Integer>> result) {
+    private void printResult(GameResult result) {
         System.out.println("실행 결과");
-        System.out.println(GameResultViewMaker.makeGameResultView(result));
+        System.out.println();
     }
 
-    private List<List<Integer>> doGame(int numberOfCars, int numberOfStep) {
+    private GameResult doGame(int numberOfCars, int numberOfStep) {
         final RacingGame racingGame = new RacingGame(numberOfCars, numberOfStep);
         return racingGame.doGame(movingStrategy);
     }
