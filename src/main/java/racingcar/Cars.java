@@ -28,7 +28,10 @@ public class Cars {
     public String showCurrentState() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        cars.forEach(car -> stringBuilder.append(car.printPosition()).append("\n"));
+        cars.forEach(car ->
+                stringBuilder.append(car.printPosition())
+                        .append("\n")
+        );
 
         return stringBuilder.toString();
     }
