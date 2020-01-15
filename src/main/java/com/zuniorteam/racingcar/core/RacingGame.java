@@ -22,7 +22,7 @@ public class RacingGame {
 
     private List<Car> initCars(int numberOfCars) {
         return IntStream.rangeClosed(0, numberOfCars - 1)
-                .mapToObj((index) -> Car.newInstance())
+                .mapToObj((index) -> new Car())
                 .collect(toList());
     }
 

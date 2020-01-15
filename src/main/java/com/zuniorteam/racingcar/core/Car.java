@@ -9,13 +9,6 @@ public class Car {
 
     private int position = START_POSITION;
 
-    private Car() {
-    }
-
-    public static Car newInstance() {
-        return new Car();
-    }
-
     public int move(@NotNull MovingStrategy movingStrategy) {
         assert movingStrategy != null;
 
