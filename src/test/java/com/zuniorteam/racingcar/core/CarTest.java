@@ -35,11 +35,4 @@ class CarTest {
         assertThat(result).isEqualTo(1);
     }
 
-    @DisplayName("Move, 전략이 null 일 때")
-    @Test
-    void testMove02(){
-        final Car car = new Car();
-        assertThrows(AssertionError.class, () -> car.move(null));
-    }
-
 }

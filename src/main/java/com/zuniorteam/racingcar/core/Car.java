@@ -1,6 +1,5 @@
 package com.zuniorteam.racingcar.core;
 
-import com.sun.istack.internal.NotNull;
 import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
 
 public class Car {
@@ -9,9 +8,7 @@ public class Car {
 
     private int position = START_POSITION;
 
-    public int move(@NotNull MovingStrategy movingStrategy) {
-        assert movingStrategy != null;
-
+    public int move(MovingStrategy movingStrategy) {
         if (movingStrategy.isMoving()) {
             position++;
         }
