@@ -9,10 +9,10 @@ public class GameResult {
 
     private final List<StepResult> stepResults;
 
-    public GameResult(List<StepResult> stepResult) {
-        assert stepResult != null;
+    public GameResult(List<StepResult> stepResults) {
+        assert stepResults != null;
 
-        stepResults = new ArrayList<>(stepResult);
+        this.stepResults = new ArrayList<>(stepResults);
     }
 
     public String getDrawing(PositionDrawer positionDrawer) {
