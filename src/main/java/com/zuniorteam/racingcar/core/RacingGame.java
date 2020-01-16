@@ -55,7 +55,8 @@ public class RacingGame {
         final List<Integer> carPositions = new ArrayList<>();
 
         for (Car car : cars) {
-            carPositions.add(car.move(movingStrategy));
+            car.move(movingStrategy);
+            carPositions.add(car.getPosition());
         }
 
         return new StepResult(carPositions);

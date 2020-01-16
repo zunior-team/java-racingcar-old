@@ -29,7 +29,8 @@ class CarTest {
         given(mockMovingStrategy.isMoving()).willReturn(true);
 
         //when
-        final int result = car.move(mockMovingStrategy);
+        car.move(mockMovingStrategy);
+        final int result = car.getPosition();
 
         //then
         assertThat(result).isEqualTo(1);
