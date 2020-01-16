@@ -9,7 +9,7 @@ public class Car {
     private int position = START_POSITION;
 
     public void move(MovingStrategy movingStrategy) {
-        if (movingStrategy.isMoving()) {
+        if (movingStrategy.isMovable()) {
             position++;
         }
     }
