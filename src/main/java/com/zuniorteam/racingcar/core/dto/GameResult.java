@@ -1,6 +1,5 @@
 package com.zuniorteam.racingcar.core.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameResult {
