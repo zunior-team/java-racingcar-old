@@ -17,7 +17,7 @@ public class Cars {
     }
 
     private List<Car> initCars(int numberOfCars) {
-        return IntStream.rangeClosed(0, numberOfCars - 1)
+        return IntStream.range(0, numberOfCars)
                 .mapToObj((index) -> new Car())
                 .collect(Collectors.toList());
     }
