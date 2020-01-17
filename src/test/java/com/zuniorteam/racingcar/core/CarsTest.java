@@ -1,7 +1,6 @@
 package com.zuniorteam.racingcar.core;
 
 import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
-import net.bytebuddy.build.ToStringPlugin;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,7 +10,8 @@ import org.mockito.Mockito;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 
 class CarsTest {
@@ -23,7 +23,7 @@ class CarsTest {
     }
 
     @DisplayName("생성, 자동차 개수가 0 이하")
-    @ParameterizedTest(name = "{displayName} - {0}")
+    @ParameterizedTest
     @ValueSource(ints = {-1, 0})
     void testNewInstance01(int numberOfCars) {
         assertThrows(RuntimeException.class, () -> new Cars(numberOfCars));

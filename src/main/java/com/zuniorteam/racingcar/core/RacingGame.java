@@ -13,16 +13,15 @@ public class RacingGame {
     private final Cars cars;
 
     public RacingGame(int numberOfCars, int numberOfStep) {
-        validate(numberOfCars);
+        validate(numberOfStep);
 
         this.cars = new Cars(numberOfCars);
         this.numberOfStep = numberOfStep;
-
     }
 
     private void validate(int numberOfStep) {
-        if (numberOfStep == 0) {
-            throw new RuntimeException("요청한 이동 횟수가 0 입니다");
+        if (numberOfStep <= 0) {
+            throw new RuntimeException("요청한 이동 횟수가 0 이하 입니다");
         }
     }
 

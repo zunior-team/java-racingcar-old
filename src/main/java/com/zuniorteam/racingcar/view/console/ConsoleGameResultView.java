@@ -1,19 +1,18 @@
-package com.zuniorteam.racingcar.gui;
+package com.zuniorteam.racingcar.view.console;
 
 import com.zuniorteam.racingcar.core.dto.GameResult;
 import com.zuniorteam.racingcar.core.dto.StepResult;
+import com.zuniorteam.racingcar.view.GameResultView;
 
 import java.util.List;
 
-public final class GameResultView {
+public class ConsoleGameResultView implements GameResultView {
 
     private static final String NEW_LINE = "\n";
     private static final String DASH = "-";
 
-    private GameResultView() {
-    }
+    public void draw(GameResult result) {
 
-    public static String draw(GameResult result) {
         final StringBuilder drawing = new StringBuilder();
 
         final List<StepResult> stepResults = result.getStepResults();
@@ -22,10 +21,12 @@ public final class GameResultView {
                     .append("\n");
         }
 
-        return drawing.toString().trim();
+        System.out.println("실행 결과");
+        System.out.println(drawing.toString().trim());
+
     }
 
-    private static String drawStep(StepResult stepResult) {
+    private String drawStep(StepResult stepResult) {
         final StringBuilder stepDrawing = new StringBuilder();
         final List<Integer> carPositions = stepResult.getCarPositions();
 
@@ -37,7 +38,7 @@ public final class GameResultView {
         return stepDrawing.toString();
     }
 
-    private static String drawLine(Integer position) {
+    private String drawLine(Integer position) {
         final StringBuilder line = new StringBuilder();
         for (int i = 0; i < position; i++) {
             line.append(DASH);
