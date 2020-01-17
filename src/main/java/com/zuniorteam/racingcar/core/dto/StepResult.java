@@ -2,7 +2,6 @@ package com.zuniorteam.racingcar.core.dto;
 
 import jdk.nashorn.internal.objects.annotations.Getter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StepResult {
@@ -12,7 +11,7 @@ public class StepResult {
     public StepResult(List<Integer> carPositions) {
         assert carPositions != null;
 
-        this.carPositions = new ArrayList<>(carPositions);
+        this.carPositions = carPositions;
     }
 
     @Getter

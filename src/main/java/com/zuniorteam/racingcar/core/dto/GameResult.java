@@ -10,10 +10,10 @@ public class GameResult {
     public GameResult(List<StepResult> stepResults) {
         assert stepResults != null;
 
-        this.stepResults = new ArrayList<>(stepResults);
+        this.stepResults = stepResults;
     }
 
     public List<StepResult> getStepResults() {
-        return new ArrayList<>(stepResults);
+        return stepResults;
     }
 }
