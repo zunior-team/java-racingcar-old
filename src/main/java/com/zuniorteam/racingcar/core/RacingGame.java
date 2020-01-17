@@ -13,25 +13,25 @@ public class RacingGame {
     private final Cars cars;
 
     public RacingGame(int numberOfCars, int numberOfStep) {
+        validate(numberOfCars);
+
         this.cars = new Cars(numberOfCars);
         this.numberOfStep = numberOfStep;
 
-        validate();
     }
 
-    private void validate() {
-        if(this.numberOfStep == 0){
+    private void validate(int numberOfStep) {
+        if (numberOfStep == 0) {
             throw new RuntimeException("요청한 이동 횟수가 0 입니다");
         }
     }
-
 
     public GameResult doGame(MovingStrategy movingStrategy) {
         assert movingStrategy != null : "MovingStrategy is null";
 
         final List<StepResult> stepResults = new ArrayList<>();
 
-        for(int step = 0; step < numberOfStep; step++){
+        for (int step = 0; step < numberOfStep; step++) {
             stepResults.add(doStep(movingStrategy));
         }
 
