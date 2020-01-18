@@ -21,22 +21,14 @@ public class RacingGameBoard {
     }
 
     public void start(@NotNull GameInputView gameInputView, @NotNull GameResultView gameResultView) {
-        validate(gameInputView, gameResultView);
+        assert gameInputView != null;
+        assert gameResultView != null;
+
 
         final GameInput gameInput = gameInputView.listen();
         final GameResult result = doGame(gameInput.getNumberOfCars(), gameInput.getNumberOfStep());
 
         gameResultView.draw(result);
-    }
-
-    private void validate(GameInputView gameInputView, GameResultView gameResultView) {
-        if (Objects.isNull(gameInputView)) {
-            throw new RuntimeException("게임 INPUT VIEW 를 지정해주세요");
-        }
-
-        if (Objects.isNull(gameResultView)) {
-            throw new RuntimeException("게임 OUTPUT VIEW 를 지정해주세요");
-        }
     }
 
     private GameResult doGame(int numberOfCars, int numberOfStep) {

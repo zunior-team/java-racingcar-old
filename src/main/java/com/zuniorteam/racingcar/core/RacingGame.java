@@ -1,5 +1,6 @@
 package com.zuniorteam.racingcar.core;
 
+import com.sun.istack.internal.NotNull;
 import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
 import com.zuniorteam.racingcar.dto.GameResult;
 import com.zuniorteam.racingcar.dto.StepResult;
@@ -25,7 +26,7 @@ public class RacingGame {
         }
     }
 
-    public GameResult doGame(MovingStrategy movingStrategy) {
+    public GameResult doGame(@NotNull MovingStrategy movingStrategy) {
         assert movingStrategy != null : "MovingStrategy is null";
 
         final List<StepResult> stepResults = new ArrayList<>();
