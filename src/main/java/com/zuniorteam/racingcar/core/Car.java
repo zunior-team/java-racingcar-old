@@ -8,12 +8,13 @@ public class Car {
 
     private int position = START_POSITION;
 
-    public int move(MovingStrategy movingStrategy) {
-        if (movingStrategy.isMoving()) {
+    public void move(MovingStrategy movingStrategy) {
+        if (movingStrategy.isMovable()) {
             position++;
         }
-
-        return position;
     }
 
+    public int getPosition() {
+        return position;
+    }
 }

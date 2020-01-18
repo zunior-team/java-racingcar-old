@@ -6,9 +6,20 @@ public class RandomMovingStrategy implements MovingStrategy {
 
     private static final int RANDOM_SIZE = 10;
     private static final int FLAG_NUMBER = 4;
+    private final Random random;
+
+    public RandomMovingStrategy() {
+        this(new Random());
+    }
+
+    public RandomMovingStrategy(Random random) {
+        assert random != null;
+
+        this.random = random;
+    }
 
     @Override
-    public boolean isMoving() {
-        return new Random().nextInt(RANDOM_SIZE) > FLAG_NUMBER;
+    public boolean isMovable() {
+        return random.nextInt(RANDOM_SIZE) >= FLAG_NUMBER;
     }
 }
