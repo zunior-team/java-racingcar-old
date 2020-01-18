@@ -1,6 +1,6 @@
 package com.zuniorteam.racingcar.view.console;
 
-import com.zuniorteam.racingcar.core.dto.GameInput;
+import com.zuniorteam.racingcar.dto.GameInput;
 import com.zuniorteam.racingcar.view.GameInputView;
 
 import java.util.Scanner;

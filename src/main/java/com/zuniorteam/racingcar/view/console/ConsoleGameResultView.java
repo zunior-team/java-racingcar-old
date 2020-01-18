@@ -1,7 +1,7 @@
 package com.zuniorteam.racingcar.view.console;
 
-import com.zuniorteam.racingcar.core.dto.GameResult;
-import com.zuniorteam.racingcar.core.dto.StepResult;
+import com.zuniorteam.racingcar.dto.GameResult;
+import com.zuniorteam.racingcar.dto.StepResult;
 import com.zuniorteam.racingcar.view.GameResultView;
 
 import java.util.List;

@@ -1,8 +1,8 @@
 package com.zuniorteam.racingcar.core;
 
 import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
-import com.zuniorteam.racingcar.core.dto.GameResult;
-import com.zuniorteam.racingcar.core.dto.StepResult;
+import com.zuniorteam.racingcar.dto.GameResult;
+import com.zuniorteam.racingcar.dto.StepResult;
 
 import java.util.ArrayList;
 import java.util.List;

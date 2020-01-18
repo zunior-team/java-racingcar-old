@@ -1,4 +1,4 @@
-package com.zuniorteam.racingcar.core.dto;
+package com.zuniorteam.racingcar.dto;
 
 
 public class GameInput {
