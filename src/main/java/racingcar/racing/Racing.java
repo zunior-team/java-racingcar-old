@@ -42,15 +42,11 @@ public class Racing {
                 .append('\n');
     }
 
-    public String getRaceHistory() {
-        return raceHistory.toString();
-    }
-
     public String showCurrentState() {
         return cars.showCurrentState();
     }
 
     public RacingResult result() {
-        return new RacingResult(getRaceHistory());
+        return new RacingResult(raceHistory.toString());
     }
 }
