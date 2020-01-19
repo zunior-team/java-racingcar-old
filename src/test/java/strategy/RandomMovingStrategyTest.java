@@ -13,7 +13,7 @@ import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@DisplayName("랜덤 정책 테스")
+@DisplayName("랜덤 정책 테스트")
 public class RandomMovingStrategyTest {
 
     @ParameterizedTest
