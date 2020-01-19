@@ -20,6 +20,6 @@ public class InputView {
         final RandomMovingStrategy movingStrategy = new RandomMovingStrategy(generate);
         final RacingGame racingGame = RacingGame.newInstance(numberOfCars, countOfTurns, movingStrategy);
 
-        ResultView.print(racingGame.proceedAll());
+        ResultView.print(racingGame.proceedAllAndGetResult());
     }
 }

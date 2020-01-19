@@ -31,7 +31,7 @@ public class RacingGame {
         return new RacingGame(numberOfCars, countOfTurns, movingStrategy);
     }
 
-    public RacingResult proceedAll() {
+    public RacingResult proceedAllAndGetResult() {
         RacingResult racingResult = RacingResult.newInstance();
         for (int i = 0; i < countOfTurns; i++) {
             final List<String> histories = proceedOneTurn();

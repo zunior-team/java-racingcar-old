@@ -52,7 +52,7 @@ class RacingGameTest {
         RacingGame racingGame = RacingGame.newInstance(numberOfCars, countOfTry, movingStrategy);
 
         //when
-        RacingResult racingResult = racingGame.proceedAll();
+        RacingResult racingResult = racingGame.proceedAllAndGetResult();
 
         //then
         assertThat(racingResult).isNotNull();
