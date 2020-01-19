@@ -21,6 +21,12 @@ public class RacingGame {
         cars.addAll(createCars(numberOfCars));
     }
 
+    private void validate(int numberOfCars, int countOfTry) {
+        if (numberOfCars <= 0 || countOfTry <= 0) {
+            throw new IllegalArgumentException("자동차 대수와 시도 횟수는 항상 0보다 커야 합니다");
+        }
+    }
+
     public static RacingGame newInstance(int numberOfCars, int countOfTurns, MovingStrategy movingStrategy) {
         return new RacingGame(numberOfCars, countOfTurns, movingStrategy);
     }
@@ -39,12 +45,6 @@ public class RacingGame {
                 .limit(numberOfCars)
                 .map(Car::newInstance)
                 .collect(Collectors.toList());
-    }
-
-    private void validate(int numberOfCars, int countOfTry) {
-        if (numberOfCars <= 0 || countOfTry <= 0) {
-            throw new IllegalArgumentException("자동차 대수와 시도 횟수는 항상 0보다 커야 합니다");
-        }
     }
 
     private List<String> proceedOneTurn() {
