@@ -12,7 +12,7 @@ public class RandomMovingStrategy implements MovingStrategy {
     }
 
     @Override
-    public boolean check() {
+    public boolean isMovable() {
         return random.nextInt(BOUND) >= MINIMUM_STANDARD;
     }
 }

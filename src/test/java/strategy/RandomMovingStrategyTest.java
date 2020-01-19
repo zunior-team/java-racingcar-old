@@ -3,7 +3,6 @@ package strategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import strategy.RandomMovingStrategy;
 
 import java.util.Random;
 
@@ -26,7 +25,7 @@ public class RandomMovingStrategyTest {
         RandomMovingStrategy randomMovingStrategy = new RandomMovingStrategy(random);
 
         //when
-        boolean check = randomMovingStrategy.check();
+        boolean check = randomMovingStrategy.isMovable();
 
         //then
         assertThat(check).isEqualTo(result);
