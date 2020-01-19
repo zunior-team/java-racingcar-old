@@ -48,18 +48,18 @@ final public class RacingConsole implements InputDevice, OutputDevice {
         this.carNumber = tracesList.size();
         this.tryCount = tracesList.get(0).size();
 
-        int tc = 1;
+        int round = 1;
 
-        while(tc <= tryCount) {
-            printCarTraces(tracesList, tc);
-            ++tc;
+        while(round < tryCount) {
+            printCarTraces(tracesList, round);
+            ++round;
         }
     }
 
-    private void printCarTraces(final List<List<String>> traces, final int tryCount){
+    private void printCarTraces(final List<List<String>> traces, final int round){
 
         for(int number = 0; number < carNumber; number++){
-            System.out.println(traces.get(number).get(tryCount));
+            System.out.println(traces.get(number).get(round));
         }
 
         System.out.println();

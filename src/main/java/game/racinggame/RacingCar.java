@@ -43,7 +43,7 @@ final class RacingCar {
 
         StringBuilder road = new StringBuilder(STOP);
 
-        for(int iTry = 1; iTry <= tryCount; iTry++) {
+        for(int round = 1; round <= tryCount; round++) {
             road.append(moveByStrategy());
             traces.add(road.toString());
         }
