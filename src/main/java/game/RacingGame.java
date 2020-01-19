@@ -51,7 +51,7 @@ public class RacingGame {
         return cars.stream()
                 .map(car -> {
                     car.move(movingStrategy);
-                    return car.getHistory();
+                    return car.getTrack();
                 })
                 .collect(Collectors.toList());
     }

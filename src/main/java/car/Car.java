@@ -17,12 +17,12 @@ public class Car {
         return new Car(carNumber);
     }
 
-    public String getHistory() {
-        StringBuilder history = new StringBuilder(START_LINE);
+    public String getTrack() {
+        StringBuilder track = new StringBuilder(START_LINE);
         for (int i = 0; i < position; i++) {
-            history.append(PATH_MARK);
+            track.append(PATH_MARK);
         }
-        return history.toString();
+        return track.toString();
     }
 
     public void move(MovingStrategy movingStrategy) {

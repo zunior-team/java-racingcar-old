@@ -21,9 +21,9 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @DisplayName("car는 자신이 지나온 길을 String타입의 history로 보여준다")
+    @DisplayName("car는 자신이 지나온 길을 String타입의 Track로 보여준다")
     @CsvSource({"4, |----", "2,|--", "0,|"})
-    void testHistory(int countOfMove, String expectedHistory) {
+    void testTrack(int countOfMove, String expectedTrack) {
         //given
         Car car = Car.newInstance(1);
         for (int i = 0; i < countOfMove; i++) {
@@ -31,10 +31,10 @@ class CarTest {
         }
 
         //when
-        final String history = car.getHistory();
+        final String track = car.getTrack();
 
         //then
-        assertThat(history).isEqualTo(expectedHistory);
+        assertThat(track).isEqualTo(expectedTrack);
     }
 
 
@@ -45,12 +45,12 @@ class CarTest {
     void testMove(boolean movingCondition, int result) {
         //when
         Car car = Car.newInstance(1);
-        String historyBeforeMove = car.getHistory();
+        String trackBeforeMove = car.getTrack();
         car.move(() -> movingCondition);
-        String historyAfterMove = car.getHistory();
+        String trackAfterMove = car.getTrack();
 
         //then
-        assertThat(historyAfterMove.length() - historyBeforeMove.length()).isEqualTo(result);
+        assertThat(trackAfterMove.length() - trackBeforeMove.length()).isEqualTo(result);
     }
 
 
