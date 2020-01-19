@@ -19,13 +19,8 @@ public class RacingResult {
         this.result.add(histories);
     }
 
-    public String getAllHistoryInResultViewFormat() {
-        StringBuilder resultInFormat = new StringBuilder();
-        for (List<String> histories : result) {
-            resultInFormat.append(String.join(NEXT_LINE_DELIMITER, histories));
-            resultInFormat.append(NEXT_LINE_DELIMITER);
-            resultInFormat.append(NEXT_LINE_DELIMITER);
-        }
-        return resultInFormat.toString();
+    public List<List<String>> getResult(){
+        return this.result;
     }
+
 }
