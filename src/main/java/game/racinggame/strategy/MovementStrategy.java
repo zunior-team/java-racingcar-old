@@ -1,7 +1,7 @@
 package game.racinggame.strategy;
 
-public interface MoveStrategy {
+public interface MovementStrategy {
 
-    boolean movementStrategy();
+    int getNumberByStrategy();
 
 }
