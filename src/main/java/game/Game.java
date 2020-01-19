@@ -1,6 +1,4 @@
 package game;
 
-public interface Game {
-
-    void start();
+public class Game {
 }
