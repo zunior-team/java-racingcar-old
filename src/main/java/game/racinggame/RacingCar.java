@@ -8,8 +8,8 @@ import java.util.List;
 
 final class RacingCar {
 
-    private static final String NONE_DISTANCE = "";
-    private static final String ONE_DISTANCE = "-";
+    private static final String STOP = "";
+    private static final String FORWARD = "-";
 
     private Integer tryCount = null;
     private MovementStrategy movementStrategy = null;
@@ -19,7 +19,7 @@ final class RacingCar {
         this.tryCount = 0;
         this.movementStrategy = new RandomMovementStrategy();
         this.traces = new ArrayList<>();
-        traces.add(NONE_DISTANCE);
+        traces.add(STOP);
     }
 
     RacingCar(final int tryCount){
@@ -41,7 +41,7 @@ final class RacingCar {
 
     void move(){
 
-        StringBuilder road = new StringBuilder(NONE_DISTANCE);
+        StringBuilder road = new StringBuilder(STOP);
 
         for(int iTry = 1; iTry <= tryCount; iTry++) {
             road.append(moveByStrategy());
@@ -51,10 +51,10 @@ final class RacingCar {
 
     private String moveByStrategy(){
         if(isMovable()){
-            return ONE_DISTANCE;
+            return FORWARD;
         }
 
-        return NONE_DISTANCE;
+        return STOP;
     }
 
     private boolean isMovable(){
