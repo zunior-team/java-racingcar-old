@@ -4,29 +4,40 @@ import game.racing.car.model.Cars;
 import game.racing.car.view.RacingGameView;
 
 public class RacingGame {
-    private static final Long WAIT_NEXT_ATTEMPT = 500L;
+    private static final Long WAIT_NEXT_ROUND = 500L;
 
     private Cars cars;
-    private final Integer moveAttemptCount;
+    private final Integer roundCount;
 
     private final RacingGameView racingGameView;
 
-    public RacingGame(Integer carCount, Integer moveAttemptCount, RacingGameView racingGameView) {
+    public RacingGame(Integer carCount, Integer roundCount, RacingGameView racingGameView) {
+        validate(carCount, roundCount);
+
         this.cars = new Cars(carCount);
-        this.moveAttemptCount = moveAttemptCount;
+        this.roundCount = roundCount;
         this.racingGameView = racingGameView;
     }
 
-    public void start() throws InterruptedException {
-        System.out.println("\n실행 결과\n");
-        for (int i = 0; i < moveAttemptCount; i++) {
-            moveAttempt();
-            Thread.sleep(WAIT_NEXT_ATTEMPT);
+    private void validate(Integer carCount, Integer roundCount) {
+        if (carCount < 0) {
+            throw new RuntimeException("car count must be bigger than zero.");
+        }
+
+        if (roundCount < 0) {
+            throw new RuntimeException("round count must be bigger than zero.");
         }
     }
 
-    private void moveAttempt() {
+    public void start() throws InterruptedException {
+        for (int i = 0; i < roundCount; i++) {
+            runRound();
+            Thread.sleep(WAIT_NEXT_ROUND);
+        }
+    }
+
+    private void runRound() {
         cars.moveAll();
-        racingGameView.showCurrentPosition(cars.positionAll());
+        racingGameView.showCurrentPosition(cars.getPositionAll());
     }
 }

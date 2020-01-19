@@ -21,11 +21,12 @@ public class Cars {
     }
 
     public void moveAll() {
-        cars.stream()
-                .forEach(car -> car.move());
+        for(Car car : cars) {
+            car.move();
+        }
     }
 
-    public List<Integer> positionAll() {
+    public List<Integer> getPositionAll() {
         return cars.stream()
                 .map(car -> car.getPosition())
                 .collect(Collectors.toList());

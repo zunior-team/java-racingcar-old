@@ -23,6 +23,7 @@ public class Car {
     }
 
     public Integer getPosition() {
+        // 이걸 어떻게 한담...
         return position;
     }
 }
