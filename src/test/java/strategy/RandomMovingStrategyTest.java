@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.mock;
@@ -21,7 +22,7 @@ public class RandomMovingStrategyTest {
     void testRandom(int value, boolean result) {
         //given
         Random random = mock(Random.class);
-        when(random.nextInt(anyInt())).thenReturn(value);
+        given(random.nextInt(anyInt())).willReturn(value);
         RandomMovingStrategy randomMovingStrategy = new RandomMovingStrategy(random);
 
         //when
