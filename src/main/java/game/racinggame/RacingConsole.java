@@ -1,25 +1,67 @@
-package racinggame;
+package game.racinggame;
 
 import game.InputDevice;
 import game.OutputDevice;
 
-public class RacingConsole implements InputDevice, OutputDevice {
+import java.util.List;
+import java.util.Scanner;
 
-    private static final String ASKING_CAR_NUMBER_PRINT =
-    private RacingConsole(){}
+final public class RacingConsole implements InputDevice, OutputDevice {
 
-    public RacingConsole create(){
-        return new RacingConsole();
-    }
+    private Scanner scanner = new Scanner(System.in);
+    private int carNumber = 0;
+    private int tryCount = 0;
+
+    RacingConsole(){}
 
     @Override
     public Object doInput() {
 
-        return null;
+        System.out.println("자동차 대수는 몇 대 인가요?");
+        final int carNumber = toInt(scanner.nextLine());
+
+        System.out.println("시도할 회수는 몃 회 인가요?");
+        final int tryCount = toInt(scanner.nextLine());
+
+        validateCheck(carNumber, tryCount);
+
+        return new RacingDataTransferObject(carNumber, tryCount);
+    }
+
+    private int toInt(final String answer){
+        return Integer.parseInt(answer);
+    }
+
+    private void validateCheck(final int carNumber, final int tryCount) {
+        if(carNumber <= 0 || tryCount <= 0){
+            throw new IllegalArgumentException("자동차 대수와 시도할 회수를 잘못 입력하였습니다. 다시 확인해주세요.");
+        }
     }
 
     @Override
-    public void doPrint() {
+    public void showResult(Object object) {
 
+        // 레이싱 콘솔은 반드시 List<List<String>> 타입을 인자로 받는다.
+        @SuppressWarnings("unchecked")
+        List<List<String>> tracesList = (List<List<String>>) object;
+
+        this.carNumber = tracesList.size();
+        this.tryCount = tracesList.get(0).size();
+
+        int tc = 1;
+
+        while(tc <= tryCount) {
+            printCarTraces(tracesList, tc);
+            ++tc;
+        }
+    }
+
+    private void printCarTraces(final List<List<String>> traces, final int tryCount){
+
+        for(int number = 0; number < carNumber; number++){
+            System.out.println(traces.get(number).get(tryCount));
+        }
+
+        System.out.println();
     }
 }

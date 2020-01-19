@@ -1,4 +1,7 @@
 package game;
 
-public class InputDevice {
+public interface InputDevice {
+
+    Object doInput();
+
 }
