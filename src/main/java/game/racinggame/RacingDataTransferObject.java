@@ -1,20 +1,20 @@
 package game.racinggame;
 
-public final class RacingDataTransferor {
+public final class RacingDataTransferObject {
 
     private int carNumber;
     private int tryCount;
 
-    RacingDataTransferor(final int carNumber, final int tryCount){
+    RacingDataTransferObject(final int carNumber, final int tryCount){
         this.carNumber = carNumber;
         this.tryCount = tryCount;
     }
 
-    public int getCarNumber(){
+    int getCarNumber(){
         return this.carNumber;
     }
 
-    public int getTryCount() {
+    int getTryCount() {
         return this.tryCount;
     }
 }
