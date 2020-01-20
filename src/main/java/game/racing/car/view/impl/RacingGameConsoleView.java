@@ -14,7 +14,7 @@ public class RacingGameConsoleView implements RacingGameView {
     }
 
     @Override
-    public void showGameResultGuidanceMessage() {
+    public void showGameProgressGuidanceMessage() {
         System.out.println("\n실행 결과\n");
         System.out.println("===============================================");
     }
