@@ -11,6 +11,7 @@ final class RacingCar {
     private static final String STOP = "";
     private static final String FORWARD = "-";
 
+    private String name;
     private Integer tryCount = null;
     private MovementStrategy movementStrategy = null;
     private List<String> traces = null;
@@ -22,9 +23,10 @@ final class RacingCar {
         traces.add(STOP);
     }
 
-    RacingCar(final int tryCount){
+    RacingCar(final int tryCount, final String name){
         this();
         this.tryCount = tryCount;
+        this.name = name;
     }
 
     public void updateStrategy(MovementStrategy strategy){
