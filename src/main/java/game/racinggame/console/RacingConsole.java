@@ -1,18 +1,19 @@
-package game.racinggame;
+package game.racinggame.console;
 
 import game.InputDevice;
 import game.OutputDevice;
+import game.racinggame.RacingDataTransferObject;
 
 import java.util.List;
-import java.util.Scanner;
+
+import static game.constant.NumberConstant.ZERO;
 
 final public class RacingConsole implements InputDevice, OutputDevice {
 
-    private Scanner scanner = new Scanner(System.in);
     private int carNumber = 0;
     private int tryCount = 0;
 
-    RacingConsole(){}
+    public RacingConsole(){}
 
     @Override
     public Object doInput() {
@@ -33,7 +34,7 @@ final public class RacingConsole implements InputDevice, OutputDevice {
     }
 
     private void validateCheck(final int carNumber, final int tryCount) {
-        if(carNumber <= 0 || tryCount <= 0){
+        if(carNumber <= ZERO || tryCount <= ZERO){
             throw new IllegalArgumentException("자동차 대수와 시도할 회수를 잘못 입력하였습니다. 다시 확인해주세요.");
         }
     }

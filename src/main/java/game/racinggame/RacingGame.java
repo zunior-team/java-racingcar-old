@@ -3,6 +3,7 @@ package game.racinggame;
 import game.Game;
 import game.InputDevice;
 import game.OutputDevice;
+import game.racinggame.console.RacingConsole;
 
 public final class RacingGame implements Game {
 
