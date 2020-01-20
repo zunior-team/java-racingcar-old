@@ -21,7 +21,7 @@ public class RacingGameInputTests {
     @CsvSource({"0,-1", "-2,5", "-3,-6"})
     void abnormalInputTest(int carCount, int roundCount) {
         assertThatThrownBy(() -> {
-            new RacingGame(carCount, roundCount, mock(RacingGameView.class));
+            new RacingGame(carCount, roundCount);
         }).isInstanceOf(RuntimeException.class);
     }
 
@@ -29,6 +29,6 @@ public class RacingGameInputTests {
     @ParameterizedTest
     @CsvSource({"0,0", "2,5", "3,12"})
     void normalInputTest(int carCount, int roundCount) {
-        assertDoesNotThrow(() -> new RacingGame(carCount, roundCount, mock(RacingGameView.class)));
+        assertDoesNotThrow(() -> new RacingGame(carCount, roundCount));
     }
 }

@@ -23,6 +23,7 @@ public class RacingGameViewTests {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
     private static final String STRING_CRLF = "\r\n";
+    private static final String NEW_LINE = "\n";
 
     @BeforeEach
     public void setUpStreams() {
@@ -40,7 +41,7 @@ public class RacingGameViewTests {
     void positionPrintTest(List<Integer> positions) {
         RacingGameView racingGameView = new RacingGameConsoleView();
         racingGameView.showCurrentPosition(positions);
-        assertThat(expectedStringByPositions(positions)).isEqualTo(outContent.toString());
+        assertThat(outContent.toString()).isEqualTo(expectedStringByPositions(positions));
     }
 
 
@@ -54,6 +55,7 @@ public class RacingGameViewTests {
 
     private static String expectedStringByPositions(List<Integer> positions) {
         StringBuilder stringBuilder = new StringBuilder();
+
         positions.stream()
                 .forEach(position -> makeExpectedPositionString(stringBuilder, position));
         stringBuilder.append(STRING_CRLF);

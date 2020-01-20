@@ -8,11 +8,15 @@ public class RacingGameConsoleView implements RacingGameView {
 
     @Override
     public void showCurrentPosition(List<Integer> positions) {
-        System.out.println("\n실행 결과\n");
-        System.out.println("===============================================");
         positions.stream()
                 .forEach(position -> printPositionSign(position));
         System.out.println();
+    }
+
+    @Override
+    public void showGameResultGuidanceMessage() {
+        System.out.println("\n실행 결과\n");
+        System.out.println("===============================================");
     }
 
     private static void printPositionSign(Integer position) {
