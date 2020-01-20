@@ -5,39 +5,38 @@ import org.junit.jupiter.api.Test;
 import racingcar.racing.Car;
 import racingcar.racing.Cars;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CarsTest {
-    private static List<Car> candidates;
+    private static List<String> candidates;
+    private static Car[] carCandidate;
     private static Cars cars;
 
     @BeforeEach
     void init() {
-        candidates = IntStream.range(0, 5)
-                .mapToObj(x -> new Car(() -> true))
-                .collect(Collectors.toList());
+        candidates = Arrays.asList("nokcha", "nokchax", "nokchaxx");
+        carCandidate = new Car[]{
+                new Car("nokcha", () -> true),
+                new Car("nokchax", () -> true),
+                new Car("nokchaxx", () -> true)
+        };
 
-        cars = new Cars(candidates);
+        cars = new Cars(carCandidate);
     }
 
     @Test
     void constructorTest() {
-        List<Car> candidates = IntStream.range(0, 5)
-                .mapToObj(x -> new Car(() -> true))
-                .collect(Collectors.toList());
-
-        new Cars(candidates);
-        new Cars(candidates.size());
+        // 이정도로 충분할까?
+        assertThat(new Cars(candidates)).isNotNull();
     }
 
     @Test
     void constructorFailTest() {
-        assertThrows(IllegalArgumentException.class, () -> new Cars(-1));
+        assertThrows(IllegalArgumentException.class, () -> new Cars(Arrays.asList()));
     }
 
     @Test
@@ -46,21 +45,19 @@ public class CarsTest {
 
 
         StringBuilder outputs = new StringBuilder();
-        candidates.forEach(car -> outputs.append(car.printPosition()));
+        Arrays.stream(carCandidate).forEach(car -> outputs.append(car.printPosition()));
 
-        assertThat(outputs.toString()).isEqualTo("----------");
+        assertThat(outputs.toString()).isEqualTo("nokcha : --nokchax : --nokchaxx : --");
     }
 
 
     @Test
     void showCurrentStateTest() {
-        assertThat(cars.showCurrentState()).isEqualTo("-\n-\n-\n-\n-\n");
+        assertThat(cars.showCurrentState()).isEqualTo("nokcha : -\nnokchax : -\nnokchaxx : -\n");
 
-        String expectedString = "--\n" +
-                "--\n" +
-                "--\n" +
-                "--\n" +
-                "--\n";
+        String expectedString = "nokcha : --\n" +
+                "nokchax : --\n" +
+                "nokchaxx : --\n";
 
         cars.moveCars();
 

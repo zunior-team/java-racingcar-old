@@ -21,104 +21,106 @@ import static racingcar.racing.Car.DASH_MARK;
 
 public class RacingTest {
     private static Car car;
-    private static List<Car> candidates;
+    private static Car[] candidates;
     private static Cars cars;
     private static Racing racing;
 
     @BeforeAll
     static void init() {
-        car = new Car(() -> true);
-        candidates = Arrays.asList(car);
+        car = new Car("", () -> true);
+        candidates = new Car[]{car};
+
         cars = new Cars(candidates);
 
         racing = new Racing(cars, 1);
     }
+
     @Test
     void racingCarConstructorTest() {
-        new Racing(cars, 10);
+        assertThat(new Racing(cars, 10)).isNotNull();
     }
 
     @ParameterizedTest
     @MethodSource
-    void constructorTest(int numberOfCar, int round) {
-        assertThatThrownBy(() -> new Racing(numberOfCar, round)).isInstanceOf(IllegalArgumentException.class);
+    void constructorTest(List<String> candidates, int round) {
+        assertThatThrownBy(() -> new Racing(candidates, round)).isInstanceOf(IllegalArgumentException.class);
     }
 
     private static Stream constructorTest() {
         return Stream.of(
-                Arguments.of(-1, 1),
-                Arguments.of(1, -1)
+                Arguments.of(Arrays.asList(), 1),
+                Arguments.of(Arrays.asList("nokchax"), -1)
         );
     }
 
     @Test
     void raceTest() {
-        assertThat(car.printPosition()).isEqualTo(DASH_MARK);
+        assertThat(car.printPosition()).isEqualTo(" : " + DASH_MARK);
 
         racing.race();
 
-        assertThat(car.printPosition()).isEqualTo(DASH_MARK + DASH_MARK);
+        assertThat(car.printPosition()).isEqualTo(" : " + DASH_MARK + DASH_MARK);
     }
 
     @Test
     void showRacingResultTest() {
         List<Car> candidates = IntStream.range(0, 10)
-                .mapToObj(x -> new Car(() -> x % 2 == 0))
+                .mapToObj(x -> new Car("", () -> x % 2 == 0))
                 .collect(Collectors.toList());
 
-        Racing racing = new Racing(new Cars(candidates), 2);
+        Racing racing = new Racing(new Cars(candidates.toArray(new Car[]{})), 2);
 
         assertThat(racing.showCurrentState()).isEqualTo(
-                        "-\n" +
-                        "-\n" +
-                        "-\n" +
-                        "-\n" +
-                        "-\n" +
-                        "-\n" +
-                        "-\n" +
-                        "-\n" +
-                        "-\n" +
-                        "-\n"
+                        " : -\n" +
+                        " : -\n" +
+                        " : -\n" +
+                        " : -\n" +
+                        " : -\n" +
+                        " : -\n" +
+                        " : -\n" +
+                        " : -\n" +
+                        " : -\n" +
+                        " : -\n"
         );
 
         racing.race();
 
         assertThat(racing.showCurrentState()).isEqualTo(
-                        "---\n" +
-                        "-\n" +
-                        "---\n" +
-                        "-\n" +
-                        "---\n" +
-                        "-\n" +
-                        "---\n" +
-                        "-\n" +
-                        "---\n" +
-                        "-\n"
+                        " : ---\n" +
+                        " : -\n" +
+                        " : ---\n" +
+                        " : -\n" +
+                        " : ---\n" +
+                        " : -\n" +
+                        " : ---\n" +
+                        " : -\n" +
+                        " : ---\n" +
+                        " : -\n"
         );
     }
 
     @Test
     void getRacingHistoryTest() {
-        List<Car> candidates = IntStream.range(0, 1)
-                .mapToObj(x -> new Car(() -> x % 2 == 0))
+        List<Car> candidates = IntStream.range(0, 2)
+                .mapToObj(x -> new Car("", () -> x % 2 == 0))
                 .collect(Collectors.toList());
 
-        Racing racing = new Racing(new Cars(candidates), 3);
+        Racing racing = new Racing(new Cars(candidates.toArray(new Car[]{})), 2);
 
-        assertThat(racing.getRaceHistory()).isEqualTo(
-                        "-\n" +
-                        "-\n"
+        assertThat(racing.showCurrentState()).isEqualTo(
+                        " : -\n" +
+                        " : -\n"
         );
 
         racing.race();
 
-        assertThat(racing.showCurrentState()).isEqualTo(
-                        "-\n" +
-                        "-\n\n" +
-                        "--\n" +
-                        "-\n\n" +
-                        "---\n" +
-                        "-\n\n"
+        assertThat(racing.result().getRaceHistory()).isEqualTo(
+                        " : -\n" +
+                        " : -\n\n" +
+                        " : --\n" +
+                        " : -\n\n" +
+                        " : ---\n" +
+                        " : -\n\n"
         );
     }
 }

@@ -3,6 +3,8 @@ package racingcar.racing;
 import racingcar.dto.RacingCarInput;
 import racingcar.dto.RacingResult;
 
+import java.util.List;
+
 public class Racing {
     private Cars cars;
     private StringBuilder raceHistory;
@@ -10,11 +12,11 @@ public class Racing {
     private int currentRound;
 
     public Racing(RacingCarInput racingCarInput) {
-        this(racingCarInput.getNumberOfCar(), racingCarInput.getNumberOfRound());
+        this(racingCarInput.getRaceCandidates(), racingCarInput.getNumberOfRound());
     }
 
-    public Racing(int numberOfCar, int round) {
-        this(new Cars(numberOfCar), round);
+    public Racing(List<String> raceCandidates, int round) {
+        this(new Cars(raceCandidates), round);
     }
 
     public Racing(Cars cars, int round) {

@@ -9,25 +9,29 @@ import java.util.stream.IntStream;
 public class Car {
     public static final String DASH_MARK = "-";
 
+    private String name;
     private Integer position = 0;
     private MoveStrategy moveStrategy;
 
-    public Car() {
-        this.moveStrategy = new RandomMoveStrategy(new Random());
+    public Car(String name) {
+        this(name, new RandomMoveStrategy(new Random()));
     }
 
-    public Car(MoveStrategy moveStrategy) {
+    public Car(String name, MoveStrategy moveStrategy) {
         this.moveStrategy = moveStrategy;
+        this.name = name;
     }
 
-    public void move() {
+    public int move() {
         if(moveStrategy.isMovable()) {
             position++;
         }
+
+        return position;
     }
 
     public String printPosition() {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder(this.name + " : ");
 
         IntStream.rangeClosed(0, position)
                 .forEach(x -> stringBuilder.append(DASH_MARK));
