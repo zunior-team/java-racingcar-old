@@ -22,12 +22,10 @@ public class Car {
         this.name = name;
     }
 
-    public int move() {
+    public void move() {
         if(moveStrategy.isMovable()) {
             position++;
         }
-
-        return position;
     }
 
     public int currentPosition() {
