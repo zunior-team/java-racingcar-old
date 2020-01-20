@@ -7,14 +7,14 @@ public class Car {
     public static final String PATH_MARK = "-";
     public static final String START_LINE = "|";
     private int position = 0;
-    private int carNumber;
+    private String name;
 
-    private Car(int carNumber) {
-        this.carNumber = carNumber;
+    private Car(String name) {
+        this.name = name;
     }
 
-    public static Car newInstance(int carNumber) {
-        return new Car(carNumber);
+    public static Car newInstance(String name) {
+        return new Car(name);
     }
 
     public String getTrack() {
