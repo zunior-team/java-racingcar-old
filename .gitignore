@@ -1,9 +1,4 @@
-.DS_Store
-.gradle
-/build/
-!gradle/wrapper/gradle-wrapper.jar
-/out/
-/target/
+
 
 ### STS ###
 .apt_generated
@@ -12,10 +7,10 @@
 .project
 .settings
 .springBeans
-bin/
+
 
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
-*.ipr
+
