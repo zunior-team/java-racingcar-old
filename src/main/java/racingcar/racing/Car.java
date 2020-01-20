@@ -30,6 +30,14 @@ public class Car {
         return position;
     }
 
+    public int currentPosition() {
+        return position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public String printPosition() {
         StringBuilder stringBuilder = new StringBuilder(this.name + " : ");
 

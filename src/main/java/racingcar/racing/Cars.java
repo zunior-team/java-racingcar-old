@@ -1,10 +1,7 @@
 package racingcar.racing;
 
-import racingcar.strategy.MoveStrategy;
-
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -42,4 +39,5 @@ public class Cars {
 
         return stringBuilder.toString();
     }
+
 }

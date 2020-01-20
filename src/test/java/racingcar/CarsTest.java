@@ -43,7 +43,6 @@ public class CarsTest {
     void moveCarsTest() {
         cars.moveCars();
 
-
         StringBuilder outputs = new StringBuilder();
         Arrays.stream(carCandidate).forEach(car -> outputs.append(car.printPosition()));
 

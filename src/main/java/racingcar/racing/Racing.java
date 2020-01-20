@@ -3,6 +3,7 @@ package racingcar.racing;
 import racingcar.dto.RacingCarInput;
 import racingcar.dto.RacingResult;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Racing {
@@ -49,6 +50,7 @@ public class Racing {
     }
 
     public RacingResult result() {
-        return new RacingResult(raceHistory.toString());
+//        return new RacingResult(raceHistory.toString());
+        return null;
     }
 }
