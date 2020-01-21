@@ -17,7 +17,7 @@ public class OutputView {
     public static void print(RacingGame racingGame) {
         int lap = 1;
         while (!racingGame.isDone()) {
-            System.out.println("###########   " + lap++ +" 의 결과는 ?! ########");
+            System.out.println("###########   " + lap++ +" LAP 의 결과는 ?! ########");
             printTracks(racingGame.proceedAndGetTrack());
 
             System.out.println("===============================================\n");
