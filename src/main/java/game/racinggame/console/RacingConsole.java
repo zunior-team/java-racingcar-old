@@ -3,7 +3,6 @@ package game.racinggame.console;
 import game.InputDevice;
 import game.OutputDevice;
 import game.racinggame.RacingCar;
-import game.racinggame.RacingCars;
 import game.racinggame.RacingDataTransferObject;
 
 import java.util.Arrays;
@@ -60,7 +59,7 @@ final public class RacingConsole implements InputDevice, OutputDevice {
     @Override
     public void showResult(Object object) {
 
-        // 레이싱 콘솔은 반드시 List<List<String>> 타입을 인자로 받는다.
+        // 레이싱 콘솔은 반드시 List<RacingCar> 타입을 인자로 받는다.
         @SuppressWarnings("unchecked")
         List<RacingCar> racingCars = (List<RacingCar>) object;
         printCarTraces(racingCars);
@@ -68,14 +67,21 @@ final public class RacingConsole implements InputDevice, OutputDevice {
 
     private void printCarTraces(final List<RacingCar> cars){
 
-        if()
+        final int rounds = cars.get(0).getTryCount();
+        final int carCount = cars.size();
 
-//        for(int round = 1; roun)
+        System.out.println();
+        for(int round = 0; round < rounds; round++) {
+            printCarTracesByRound(cars, carCount, round);
+            System.out.println();
+        }
+    }
 
-//        for(int number = 0; number < carNumber; number++){
-//            System.out.println(traces.get(number).get(round));
-//        }
-//
-//        System.out.println();
+    private void printCarTracesByRound(final List<RacingCar> cars, final int carCount, final int round) {
+
+        for(int number = 0; number < carCount; number++){
+            System.out.println(cars.get(number)
+                    .getMyTracesByRound(round));
+        }
     }
 }

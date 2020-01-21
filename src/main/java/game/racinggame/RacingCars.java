@@ -1,5 +1,7 @@
 package game.racinggame;
 
+import game.racinggame.strategy.RandomMovementStrategy;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -16,9 +18,19 @@ final class RacingCars {
 
         IntStream.range(0, dto.getCarNumber())
                 .forEach(i -> racingCars.add(
-                            new RacingCar(dto.getTryCount(), dto.getCarNames().get(i))
-                        )
-                );
+                        new RacingCar(
+                                getTryCountByDto(dto),
+                                getNameByDto(dto, i),
+                                new RandomMovementStrategy())));
+    }
+
+    private int getTryCountByDto(final RacingDataTransferObject dto){
+        return dto.getTryCount();
+    }
+
+    private String getNameByDto(final RacingDataTransferObject dto, final int index){
+        return dto.getCarNames()
+                .get(index);
     }
 
     int getRacingCarsCount(){
@@ -29,13 +41,7 @@ final class RacingCars {
         racingCars.forEach(RacingCar::move);
     }
 
-    List<List<String>> getTraces() {
-
-        final List<List<String>> tracesList = new ArrayList<>();
-
-        racingCars.forEach(racingCar ->
-                tracesList.add(racingCar.getTraces()));
-
-        return tracesList;
+    List<RacingCar> getRacingCars() {
+        return this.racingCars;
     }
 }

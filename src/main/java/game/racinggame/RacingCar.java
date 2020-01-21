@@ -5,9 +5,11 @@ import game.racinggame.strategy.RandomMovementStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-final class RacingCar {
+public final class RacingCar {
 
+    private static final String COLON = " : ";
     private static final String STOP = "";
     private static final String FORWARD = "-";
 
@@ -18,13 +20,13 @@ final class RacingCar {
 
     private RacingCar(){
         this.tryCount = 0;
-        this.movementStrategy = new RandomMovementStrategy();
         this.traces = new ArrayList<>();
         traces.add(STOP);
     }
 
-    RacingCar(final int tryCount, final String name){
+    RacingCar(final int tryCount, final String name, final RandomMovementStrategy movementStrategy){
         this();
+        this.movementStrategy = movementStrategy;
         this.tryCount = tryCount;
         this.name = name;
     }
@@ -33,12 +35,12 @@ final class RacingCar {
         this.movementStrategy = strategy;
     }
 
-    public int getTryCount(){
-        return this.tryCount;
+    public int getTryCount() {
+        return tryCount;
     }
 
-    public List<String> getTraces(){
-        return this.traces;
+    public String getMyTracesByRound(final int round) {
+        return name + COLON + traces.get(round);
     }
 
     void move(){
