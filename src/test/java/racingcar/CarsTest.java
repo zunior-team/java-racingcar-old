@@ -43,10 +43,10 @@ public class CarsTest {
     void moveCarsTest() {
         cars.moveCars();
 
-        StringBuilder outputs = new StringBuilder();
-        Arrays.stream(carCandidate).forEach(car -> outputs.append(car.printPosition()));
-
-        assertThat(outputs.toString()).isEqualTo("nokcha : --nokchax : --nokchaxx : --");
+        Arrays.stream(carCandidate)
+                .forEach(car -> {
+                    assertThat(car.currentPosition()).isEqualTo(1);
+                });
     }
 
 

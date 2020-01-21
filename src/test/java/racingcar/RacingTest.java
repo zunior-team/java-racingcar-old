@@ -55,11 +55,11 @@ public class RacingTest {
 
     @Test
     void raceTest() {
-        assertThat(car.printPosition()).isEqualTo(" : " + DASH_MARK);
+        assertThat(car.currentPosition()).isEqualTo(0);
 
         racing.race();
 
-        assertThat(car.printPosition()).isEqualTo(" : " + DASH_MARK + DASH_MARK);
+        assertThat(car.currentPosition()).isEqualTo(1);
     }
 
     @Test
