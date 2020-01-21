@@ -1,5 +1,6 @@
 package game;
 
+import car.Car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -60,6 +61,56 @@ class RacingGameTest {
                 //when
                 () -> RacingGame.newInstance(carNames, 5, movingStrategy));
         assertThat(exception.getMessage()).isEqualToIgnoringCase("자동차 대수는 NULL 이거나 비어있을 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("이미 턴이 모두 수행된 게임은 더이상 실행할 수 없다")
+    void testValidateTurns() {
+        //given
+        List<String> carNames = Stream.of("junwoo", "junwoochoi", "junu")
+                .collect(Collectors.toList());
+        final RacingGame racingGame = RacingGame.newInstance(carNames, 2, movingStrategy);
+
+        racingGame.proceedAndGetTrack();
+        racingGame.proceedAndGetTrack();
+        //then
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                //when
+                racingGame::proceedAndGetTrack);
+        assertThat(exception.getMessage()).isEqualToIgnoringCase("모든 턴을 플레이했습니다.");
+    }
+
+    @Test
+    @DisplayName("모든 턴을 플레이하면 winner를 가지고 있다.")
+    void testWinner() {
+        //given
+        List<String> carNames = Stream.of("junwoo", "junwoochoi", "junu")
+                .collect(Collectors.toList());
+        final RacingGame racingGame = RacingGame.newInstance(carNames, 2, movingStrategy);
+
+        //when
+        while (!racingGame.isDone()) {
+            racingGame.proceedAndGetTrack();
+        }
+        final List<Car> winner = racingGame.getWinner();
+
+        //then
+        assertThat(winner).isNotEmpty();
+    }
+
+    @Test
+    @DisplayName("모든 턴을 플레이하지 않았으면 승자가 없으므로 빈 리스트를 리턴한다.")
+    void testEmptyWinner() {
+        //given
+        List<String> carNames = Stream.of("junwoo", "junwoochoi", "junu")
+                .collect(Collectors.toList());
+        final RacingGame racingGame = RacingGame.newInstance(carNames, 2, movingStrategy);
+
+        //when
+        final List<Car> winner = racingGame.getWinner();
+
+        //then
+        assertThat(winner).isEmpty();
     }
 
 
