@@ -5,7 +5,6 @@ import game.racing.car.utils.RacingGameUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -16,18 +15,11 @@ import static org.mockito.Mockito.mock;
 @ExtendWith(MockitoExtension.class)
 public class RacingGameInputTests {
 
-    @DisplayName(", 사이에 공백이 들어간 차 이름이 들어오면 에러가 발생한다.")
-    @ParameterizedTest
-    @CsvSource({"pobi,crong,", ",crong,honux", "pobi,,honux"})
-    void abnormalCarNamesInputTest(String carNames) {
-        assertThatThrownBy(() -> {
-            RacingGameUtil.separateCarNames(carNames);
-        }).isInstanceOf(RuntimeException.class);
-    }
+    private static final String TEST_CAR_NAME = "TEST";
 
-    @DisplayName("공백이외의 값들이 정상적으로 들어오는 경우")
+    @DisplayName("차 이름 테스트")
     @ParameterizedTest
-    @CsvSource({"pobi,crong,honux", "t1,t2,t3", "abc,bcd,cde"})
+    @ValueSource(strings = {"pobi,crong,honux", "t1,t2,t3", "abc,bcd,cde"})
     void normalCarNamesInputTest(String carNames) {
         assertDoesNotThrow(() -> RacingGameUtil.separateCarNames(carNames));
     }
@@ -45,6 +37,6 @@ public class RacingGameInputTests {
     @ParameterizedTest
     @ValueSource(ints = {0, 2, 15})
     void normalRoundCountInputTest(int roundCount) {
-        assertDoesNotThrow(() -> new RacingGame(mock(String.class), roundCount));
+        assertDoesNotThrow(() -> new RacingGame(TEST_CAR_NAME, roundCount));
     }
 }

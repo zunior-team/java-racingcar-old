@@ -1,6 +1,6 @@
 package game.racing.car.model;
 
-import game.racing.car.model.vo.CarPosition;
+import game.racing.car.model.vo.CarDto;
 import game.racing.car.service.MovingStrategy;
 
 public class Car {
@@ -26,17 +26,7 @@ public class Car {
         }
     }
 
-    public CarPosition makeCarPosition() {
-        return new CarPosition(carName, position);
-    }
-
-    public String getCarName() {
-        // 이걸 어떻게 한담...
-        return carName;
-    }
-
-    public Integer getPosition() {
-        // 이걸 어떻게 한담...
-        return position;
+    public CarDto makeCarDto() {
+        return new CarDto(carName, position);
     }
 }

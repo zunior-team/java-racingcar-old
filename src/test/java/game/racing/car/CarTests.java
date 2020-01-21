@@ -2,6 +2,7 @@ package game.racing.car;
 
 import game.racing.car.model.Car;
 import game.racing.car.model.Cars;
+import game.racing.car.model.vo.CarDto;
 import game.racing.car.service.impl.RandomMovingStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -40,7 +41,8 @@ public class CarTests {
         given(random.nextInt(anyInt())).willReturn(randomNumber);
         Car car = createCarWithRandomMovingStrategy();
         car.move();
-        assertThat(car.getPosition()).isEqualTo(expectedPosition);
+        CarDto carDto = car.makeCarDto();
+        assertThat(carDto.getPosition()).isEqualTo(expectedPosition);
     }
 
     @DisplayName(value = "차 리스트 이동 테스트")
@@ -49,10 +51,19 @@ public class CarTests {
     @ExtendWith(MockitoExtension.class)
     void carListMovingTests(List<Integer> initPosition, List<Integer> randomNumbers, List<Integer> result) {
         Cars cars = new Cars(createCarList(initPosition, randomNumbers));
-        assertThat(cars.getPositionAll()).isEqualTo(initPosition);
+        List<Integer> notMovingPositions = extractPositions(cars);
+        assertThat(notMovingPositions).isEqualTo(initPosition);
 
         cars.moveAll();
-        assertThat(cars.getPositionAll()).isEqualTo(result);
+        List<Integer> movingPositions = extractPositions(cars);
+        assertThat(movingPositions).isEqualTo(result);
+    }
+
+    private List<Integer> extractPositions(Cars cars) {
+        return cars.getDtos()
+                    .stream()
+                    .map(carDto -> carDto.getPosition())
+                    .collect(Collectors.toList());
     }
 
     private List<Car> createCarList(List<Integer> initPosition, List<Integer> randomNumbers) {

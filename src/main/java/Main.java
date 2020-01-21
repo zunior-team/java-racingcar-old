@@ -5,8 +5,6 @@ import game.racing.car.service.RacingGame;
 import game.racing.car.view.RacingGameView;
 import game.racing.car.view.impl.RacingGameConsoleView;
 
-import java.util.List;
-
 import static game.racing.car.view.InputConsoleView.inputCarNames;
 import static game.racing.car.view.InputConsoleView.inputRoundCount;
 
@@ -26,7 +24,7 @@ public class Main {
     }
 
     private static void registerRacingGameEvents(RacingGameView racingGameView) {
-        Events.handle((RoundOverEvent event) -> racingGameView.showCurrentPosition(event.getCarPositions()));
+        Events.handle((RoundOverEvent event) -> racingGameView.showCurrentPosition(event.getCarDtos()));
         Events.handle((GameOverEvent event) -> racingGameView.showGameResult(event.getWinners()));
     }
 }

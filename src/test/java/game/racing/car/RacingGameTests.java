@@ -31,7 +31,7 @@ public class RacingGameTests {
     }
 
     private List<Car> makeCars(List<String> carNames, List<Integer> positions) {
-        return IntStream.rangeClosed(0, carNames.size())
+        return IntStream.range(0, carNames.size())
                 .mapToObj(i -> new Car(carNames.get(i), positions.get(i), mock(MovingStrategy.class)))
                 .collect(Collectors.toList());
     }

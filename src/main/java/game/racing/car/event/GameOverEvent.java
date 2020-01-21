@@ -1,7 +1,5 @@
 package game.racing.car.event;
 
-import game.racing.car.model.vo.CarPosition;
-
 import java.util.List;
 
 public class GameOverEvent {

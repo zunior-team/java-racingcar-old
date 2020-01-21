@@ -5,8 +5,6 @@ import game.racing.car.event.GameOverEvent;
 import game.racing.car.event.RoundOverEvent;
 import game.racing.car.model.Cars;
 
-import java.util.List;
-
 import static game.racing.car.utils.RacingGameUtil.isAllNotEmpty;
 import static game.racing.car.utils.RacingGameUtil.separateCarNames;
 
@@ -35,7 +33,7 @@ public class RacingGame {
 
     private void runRound() {
         cars.moveAll();
-        Events.raise(new RoundOverEvent(cars.getPositionAll()));
+        Events.raise(new RoundOverEvent(cars.getDtos()));
     }
 
     private void validate(String[] carNames, Integer roundCount) {
