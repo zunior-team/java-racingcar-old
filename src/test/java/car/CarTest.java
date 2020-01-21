@@ -11,10 +11,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CarTest {
 
     @Test
-    @DisplayName("car.Car 객체를 생성한다.")
+    @DisplayName("Car는 자기자신의 이름이 주어지면 객체를 생성한다.")
     void createCarTest() {
         //when
-        Car car = Car.newInstance(0);
+        Car car = Car.newInstance("junwoochoi");
 
         //then
         assertThat(car).isNotNull();
@@ -25,7 +25,7 @@ class CarTest {
     @CsvSource({"4, |----", "2,|--", "0,|"})
     void testTrack(int countOfMove, String expectedTrack) {
         //given
-        Car car = Car.newInstance(1);
+        Car car = Car.newInstance("junwoochoi");
         for (int i = 0; i < countOfMove; i++) {
             car.move(() -> true);
         }
@@ -44,7 +44,7 @@ class CarTest {
     @CsvSource({"true,1", "false,0"})
     void testMove(boolean movingCondition, int result) {
         //when
-        Car car = Car.newInstance(1);
+        Car car = Car.newInstance("junwoochoi");
         String trackBeforeMove = car.getTrack();
         car.move(() -> movingCondition);
         String trackAfterMove = car.getTrack();
