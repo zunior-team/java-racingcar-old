@@ -1,8 +1,13 @@
 package game.racing.car;
 
+import game.racing.car.event.Events;
+import game.racing.car.event.GameOverEvent;
 import game.racing.car.model.Car;
 import game.racing.car.model.Cars;
 import game.racing.car.service.MovingStrategy;
+import game.racing.car.service.RacingGame;
+import game.racing.car.view.RacingGameView;
+import game.racing.car.view.impl.RacingGameConsoleView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,9 +30,13 @@ public class RacingGameTests {
     @DisplayName("우승자 테스트")
     @ParameterizedTest
     @MethodSource
-    void racingWinnerTest(List<String> carNames, List<Integer> positions, List<String> expectedWinners) {
+    void racingWinnerTest(List<String> carNames, List<Integer> positions, List<String> expectedWinners) throws InterruptedException {
+        Events.handle((GameOverEvent event) -> assertThat(event.getWinners()).isEqualTo(expectedWinners));
         Cars cars = new Cars(makeCars(carNames, positions));
-        assertThat(cars.getWinnerNames()).isEqualTo(expectedWinners);
+        RacingGame racingGame = new RacingGame(cars, 0);
+        racingGame.start();
+
+        Events.reset();
     }
 
     private List<Car> makeCars(List<String> carNames, List<Integer> positions) {

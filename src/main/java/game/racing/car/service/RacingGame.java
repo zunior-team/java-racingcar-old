@@ -4,6 +4,10 @@ import game.racing.car.event.Events;
 import game.racing.car.event.GameOverEvent;
 import game.racing.car.event.RoundOverEvent;
 import game.racing.car.model.Cars;
+import game.racing.car.model.vo.CarPosition;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static game.racing.car.utils.RacingGameUtil.isAllNotEmpty;
 import static game.racing.car.utils.RacingGameUtil.separateCarNames;
@@ -22,13 +26,18 @@ public class RacingGame {
         this.roundCount = roundCount;
     }
 
+    public RacingGame(Cars cars, Integer roundCount) {
+        this.cars = cars;
+        this.roundCount = roundCount;
+    }
+
     public void start() throws InterruptedException {
         for (int i = 0; i < roundCount; i++) {
             runRound();
             Thread.sleep(WAIT_NEXT_ROUND);
         }
 
-        Events.raise(new GameOverEvent(cars.getWinnerNames()));
+        Events.raise(new GameOverEvent(getWinnerNames()));
     }
 
     private void runRound() {
@@ -44,5 +53,19 @@ public class RacingGame {
         if (roundCount < 0) {
             throw new RuntimeException("round count must be bigger than zero.");
         }
+    }
+
+    private List<String> getWinnerNames() {
+        List<CarPosition> carPositions = cars.getCarPositionAll();
+
+        Integer winnerScore = carPositions.stream()
+                .mapToInt(carPosition -> carPosition.getLocation())
+                .max()
+                .orElseThrow(() -> new RuntimeException("Unexpected Error."));
+
+        return carPositions.stream()
+                .filter(carPosition -> winnerScore.equals(carPosition.getLocation()))
+                .map(carPosition -> carPosition.getCarName())
+                .collect(Collectors.toList());
     }
 }

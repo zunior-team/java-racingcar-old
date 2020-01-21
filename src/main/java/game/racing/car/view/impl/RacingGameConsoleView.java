@@ -9,8 +9,9 @@ public class RacingGameConsoleView implements RacingGameView {
 
     @Override
     public void showCurrentPosition(List<CarPosition> carPositions) {
-        carPositions.stream()
-                .forEach(carPosition -> printCarPosition(carPosition));
+        for(CarPosition carPosition : carPositions) {
+            printCarPosition(carPosition);
+        }
         System.out.println();
     }
 

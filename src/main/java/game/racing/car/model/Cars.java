@@ -32,18 +32,4 @@ public class Cars {
                 .map(car -> car.getCarPosition())
                 .collect(Collectors.toList());
     }
-
-    public List<String> getWinnerNames() {
-        List<CarPosition> carPositions = getCarPositionAll();
-
-        Integer winnerScore = carPositions.stream()
-                .mapToInt(carPosition -> carPosition.getLocation())
-                .max()
-                .orElseThrow(() -> new RuntimeException("Unexpected Error."));
-
-        return carPositions.stream()
-                .filter(carPosition -> winnerScore.equals(carPosition.getLocation()))
-                .map(carPosition -> carPosition.getCarName())
-                .collect(Collectors.toList());
-    }
 }
