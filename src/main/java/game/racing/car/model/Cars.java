@@ -34,6 +34,7 @@ public class Cars {
     }
 
     public List<String> getWinnerNames() {
+
         Integer winnerScore = cars.stream()
                 .mapToInt(car -> car.getPosition())
                 .max()
