@@ -1,6 +1,5 @@
 package com.zuniorteam.racingcar;
 
-import com.sun.istack.internal.NotNull;
 import com.zuniorteam.racingcar.core.RacingGame;
 import com.zuniorteam.racingcar.dto.GameInput;
 import com.zuniorteam.racingcar.dto.GameResult;
@@ -12,35 +11,35 @@ import java.util.Objects;
 
 public class RacingGameBoard {
 
-    private final MovingStrategy movingStrategy;
+    private final GameInputView gameInputView;
+    private final GameResultView gameResultVew;
 
-    public RacingGameBoard(MovingStrategy movingStrategy) {
-        assert movingStrategy != null;
+    public RacingGameBoard(GameInputView gameInputView, GameResultView gameResultView) {
+        assert gameInputView != null;
+        assert gameResultView != null;
 
-        this.movingStrategy = movingStrategy;
+        this.gameInputView = gameInputView;
+        this.gameResultVew = gameResultView;
     }
 
-    public void start(@NotNull GameInputView gameInputView, @NotNull GameResultView gameResultView) {
-        validate(gameInputView, gameResultView);
+    public void start(MovingStrategy movingStrategy) {
+        validate(movingStrategy);
 
         final GameInput gameInput = gameInputView.listen();
-        final GameResult result = doGame(gameInput.getNumberOfCars(), gameInput.getNumberOfStep());
 
-        gameResultView.draw(result);
+        final GameResult result = doGame(gameInput, movingStrategy);
+
+        gameResultVew.draw(result);
     }
 
-    private void validate(GameInputView gameInputView, GameResultView gameResultView) {
-        if (Objects.isNull(gameInputView)) {
-            throw new RuntimeException("게임 INPUT VIEW 를 지정해주세요");
-        }
-
-        if (Objects.isNull(gameResultView)) {
-            throw new RuntimeException("게임 OUTPUT VIEW 를 지정해주세요");
+    private void validate(MovingStrategy movingStrategy) {
+        if (Objects.isNull(movingStrategy)) {
+            throw new RuntimeException("무빙전략을 지정해주세요");
         }
     }
 
-    private GameResult doGame(int numberOfCars, int numberOfStep) {
-        final RacingGame racingGame = new RacingGame(numberOfCars, numberOfStep);
+    private GameResult doGame(GameInput gameInput, MovingStrategy movingStrategy) {
+        final RacingGame racingGame = new RacingGame(gameInput);
         return racingGame.doGame(movingStrategy);
     }
 

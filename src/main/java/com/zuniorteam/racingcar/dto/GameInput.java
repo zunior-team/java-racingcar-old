@@ -1,18 +1,20 @@
 package com.zuniorteam.racingcar.dto;
 
 
+import java.util.List;
+
 public class GameInput {
 
-    private final int numberOfCars;
+    private final List<String> carNames;
     private final int numberOfStep;
 
-    public GameInput(int numberOfCars, int numberOfStep) {
-        this.numberOfCars = numberOfCars;
+    public GameInput(List<String> carNames, int numberOfStep) {
+        this.carNames = carNames;
         this.numberOfStep = numberOfStep;
     }
 
-    public int getNumberOfCars() {
-        return numberOfCars;
+    public List<String> getCarNames() {
+        return carNames;
     }
 
     public int getNumberOfStep() {

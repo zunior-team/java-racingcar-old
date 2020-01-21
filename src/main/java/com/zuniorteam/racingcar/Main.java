@@ -10,10 +10,10 @@ import com.zuniorteam.racingcar.view.GameResultView;
 public class Main {
 
     public static void main(String[] args){
-        final MovingStrategy movingStrategy = new RandomMovingStrategy();
         final GameInputView gameInputView = new ConsoleGameInputView();
         final GameResultView gameResultView = new ConsoleGameResultView();
+        final MovingStrategy movingStrategy = new RandomMovingStrategy();
 
-        new RacingGameBoard(movingStrategy).start(gameInputView, gameResultView);
+        new RacingGameBoard(gameInputView, gameResultView).start(movingStrategy);
     }
 }
