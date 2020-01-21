@@ -23,11 +23,13 @@ public class Car {
         }
     }
 
-    public MoveHistory move(MovingStrategy movingStrategy) {
+    public void move(MovingStrategy movingStrategy) {
         if (movingStrategy.isMovable()) {
             position++;
         }
+    }
 
+    public MoveHistory getLastMoveHistory() {
         return new MoveHistory(carName, position);
     }
 

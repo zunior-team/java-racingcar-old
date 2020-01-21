@@ -24,13 +24,12 @@ public class ConsoleGameResultView implements GameResultView {
 
 
         drawing.append("\n");
+        drawing.append("\n");
+
         drawing.append(drawWinners(result.getWinners()));
 
         System.out.println("실행 결과");
-
         System.out.println(drawing.toString().trim());
-
-
     }
 
     private String drawStep(StepResult stepResult) {

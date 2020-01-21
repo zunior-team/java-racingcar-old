@@ -31,7 +31,6 @@ class CarsTest {
         assertThrows(RuntimeException.class, () -> new Cars(Collections.emptyList()));
     }
 
-
     @DisplayName("moveAll()")
     @ParameterizedTest
     @CsvSource({"true, 1", "false, 0"})
@@ -45,11 +44,34 @@ class CarsTest {
         given(movingStrategy.isMovable()).willReturn(isMovable);
 
         //when
-        final List<MoveHistory> moveHistories = cars.moveAll(movingStrategy);
-
+        cars.moveAll(movingStrategy);
+        final List<MoveHistory> lastMoveHistories = cars.getLastMoveHistories();
 
         //then
-        assertThat(moveHistories.size()).isEqualTo(carNames.size());
-        assertThat(moveHistories.get(0)).isEqualTo(new MoveHistory(carName, position));
+        assertThat(lastMoveHistories.size()).isEqualTo(carNames.size());
+        assertThat(lastMoveHistories.get(0)).isEqualTo(new MoveHistory(carName, position));
+    }
+
+    @DisplayName("getCarNameHasTopPositions, 최상위 위치 자동차 이름 조회")
+    @Test
+    void testGetCarNameHasTopPositions() {
+        //given
+        final String carNameA = "one";
+        final String carNameB = "two";
+        final List<String> carNames = Arrays.asList(carNameA, carNameB);
+        final Cars cars = new Cars(carNames);
+
+        final MovingStrategy movingStrategy = Mockito.mock(MovingStrategy.class);
+        given(movingStrategy.isMovable()).willReturn(true);
+
+        //when
+        cars.moveAll(movingStrategy);
+        final List<String> carNamesHasTopPosition = cars.getCarNamesHasTopPosition();
+
+        //then
+        assertThat(carNamesHasTopPosition.size()).isEqualTo(carNames.size());
+        assertThat(carNamesHasTopPosition).contains(carNameA);
+        assertThat(carNamesHasTopPosition).contains(carNameB);
     }
 }
+

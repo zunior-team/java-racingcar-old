@@ -1,5 +1,7 @@
 package com.zuniorteam.racingcar.vo;
 
+import com.zuniorteam.racingcar.util.StringUtils;
+
 import java.util.Objects;
 
 public class MoveHistory {
@@ -8,7 +10,7 @@ public class MoveHistory {
     private final int position;
 
     public MoveHistory(String carName, int position) {
-        assert carName != null;
+        assert !StringUtils.isEmpty(carName);
 
         this.carName = carName;
         this.position = position;

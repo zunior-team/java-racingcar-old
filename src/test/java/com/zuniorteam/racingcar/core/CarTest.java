@@ -40,11 +40,12 @@ class CarTest {
         given(mockMovingStrategy.isMovable()).willReturn(true);
 
         //when
-        final MoveHistory moveHistory = car.move(mockMovingStrategy);
+        car.move(mockMovingStrategy);
+        final MoveHistory lastMoveHistory = car.getLastMoveHistory();
 
 
         //then
-        assertThat(moveHistory).isEqualTo(new MoveHistory(carName, 1));
+        assertThat(lastMoveHistory).isEqualTo(new MoveHistory(carName, 1));
     }
 
 }

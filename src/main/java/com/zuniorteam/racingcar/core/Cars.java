@@ -3,7 +3,8 @@ package com.zuniorteam.racingcar.core;
 import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
 import com.zuniorteam.racingcar.vo.MoveHistory;
 
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -29,14 +30,29 @@ public class Cars {
         }
     }
 
-    public List<MoveHistory> moveAll(MovingStrategy movingStrategy) {
-        final List<MoveHistory> moveHistories = new ArrayList<>();
-
+    public void moveAll(MovingStrategy movingStrategy) {
         for (Car car : cars) {
-            moveHistories.add(car.move(movingStrategy));
+            car.move(movingStrategy);
         }
-
-        return moveHistories;
     }
 
+    public List<MoveHistory> getLastMoveHistories() {
+        return cars.stream()
+                .map(Car::getLastMoveHistory)
+                .collect(toList());
+    }
+
+    public List<String> getCarNamesHasTopPosition() {
+        final List<MoveHistory> sortedMoveHistoriesByPosition = cars.stream()
+                .map(Car::getLastMoveHistory)
+                .sorted(Comparator.comparingInt(MoveHistory::getPosition).reversed())
+                .collect(toList());
+
+        final MoveHistory winnerMoveHistory = sortedMoveHistoriesByPosition.get(0);
+
+        return sortedMoveHistoriesByPosition.stream()
+                .filter(history -> winnerMoveHistory.getPosition() == history.getPosition())
+                .map(MoveHistory::getCarName)
+                .collect(toList());
+    }
 }

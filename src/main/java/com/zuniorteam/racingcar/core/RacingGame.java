@@ -32,13 +32,13 @@ public class RacingGame {
         final List<StepResult> stepResults = new ArrayList<>();
 
         for (int step = 0; step < numberOfStep; step++) {
-            stepResults.add(doStep(movingStrategy));
+            cars.moveAll(movingStrategy);
+            stepResults.add(new StepResult(cars.getLastMoveHistories()));
         }
 
-        return new GameResult(stepResults);
+        final List<String> winner = cars.getCarNamesHasTopPosition();
+
+        return new GameResult(winner, stepResults);
     }
 
-    private StepResult doStep(MovingStrategy movingStrategy) {
-        return new StepResult( cars.moveAll(movingStrategy));
-    }
 }

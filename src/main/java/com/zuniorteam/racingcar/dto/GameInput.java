@@ -13,7 +13,6 @@ public class GameInput {
         this.numberOfStep = numberOfStep;
     }
 
-
     public List<String> getCarNames() {
         return carNames;
     }
