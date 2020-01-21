@@ -1,5 +1,6 @@
 package com.zuniorteam.racingcar.core;
 
+import com.sun.istack.internal.NotNull;
 import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
 import com.zuniorteam.racingcar.dto.GameInput;
 import com.zuniorteam.racingcar.dto.GameResult;
@@ -27,6 +28,7 @@ public class RacingGame {
             throw new RuntimeException("요청한 이동 횟수가 0 이하 입니다");
         }
     }
+
 
     public GameResult doGame(MovingStrategy movingStrategy) {
         final List<StepResult> stepResults = new ArrayList<>();

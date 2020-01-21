@@ -26,7 +26,6 @@ public class RacingGameBoard {
         validate(movingStrategy);
 
         final GameInput gameInput = gameInputView.listen();
-
         final GameResult result = doGame(gameInput, movingStrategy);
 
         gameResultVew.draw(result);
