@@ -1,32 +1,32 @@
 package game.racing.car.model;
 
-import game.racing.car.model.vo.CarDto;
+import game.racing.car.model.vo.CarPosition;
 import game.racing.car.service.MovingStrategy;
 
 public class Car {
     private String carName;
-    private Integer position;
+    private Integer location;
     private final MovingStrategy movingStrategy;
 
     public Car(String carName, MovingStrategy movingStrategy) {
         this.carName = carName;
-        this.position = 0;
+        this.location = 0;
         this.movingStrategy = movingStrategy;
     }
 
     public Car(String carName, Integer currentPosition, MovingStrategy movingStrategy) {
         this.carName = carName;
-        this.position = currentPosition;
+        this.location = currentPosition;
         this.movingStrategy = movingStrategy;
     }
 
     public void move() {
         if (movingStrategy.isMovable()) {
-            position++;
+            location++;
         }
     }
 
-    public CarDto makeCarDto() {
-        return new CarDto(carName, position);
+    public CarPosition getCarPosition() {
+        return new CarPosition(carName, location);
     }
 }

@@ -33,7 +33,7 @@ public class RacingGame {
 
     private void runRound() {
         cars.moveAll();
-        Events.raise(new RoundOverEvent(cars.getDtos()));
+        Events.raise(new RoundOverEvent(cars.getCarPositionAll()));
     }
 
     private void validate(String[] carNames, Integer roundCount) {

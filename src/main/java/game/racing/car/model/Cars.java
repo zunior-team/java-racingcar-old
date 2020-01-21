@@ -1,6 +1,6 @@
 package game.racing.car.model;
 
-import game.racing.car.model.vo.CarDto;
+import game.racing.car.model.vo.CarPosition;
 import game.racing.car.service.impl.RandomMovingStrategy;
 
 import java.util.ArrayList;
@@ -27,23 +27,23 @@ public class Cars {
         }
     }
 
-    public List<CarDto> getDtos() {
+    public List<CarPosition> getCarPositionAll() {
         return cars.stream()
-                .map(car -> car.makeCarDto())
+                .map(car -> car.getCarPosition())
                 .collect(Collectors.toList());
     }
 
     public List<String> getWinnerNames() {
-        List<CarDto> carDtos = getDtos();
+        List<CarPosition> carPositions = getCarPositionAll();
 
-        Integer winnerScore = carDtos.stream()
-                .mapToInt(carDto -> carDto.getPosition())
+        Integer winnerScore = carPositions.stream()
+                .mapToInt(carPosition -> carPosition.getLocation())
                 .max()
                 .orElseThrow(() -> new RuntimeException("Unexpected Error."));
 
-        return carDtos.stream()
-                .filter(carDto -> winnerScore.equals(carDto.getPosition()))
-                .map(carDto -> carDto.getCarName())
+        return carPositions.stream()
+                .filter(carPosition -> winnerScore.equals(carPosition.getLocation()))
+                .map(carPosition -> carPosition.getCarName())
                 .collect(Collectors.toList());
     }
 }

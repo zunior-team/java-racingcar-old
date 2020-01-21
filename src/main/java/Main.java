@@ -24,7 +24,7 @@ public class Main {
     }
 
     private static void registerRacingGameEvents(RacingGameView racingGameView) {
-        Events.handle((RoundOverEvent event) -> racingGameView.showCurrentPosition(event.getCarDtos()));
+        Events.handle((RoundOverEvent event) -> racingGameView.showCurrentPosition(event.getCarPositions()));
         Events.handle((GameOverEvent event) -> racingGameView.showGameResult(event.getWinners()));
     }
 }

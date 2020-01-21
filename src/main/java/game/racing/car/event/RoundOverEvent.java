@@ -1,17 +1,17 @@
 package game.racing.car.event;
 
-import game.racing.car.model.vo.CarDto;
+import game.racing.car.model.vo.CarPosition;
 
 import java.util.List;
 
 public class RoundOverEvent {
-    private List<CarDto> carDtos;
+    private List<CarPosition> carPositions;
 
-    public RoundOverEvent(List<CarDto> carDtos) {
-        this.carDtos = carDtos;
+    public RoundOverEvent(List<CarPosition> carPositions) {
+        this.carPositions = carPositions;
     }
 
-    public List<CarDto> getCarDtos() {
-        return carDtos;
+    public List<CarPosition> getCarPositions() {
+        return carPositions;
     }
 }

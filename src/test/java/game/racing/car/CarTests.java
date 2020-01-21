@@ -2,7 +2,7 @@ package game.racing.car;
 
 import game.racing.car.model.Car;
 import game.racing.car.model.Cars;
-import game.racing.car.model.vo.CarDto;
+import game.racing.car.model.vo.CarPosition;
 import game.racing.car.service.impl.RandomMovingStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,8 +41,8 @@ public class CarTests {
         given(random.nextInt(anyInt())).willReturn(randomNumber);
         Car car = createCarWithRandomMovingStrategy();
         car.move();
-        CarDto carDto = car.makeCarDto();
-        assertThat(carDto.getPosition()).isEqualTo(expectedPosition);
+        CarPosition carPosition = car.getCarPosition();
+        assertThat(carPosition.getLocation()).isEqualTo(expectedPosition);
     }
 
     @DisplayName(value = "차 리스트 이동 테스트")
@@ -60,9 +60,9 @@ public class CarTests {
     }
 
     private List<Integer> extractPositions(Cars cars) {
-        return cars.getDtos()
+        return cars.getCarPositionAll()
                     .stream()
-                    .map(carDto -> carDto.getPosition())
+                    .map(carPosition -> carPosition.getLocation())
                     .collect(Collectors.toList());
     }
 

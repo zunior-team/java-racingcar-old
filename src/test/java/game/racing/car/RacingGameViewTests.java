@@ -1,7 +1,7 @@
 package game.racing.car;
 
 import game.racing.car.model.Car;
-import game.racing.car.model.vo.CarDto;
+import game.racing.car.model.vo.CarPosition;
 import game.racing.car.service.MovingStrategy;
 import game.racing.car.view.RacingGameView;
 import game.racing.car.view.impl.RacingGameConsoleView;
@@ -49,14 +49,14 @@ public class RacingGameViewTests {
     @MethodSource
     void positionPrintTest(List<String> carNames, List<Integer> positions) {
         RacingGameView racingGameView = new RacingGameConsoleView();
-        List<CarDto> carDtos = makeCarTestDtos(carNames, positions);
-        racingGameView.showCurrentPosition(carDtos);
+        List<CarPosition> carPositions = makeCarPositions(carNames, positions);
+        racingGameView.showCurrentPosition(carPositions);
         assertThat(outContent.toString()).isEqualTo(expectedStringByPositions(carNames, positions));
     }
 
-    private List<CarDto> makeCarTestDtos(List<String> carNames, List<Integer> positions) {
+    private List<CarPosition> makeCarPositions(List<String> carNames, List<Integer> positions) {
         return IntStream.range(0, carNames.size())
-                .mapToObj(i -> new Car(carNames.get(i), positions.get(i), mock(MovingStrategy.class)).makeCarDto())
+                .mapToObj(i -> new Car(carNames.get(i), positions.get(i), mock(MovingStrategy.class)).getCarPosition())
                 .collect(Collectors.toList());
     }
 

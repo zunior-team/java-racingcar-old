@@ -21,7 +21,6 @@ public class MovingStrategyTests {
     @Mock
     private Random random;
 
-
     @ParameterizedTest(name = "랜덤 값 : {0} -> 결과 : {1}")
     @CsvSource({"0,false", "1,false", "2,false", "3,false", "4,true", "5,true", "6,true", "7,true", "8,true", "9,true"})
     void randomMovingStrategyTest(int randomNumber, boolean expectedPosition) {
