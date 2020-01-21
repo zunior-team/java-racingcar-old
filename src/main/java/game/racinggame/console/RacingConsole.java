@@ -2,6 +2,8 @@ package game.racinggame.console;
 
 import game.InputDevice;
 import game.OutputDevice;
+import game.racinggame.RacingCar;
+import game.racinggame.RacingCars;
 import game.racinggame.RacingDataTransferObject;
 
 import java.util.Arrays;
@@ -26,7 +28,10 @@ final public class RacingConsole implements InputDevice, OutputDevice {
         System.out.println("시도할 회수는 몇 회 인가요?");
         final int tryCount = toInt(scanner.nextLine());
 
-        validateCheck(tryCount);
+        final List<String> carList = splitByComma(carNames);
+
+        validateCarsCheck(carList);
+        validateInputCheck(tryCount);
 
         return new RacingDataTransferObject(splitByComma(carNames), tryCount);
     }
@@ -40,32 +45,32 @@ final public class RacingConsole implements InputDevice, OutputDevice {
                 carNames.split(COMMA));
     }
 
-    private void validateCheck(final int tryCount){
-
+    private void validateInputCheck(final int tryCount){
         if(tryCount <= ZERO) {
             throw new IllegalArgumentException("자동차 회수를 잘못 입력하였습니다. 다시 확인해주세요.");
+        }
+    }
+
+    private void validateCarsCheck(final List<String> carList) {
+        if(carList.size() <= ZERO) {
+            throw new IllegalArgumentException("경주할 자동차가 없습니다. 다시 확인해주세요.");
         }
     }
 
     @Override
     public void showResult(Object object) {
 
-//        // 레이싱 콘솔은 반드시 List<List<String>> 타입을 인자로 받는다.
-//        @SuppressWarnings("unchecked")
-//        List<List<String>> tracesList = (List<List<String>>) object;
-//
-//        this.carNumber = tracesList.size();
-//        this.tryCount = tracesList.get(0).size();
-//
-//        int round = 1;
-//
-//        while(round < tryCount) {
-//            printCarTraces(tracesList, round);
-//            ++round;
-//        }
+        // 레이싱 콘솔은 반드시 List<List<String>> 타입을 인자로 받는다.
+        @SuppressWarnings("unchecked")
+        List<RacingCar> racingCars = (List<RacingCar>) object;
+        printCarTraces(racingCars);
     }
 
-    private void printCarTraces(final List<List<String>> traces, final int round){
+    private void printCarTraces(final List<RacingCar> cars){
+
+        if()
+
+//        for(int round = 1; roun)
 
 //        for(int number = 0; number < carNumber; number++){
 //            System.out.println(traces.get(number).get(round));
