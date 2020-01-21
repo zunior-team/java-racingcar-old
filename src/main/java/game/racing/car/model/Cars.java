@@ -5,7 +5,6 @@ import game.racing.car.service.impl.RandomMovingStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -30,7 +29,7 @@ public class Cars {
 
     public List<CarPosition> getPositionAll() {
         return cars.stream()
-                .map(car -> new CarPosition(car.getCarName(), car.getPosition()))
+                .map(car -> car.makeCarPosition())
                 .collect(Collectors.toList());
     }
 

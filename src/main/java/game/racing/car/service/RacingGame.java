@@ -1,6 +1,7 @@
 package game.racing.car.service;
 
 import game.racing.car.event.Events;
+import game.racing.car.event.GameOverEvent;
 import game.racing.car.event.RoundOverEvent;
 import game.racing.car.model.Cars;
 
@@ -23,13 +24,13 @@ public class RacingGame {
         this.roundCount = roundCount;
     }
 
-    public List<String> start() throws InterruptedException {
+    public void start() throws InterruptedException {
         for (int i = 0; i < roundCount; i++) {
             runRound();
             Thread.sleep(WAIT_NEXT_ROUND);
         }
 
-        return cars.getWinnerNames();
+        Events.raise(new GameOverEvent(cars.getWinnerNames()));
     }
 
     private void runRound() {

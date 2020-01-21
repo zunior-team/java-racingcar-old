@@ -1,5 +1,6 @@
 package game.racing.car.model;
 
+import game.racing.car.model.vo.CarPosition;
 import game.racing.car.service.MovingStrategy;
 
 public class Car {
@@ -23,6 +24,10 @@ public class Car {
         if (movingStrategy.isMovable()) {
             position++;
         }
+    }
+
+    public CarPosition makeCarPosition() {
+        return new CarPosition(carName, position);
     }
 
     public String getCarName() {

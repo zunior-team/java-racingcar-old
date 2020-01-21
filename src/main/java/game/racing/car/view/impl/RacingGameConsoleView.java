@@ -10,7 +10,7 @@ public class RacingGameConsoleView implements RacingGameView {
     @Override
     public void showCurrentPosition(List<CarPosition> carPositions) {
         carPositions.stream()
-                .forEach(carPosition -> printPosition(carPosition));
+                .forEach(carPosition -> printCarPosition(carPosition));
         System.out.println();
     }
 
@@ -27,7 +27,7 @@ public class RacingGameConsoleView implements RacingGameView {
     }
 
 
-    private static void printPosition(CarPosition position) {
+    private static void printCarPosition(CarPosition position) {
         System.out.print(position.getCarName() + " : ");
         for (int i = 0; i < position.getPosition(); i++) {
             System.out.print("-");

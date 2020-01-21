@@ -1,4 +1,5 @@
 import game.racing.car.event.Events;
+import game.racing.car.event.GameOverEvent;
 import game.racing.car.event.RoundOverEvent;
 import game.racing.car.service.RacingGame;
 import game.racing.car.view.RacingGameView;
@@ -17,11 +18,15 @@ public class Main {
         RacingGame racingGame = new RacingGame(carNames, roundCount);
         RacingGameView racingGameView = new RacingGameConsoleView();
 
-        Events.handle((RoundOverEvent event) -> racingGameView.showCurrentPosition(event.getCarPositions()));
-
+        registerRacingGameEvents(racingGameView);
         racingGameView.showGameProgressGuidanceMessage();
-        List<String> winners = racingGame.start();
-        racingGameView.showGameResult(winners);
+        racingGame.start();
+
         Events.reset();
+    }
+
+    private static void registerRacingGameEvents(RacingGameView racingGameView) {
+        Events.handle((RoundOverEvent event) -> racingGameView.showCurrentPosition(event.getCarPositions()));
+        Events.handle((GameOverEvent event) -> racingGameView.showGameResult(event.getWinners()));
     }
 }
