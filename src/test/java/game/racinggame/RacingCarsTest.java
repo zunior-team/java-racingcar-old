@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -42,9 +43,9 @@ class RacingCarsTest {
     private static Stream<RacingDataTransferObject> provideRacingDto(){
 
         return Stream.of(
-                new RacingDataTransferObject(1, 1),
-                new RacingDataTransferObject(3, 10),
-                new RacingDataTransferObject(5, 2)
+                new RacingDataTransferObject(Arrays.asList("붕붕이", "씽씽이"), 1),
+                new RacingDataTransferObject(Arrays.asList("붕붕카", "씽씽카"), 10),
+                new RacingDataTransferObject(Arrays.asList("람보르", "트럭"), 2)
         );
     }
 }
