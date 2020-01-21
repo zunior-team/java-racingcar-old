@@ -35,9 +35,9 @@ public class RacingGame {
             stepResults.add(doStep(cars, movingStrategy));
         }
 
-        final List<String> winner = cars.getNamesOfCarAtTopPosition();
+        final List<String> winners = cars.getNamesOfCarAtTopPosition();
 
-        return new GameResult(winner, stepResults);
+        return new GameResult(winners, stepResults);
     }
 
     private StepResult doStep(Cars cars, MovingStrategy movingStrategy) {

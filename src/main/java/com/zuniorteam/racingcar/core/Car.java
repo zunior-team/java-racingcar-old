@@ -8,8 +8,8 @@ public class Car {
 
     private static final int START_POSITION = 0;
 
-    private final String carName;
     private int position = START_POSITION;
+    private final String carName;
 
     public Car(String carName) {
         validate(carName);
