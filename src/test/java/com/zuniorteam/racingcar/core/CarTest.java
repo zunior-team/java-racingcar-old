@@ -30,6 +30,18 @@ class CarTest {
         assertThrows( RuntimeException.class, () -> new Car(carName));
     }
 
+    @DisplayName("마지막 이동 기록 조회")
+    @Test
+    void testGetLastMoveHistory(){
+        //given
+        final String carName = "helloCar";
+        final Car car = new Car(carName);
+
+
+        //when, then
+        assertThat(car.getLastMoveHistory()).isEqualTo(new MoveHistory(carName, 0));
+    }
+
     @DisplayName("move 테스트")
     @Test
     void testMove01(){

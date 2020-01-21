@@ -11,6 +11,7 @@ public class ConsoleGameResultView implements GameResultView {
 
     private static final String NEW_LINE = "\n";
     private static final String DASH = "-";
+    private static final String BORDER = " : ";
 
     public void draw(GameResult result) {
 
@@ -19,12 +20,12 @@ public class ConsoleGameResultView implements GameResultView {
         final List<StepResult> stepResults = result.getStepResults();
         for (StepResult stepResult : stepResults) {
             drawing.append(drawStep(stepResult))
-                    .append("\n");
+                    .append(NEW_LINE);
         }
 
 
-        drawing.append("\n");
-        drawing.append("\n");
+        drawing.append(NEW_LINE);
+        drawing.append(NEW_LINE);
 
         drawing.append(drawWinners(result.getWinners()));
 
@@ -39,7 +40,7 @@ public class ConsoleGameResultView implements GameResultView {
         for (MoveHistory moveHistory : moveHistories) {
             stepDrawing
                     .append(moveHistory.getCarName())
-                    .append(" : ")
+                    .append(BORDER)
                     .append(drawLine(moveHistory.getPosition()))
                     .append(NEW_LINE);
         }

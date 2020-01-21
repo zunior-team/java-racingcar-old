@@ -26,6 +26,7 @@ public class ConsoleGameInputView implements GameInputView {
 
     private List<String> scanCarNames(Scanner scanner) {
         System.out.println("자동차 이름을 입력주세용. [,] 구분");
+
         final String line = scanner.nextLine();
 
         final List<String> carNames = Arrays.stream(line.split(CAR_NAMES_SPLIT_TOKEN))
