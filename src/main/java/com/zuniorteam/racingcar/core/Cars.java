@@ -1,11 +1,10 @@
 package com.zuniorteam.racingcar.core;
 
 import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
+import com.zuniorteam.racingcar.vo.MoveHistory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -30,19 +29,14 @@ public class Cars {
         }
     }
 
-    public void moveAll(MovingStrategy movingStrategy) {
-        for (Car car : cars) {
-            car.move(movingStrategy);
-        }
-    }
-
-    public List<Integer> getCurrentPositions() {
-        final List<Integer> carPositions = new ArrayList<>();
+    public List<MoveHistory> moveAll(MovingStrategy movingStrategy) {
+        final List<MoveHistory> moveHistories = new ArrayList<>();
 
         for (Car car : cars) {
-            carPositions.add(car.getPosition());
+            moveHistories.add(car.move(movingStrategy));
         }
 
-        return carPositions;
+        return moveHistories;
     }
+
 }

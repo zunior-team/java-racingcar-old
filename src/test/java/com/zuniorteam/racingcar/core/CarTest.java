@@ -1,6 +1,7 @@
 package com.zuniorteam.racingcar.core;
 
 import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
+import com.zuniorteam.racingcar.vo.MoveHistory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -33,16 +34,17 @@ class CarTest {
     @Test
     void testMove01(){
         //given
-        final Car car = new Car("helloCar");
+        final String carName = "helloCar";
+        final Car car = new Car(carName);
         final MovingStrategy mockMovingStrategy = Mockito.mock(MovingStrategy.class);
         given(mockMovingStrategy.isMovable()).willReturn(true);
 
         //when
-        car.move(mockMovingStrategy);
-        final int result = car.getPosition();
+        final MoveHistory moveHistory = car.move(mockMovingStrategy);
+
 
         //then
-        assertThat(result).isEqualTo(1);
+        assertThat(moveHistory).isEqualTo(new MoveHistory(carName, 1));
     }
 
 }

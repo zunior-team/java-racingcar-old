@@ -34,7 +34,7 @@ public class RacingGameBoard {
 
     private void validate(MovingStrategy movingStrategy) {
         if (Objects.isNull(movingStrategy)) {
-            throw new RuntimeException("무진 전략을 지정해주세요");
+            throw new RuntimeException("무빙전략을 지정해주세요");
         }
     }
 

@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class ConsoleGameInputView implements GameInputView {
 
@@ -27,7 +28,9 @@ public class ConsoleGameInputView implements GameInputView {
         System.out.println("자동차 이름을 입력주세용. [,] 구분");
         final String line = scanner.nextLine();
 
-        final List<String> carNames = Arrays.asList(line.split(CAR_NAMES_SPLIT_TOKEN));
+        final List<String> carNames = Arrays.stream(line.split(CAR_NAMES_SPLIT_TOKEN))
+                .map(String::trim)
+                .collect(Collectors.toList());
 
         for (String carName : carNames) {
             validate(carName);
@@ -37,7 +40,7 @@ public class ConsoleGameInputView implements GameInputView {
     }
 
     private void validate(String carName) {
-        if(StringUtils.isEmpty(carName)){
+        if (StringUtils.isEmpty(carName)) {
             throw new RuntimeException("자동차이 이름이 없습니다");
         }
     }

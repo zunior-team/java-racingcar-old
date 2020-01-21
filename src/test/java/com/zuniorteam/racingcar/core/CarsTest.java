@@ -1,6 +1,7 @@
 package com.zuniorteam.racingcar.core;
 
 import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
+import com.zuniorteam.racingcar.vo.MoveHistory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -30,40 +31,25 @@ class CarsTest {
         assertThrows(RuntimeException.class, () -> new Cars(Collections.emptyList()));
     }
 
-    @DisplayName("생성, 모든 자동차 현재 위치 가져오기")
-    @Test
-    void testGetCurrentPosition() {
-        //given
-        final List<String> carNames = Arrays.asList("one", "two");
-        final Cars cars = new Cars(carNames);
-
-        final MovingStrategy movingStrategy = Mockito.mock(MovingStrategy.class);
-        given(movingStrategy.isMovable()).willReturn(true);
-
-        //when
-        final List<Integer> currentPositions = cars.getCurrentPositions();
-
-        assertThat(currentPositions.size()).isEqualTo(carNames.size());
-    }
-
 
     @DisplayName("moveAll()")
     @ParameterizedTest
     @CsvSource({"true, 1", "false, 0"})
     void testMoveAll(boolean isMovable, int position) {
         //given
-        final List<String> carNames = Collections.singletonList("one");
+        final String carName = "one";
+        final List<String> carNames = Collections.singletonList(carName);
         final Cars cars = new Cars(carNames);
 
         final MovingStrategy movingStrategy = Mockito.mock(MovingStrategy.class);
         given(movingStrategy.isMovable()).willReturn(isMovable);
 
         //when
-        cars.moveAll(movingStrategy);
-        final List<Integer> currentPositions = cars.getCurrentPositions();
+        final List<MoveHistory> moveHistories = cars.moveAll(movingStrategy);
+
 
         //then
-        assertThat(currentPositions.size()).isEqualTo(carNames.size());
-        assertThat(currentPositions.get(0)).isEqualTo(position);
+        assertThat(moveHistories.size()).isEqualTo(carNames.size());
+        assertThat(moveHistories.get(0)).isEqualTo(new MoveHistory(carName, position));
     }
 }

@@ -2,6 +2,7 @@ package com.zuniorteam.racingcar.core;
 
 import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
 import com.zuniorteam.racingcar.util.StringUtils;
+import com.zuniorteam.racingcar.vo.MoveHistory;
 
 public class Car {
 
@@ -22,13 +23,12 @@ public class Car {
         }
     }
 
-    public void move(MovingStrategy movingStrategy) {
+    public MoveHistory move(MovingStrategy movingStrategy) {
         if (movingStrategy.isMovable()) {
             position++;
         }
+
+        return new MoveHistory(carName, position);
     }
 
-    public int getPosition() {
-        return position;
-    }
 }

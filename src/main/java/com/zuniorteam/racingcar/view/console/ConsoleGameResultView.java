@@ -3,6 +3,7 @@ package com.zuniorteam.racingcar.view.console;
 import com.zuniorteam.racingcar.dto.GameResult;
 import com.zuniorteam.racingcar.dto.StepResult;
 import com.zuniorteam.racingcar.view.GameResultView;
+import com.zuniorteam.racingcar.vo.MoveHistory;
 
 import java.util.List;
 
@@ -21,17 +22,26 @@ public class ConsoleGameResultView implements GameResultView {
                     .append("\n");
         }
 
+
+        drawing.append("\n");
+        drawing.append(drawWinners(result.getWinners()));
+
         System.out.println("실행 결과");
+
         System.out.println(drawing.toString().trim());
+
 
     }
 
     private String drawStep(StepResult stepResult) {
         final StringBuilder stepDrawing = new StringBuilder();
-        final List<Integer> carPositions = stepResult.getCarPositions();
+        final List<MoveHistory> moveHistories = stepResult.getMoveHistories();
 
-        for (Integer position : carPositions) {
-            stepDrawing.append(drawLine(position))
+        for (MoveHistory moveHistory : moveHistories) {
+            stepDrawing
+                    .append(moveHistory.getCarName())
+                    .append(" : ")
+                    .append(drawLine(moveHistory.getPosition()))
                     .append(NEW_LINE);
         }
 
@@ -46,4 +56,9 @@ public class ConsoleGameResultView implements GameResultView {
 
         return line.toString();
     }
+
+    private String drawWinners(List<String> carNames) {
+        return "승자는 " + carNames + " 입니다";
+    }
+
 }

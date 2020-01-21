@@ -15,6 +15,7 @@ public class RacingGame {
 
     public RacingGame(GameInput gameInput) {
         final int numberOfStep = gameInput.getNumberOfStep();
+
         validate(numberOfStep);
 
         this.cars = new Cars(gameInput.getCarNames());
@@ -38,9 +39,6 @@ public class RacingGame {
     }
 
     private StepResult doStep(MovingStrategy movingStrategy) {
-
-        cars.moveAll(movingStrategy);
-
-        return new StepResult(cars.getCurrentPositions());
+        return new StepResult( cars.moveAll(movingStrategy));
     }
 }
