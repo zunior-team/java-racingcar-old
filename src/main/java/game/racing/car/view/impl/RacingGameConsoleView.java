@@ -1,5 +1,7 @@
 package game.racing.car.view.impl;
 
+import game.racing.car.model.Cars;
+import game.racing.car.model.vo.CarPosition;
 import game.racing.car.view.RacingGameView;
 
 import java.util.List;
@@ -7,9 +9,10 @@ import java.util.List;
 public class RacingGameConsoleView implements RacingGameView {
 
     @Override
-    public void showCurrentPosition(List<Integer> positions) {
-        positions.stream()
-                .forEach(position -> printPositionSign(position));
+    public void showCurrentPosition(Cars cars) {
+        cars.getPositionAll()
+                .stream()
+                .forEach(carPosition -> printPositionSign(carPosition));
         System.out.println();
     }
 
@@ -19,8 +22,9 @@ public class RacingGameConsoleView implements RacingGameView {
         System.out.println("===============================================");
     }
 
-    private static void printPositionSign(Integer position) {
-        for (int i = 0; i < position; i++) {
+    private static void printPositionSign(CarPosition position) {
+        System.out.print(position.getCarName() + " : ");
+        for (int i = 0; i < position.getPosition(); i++) {
             System.out.print("-");
         }
         System.out.println();

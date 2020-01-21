@@ -3,7 +3,11 @@ package game.racing.car.service;
 import game.racing.car.event.Events;
 import game.racing.car.event.RoundOverEvent;
 import game.racing.car.model.Cars;
-import game.racing.car.view.RacingGameView;
+
+import java.util.List;
+
+import static game.racing.car.utils.RacingGameUtil.isAllNotEmpty;
+import static game.racing.car.utils.RacingGameUtil.separateCarNames;
 
 public class RacingGame {
     private static final Long WAIT_NEXT_ROUND = 500L;
@@ -11,10 +15,11 @@ public class RacingGame {
     private Cars cars;
     private final Integer roundCount;
 
-    public RacingGame(Integer carCount, Integer roundCount) {
-        validate(carCount, roundCount);
+    public RacingGame(String carNameString, Integer roundCount) {
+        String[] carNames = separateCarNames(carNameString);
+        validate(carNames, roundCount);
 
-        this.cars = new Cars(carCount);
+        this.cars = new Cars(carNames);
         this.roundCount = roundCount;
     }
 
@@ -30,9 +35,9 @@ public class RacingGame {
         Events.raise(new RoundOverEvent(cars.getPositionAll()));
     }
 
-    private void validate(Integer carCount, Integer roundCount) {
-        if (carCount < 0) {
-            throw new RuntimeException("car count must be bigger than zero.");
+    private void validate(String[] carNames, Integer roundCount) {
+        if(!isAllNotEmpty(carNames)) {
+            throw new RuntimeException("car name length mush be bigger than zero.");
         }
 
         if (roundCount < 0) {

@@ -1,5 +1,6 @@
 package game.racing.car.model;
 
+import game.racing.car.model.vo.CarPosition;
 import game.racing.car.service.impl.RandomMovingStrategy;
 
 import java.util.ArrayList;
@@ -9,10 +10,10 @@ import java.util.stream.Collectors;
 public class Cars {
     private List<Car> cars;
 
-    public Cars(int capacity) {
+    public Cars(String[] carNames) {
         cars = new ArrayList<>();
-        for (int i = 0; i < capacity; i++) {
-            cars.add(new Car(new RandomMovingStrategy()));
+        for (String carName : carNames) {
+            cars.add(new Car(carName, new RandomMovingStrategy()));
         }
     }
 
@@ -26,9 +27,9 @@ public class Cars {
         }
     }
 
-    public List<Integer> getPositionAll() {
+    public List<CarPosition> getPositionAll() {
         return cars.stream()
-                .map(car -> car.getPosition())
+                .map(car -> new CarPosition(car.getCarName(), car.getPosition()))
                 .collect(Collectors.toList());
     }
 }
