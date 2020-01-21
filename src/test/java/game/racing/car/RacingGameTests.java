@@ -18,7 +18,7 @@ public class RacingGameTests {
     @ParameterizedTest
     @MethodSource
     void racingWinnerTest(List<String> carNames, List<Integer> positions, List<String> expectedWinners) {
-        Cars cars = new Cars(null);
+        Cars cars = new Cars(carNames.toArray(), positions);
         assertThat(cars.getWinnerNames()).isEqualTo(expectedWinners);
     }
 

@@ -1,15 +1,13 @@
 package game.racing.car;
 
 import game.racing.car.service.RacingGame;
-import game.racing.car.view.RacingGameView;
+import game.racing.car.utils.RacingGameUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -23,7 +21,7 @@ public class RacingGameInputTests {
     @CsvSource({"pobi,crong,", ",crong,honux", "pobi,,honux"})
     void abnormalCarNamesInputTest(String carNames) {
         assertThatThrownBy(() -> {
-            RacingGameUtil.seprateCarNames(carNames);
+            RacingGameUtil.separateCarNames(carNames);
         }).isInstanceOf(RuntimeException.class);
     }
 
@@ -31,22 +29,22 @@ public class RacingGameInputTests {
     @ParameterizedTest
     @CsvSource({"pobi,crong,honux", "t1,t2,t3", "abc,bcd,cde"})
     void normalCarNamesInputTest(String carNames) {
-        assertDoesNotThrow(() -> RacingGameUtil.seprateCarNames(carNames)));
+        assertDoesNotThrow(() -> RacingGameUtil.separateCarNames(carNames));
     }
 
     @DisplayName("라운드 갯수가 0보다 작으면 에러가 발생한다.")
     @ParameterizedTest
-    @ValueSource(ints = { -1, -15 })
+    @ValueSource(ints = {-1, -15})
     void abnormalRoundCountInputTest(int roundCount) {
         assertThatThrownBy(() -> {
-            new RacingGame(mock(List.class), roundCount);
+            new RacingGame(mock(String.class), roundCount);
         }).isInstanceOf(RuntimeException.class);
     }
 
     @DisplayName("라운드 갯수가 0보다 같거나 크면 정상.")
     @ParameterizedTest
-    @ValueSource(ints = { 0, 2, 15 })
+    @ValueSource(ints = {0, 2, 15})
     void normalRoundCountInputTest(int roundCount) {
-        assertDoesNotThrow(() -> new RacingGame(mock(List.class), roundCount));
+        assertDoesNotThrow(() -> new RacingGame(mock(String.class), roundCount));
     }
 }

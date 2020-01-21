@@ -1,9 +1,13 @@
 package game.racing.car.view;
 
-import game.racing.car.model.Cars;
+import game.racing.car.model.vo.CarPosition;
+
+import java.util.List;
 
 public interface RacingGameView {
-    void showCurrentPosition(Cars cars);
+    void showCurrentPosition(List<CarPosition> carPositions);
 
     void showGameProgressGuidanceMessage();
+
+    void showGameResult(List<String> winners);
 }

@@ -23,11 +23,13 @@ public class RacingGame {
         this.roundCount = roundCount;
     }
 
-    public void start() throws InterruptedException {
+    public List<String> start() throws InterruptedException {
         for (int i = 0; i < roundCount; i++) {
             runRound();
             Thread.sleep(WAIT_NEXT_ROUND);
         }
+
+        return cars.getWinnerNames();
     }
 
     private void runRound() {
