@@ -17,7 +17,7 @@ class StringUtilsTest {
         assertThat(StringUtils.isEmpty(value)).isTrue();
     }
 
-    @DisplayName("Non Empty")
+    @DisplayName("Not Empty")
     @ParameterizedTest
     @ValueSource(strings = { "a", "b  " })
     void testIsEmptyNot(String value){

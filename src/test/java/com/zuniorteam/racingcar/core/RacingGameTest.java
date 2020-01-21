@@ -51,14 +51,4 @@ class RacingGameTest {
         //when, then
         assertDoesNotThrow(() -> racingGame.doGame(mockMovingStrategy));
     }
-
-    @DisplayName("DoGame, 전략이 null 일 때")
-    @Test
-    void testDoGame02() {
-        final GameInput gameInput = new GameInput( Collections.singletonList("helloCar"), 1);
-        final RacingGame racingGame = new RacingGame(gameInput);
-
-        assertThrows(AssertionError.class, () -> racingGame.doGame(null));
-    }
-
 }

@@ -28,8 +28,6 @@ public class RacingGame {
     }
 
     public GameResult doGame(MovingStrategy movingStrategy) {
-        assert movingStrategy != null : "MovingStrategy is null";
-
         final List<StepResult> stepResults = new ArrayList<>();
 
         for (int step = 0; step < numberOfStep; step++) {
