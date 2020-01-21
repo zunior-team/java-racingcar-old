@@ -24,7 +24,7 @@ public class RacingGameBoard {
         validate(gameInputView, gameResultView);
 
         final GameInput gameInput = gameInputView.listen();
-        final GameResult result = doGame(gameInput.getNumberOfCars(), gameInput.getNumberOfStep());
+        final GameResult result = doGame(gameInput);
 
         gameResultView.draw(result);
     }
@@ -39,8 +39,8 @@ public class RacingGameBoard {
         }
     }
 
-    private GameResult doGame(int numberOfCars, int numberOfStep) {
-        final RacingGame racingGame = new RacingGame(numberOfCars, numberOfStep);
+    private GameResult doGame(GameInput gameInput) {
+        final RacingGame racingGame = new RacingGame(gameInput);
         return racingGame.doGame(movingStrategy);
     }
 

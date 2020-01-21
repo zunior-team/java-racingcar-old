@@ -1,6 +1,7 @@
 package com.zuniorteam.racingcar.core;
 
 import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
+import com.zuniorteam.racingcar.dto.GameInput;
 import com.zuniorteam.racingcar.dto.GameResult;
 import com.zuniorteam.racingcar.dto.StepResult;
 
@@ -9,13 +10,14 @@ import java.util.List;
 
 public class RacingGame {
 
-    private final int numberOfStep;
     private final Cars cars;
+    private final int numberOfStep;
 
-    public RacingGame(int numberOfCars, int numberOfStep) {
+    public RacingGame(GameInput gameInput) {
+        final int numberOfStep = gameInput.getNumberOfStep();
         validate(numberOfStep);
 
-        this.cars = new Cars(numberOfCars);
+        this.cars = new Cars(gameInput.getCarNames());
         this.numberOfStep = numberOfStep;
     }
 
