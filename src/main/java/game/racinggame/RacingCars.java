@@ -12,9 +12,7 @@ final class RacingCars {
 
     void setUpRacing(final Object obj){
 
-//        final RacingDataTransferObject dto = (RacingDataTransferObject) obj;
-
-        final RacingNamesDataTransferObject dto = (RacingNamesDataTransferObject) obj;
+        final RacingDataTransferObject dto = (RacingDataTransferObject) obj;
 
         IntStream.range(0, dto.getCarNumber())
                 .forEach(i -> racingCars.add(

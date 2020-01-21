@@ -11,7 +11,7 @@ final class RacingCar {
     private static final String STOP = "";
     private static final String FORWARD = "-";
 
-    private String name;
+    private String name = null;
     private Integer tryCount = null;
     private MovementStrategy movementStrategy = null;
     private List<String> traces = null;

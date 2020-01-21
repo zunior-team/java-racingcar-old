@@ -3,26 +3,23 @@ package game.racinggame;
 import game.Game;
 import game.InputDevice;
 import game.OutputDevice;
+import game.racinggame.console.RacingConsole;
 
 public final class RacingGame implements Game {
 
     private final RacingCars racingCars;
+    private final InputDevice racingInDevice;
+    private final OutputDevice racingOutDevice;
 
-    private InputDevice racingInDevice;
-    private OutputDevice racingOutDevice;
 
     private RacingGame(){
-        racingCars = new RacingCars();
+        this.racingCars = new RacingCars();
+        this.racingInDevice = new RacingConsole();
+        this.racingOutDevice = new RacingConsole();
     }
 
-    private RacingGame(final InputDevice inputDevice, final OutputDevice outputDevice){
-        this();
-        this.racingInDevice = inputDevice;
-        this.racingOutDevice = outputDevice;
-    }
-
-    public static RacingGame create(final InputDevice inputDevice, final OutputDevice outputDevice) {
-        return new RacingGame(inputDevice, outputDevice);
+    public static RacingGame create() {
+        return new RacingGame();
     }
 
     @Override
