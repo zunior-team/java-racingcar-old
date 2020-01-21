@@ -13,26 +13,37 @@ public final class RacingCar {
     private static final String STOP = "";
     private static final String FORWARD = "-";
 
-    private String name = null;
-    private Integer tryCount = null;
-    private MovementStrategy movementStrategy = null;
+    private String name = "";
+    private Integer tryCount = 0;
+    private MovementStrategy movementStrategy = new RandomMovementStrategy();
     private List<String> traces = null;
 
     private RacingCar(){
-        this.tryCount = 0;
         this.traces = new ArrayList<>();
-        traces.add(STOP);
+        this.setupTraces();
     }
 
-    RacingCar(final int tryCount, final String name, final RandomMovementStrategy movementStrategy){
+    RacingCar(final int tryCount, final String name){
         this();
-        this.movementStrategy = movementStrategy;
         this.tryCount = tryCount;
         this.name = name;
     }
 
-    public void updateStrategy(MovementStrategy strategy){
+    RacingCar(final int tryCount, final String name, final MovementStrategy movementStrategy){
+        this(tryCount, name);
+        this.movementStrategy = movementStrategy;
+    }
+
+    private void setupTraces(){
+        this.traces.add(STOP);
+    }
+
+    public void updateStrategy(final MovementStrategy strategy){
         this.movementStrategy = strategy;
+    }
+
+    public void updateName(final String name) {
+        this.name = name;
     }
 
     public int getTryCount() {
