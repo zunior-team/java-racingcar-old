@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,7 +23,7 @@ class CarTest {
 
     @ParameterizedTest
     @DisplayName("car는 자신이 지나온 길을 String타입의 Track로 보여준다")
-    @CsvSource({"4, |----", "2,|--", "0,|"})
+    @CsvSource({"4,junwoochoi : ----", "2,junwoochoi : --"})
     void testTrack(int countOfMove, String expectedTrack) {
         //given
         Car car = Car.newInstance("junwoochoi");
@@ -35,6 +36,20 @@ class CarTest {
 
         //then
         assertThat(track).isEqualTo(expectedTrack);
+    }
+
+    @ParameterizedTest
+    @DisplayName(" 자동차는 자기이름을 반환한다")
+    @ValueSource(strings = {"junwoo", "hello?"})
+    void testName(String expectedName) {
+        //given
+        Car car = Car.newInstance(expectedName);
+
+        //when
+        final String carName = car.getName();
+
+        //then
+        assertThat(carName).isEqualTo(expectedName);
     }
 
 
