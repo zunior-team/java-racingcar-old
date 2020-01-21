@@ -4,6 +4,7 @@ import game.InputDevice;
 import game.OutputDevice;
 import game.racinggame.RacingCar;
 import game.racinggame.RacingDataTransferObject;
+import game.racinggame.RacingRankingMachine;
 
 import java.util.Arrays;
 import java.util.List;
@@ -75,6 +76,8 @@ final public class RacingConsole implements InputDevice, OutputDevice {
             printCarTracesByRound(cars, carCount, round);
             System.out.println();
         }
+
+        System.out.println(RacingRankingMachine.showRanking(cars));
     }
 
     private void printCarTracesByRound(final List<RacingCar> cars, final int carCount, final int round) {

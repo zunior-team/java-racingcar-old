@@ -34,6 +34,10 @@ public final class RacingCar {
         this.movementStrategy = movementStrategy;
     }
 
+    static RacingCar createEmptyRacingCar(){
+        return new RacingCar();
+    }
+
     private void setupTraces(){
         this.traces.add(STOP);
     }
@@ -50,8 +54,20 @@ public final class RacingCar {
         return tryCount;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getMyTracesByRound(final int round) {
         return name + COLON + traces.get(round);
+    }
+
+    public int getMyLastTracesLength(){
+
+        final int lastRound = traces.size() - 1;
+
+        return traces.get(lastRound)
+                .length();
     }
 
     void move(){
