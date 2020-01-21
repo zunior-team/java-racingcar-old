@@ -2,6 +2,9 @@ package game;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 import random.RandomGenerator;
 import strategy.RandomMovingStrategy;
 
@@ -10,6 +13,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("game.RacingGame 단위 테스트")
 class RacingGameTest {
@@ -32,14 +36,40 @@ class RacingGameTest {
         assertThat(racingGame).isNotNull();
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {-1, -5, 0})
+    @DisplayName("실행할 횟수는 음수 혹은 0 될 수 없다")
+    void testValidate(int countOfTry) {
+        //given
+        List<String> carNames = Stream.of("junwoo", "junwoochoi", "junu")
+                .collect(Collectors.toList());
+
+        //then
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                //when
+                () -> RacingGame.newInstance(carNames, countOfTry, movingStrategy));
+        assertThat(exception.getMessage()).isEqualToIgnoringCase("시도 횟수는 항상 0보다 커야 합니다");
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @DisplayName("자동차의 이름이 들어있는 List는 비어있거나, null일 수 없다")
+    void testValidate(List<String> carNames) {
+        //then
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                //when
+                () -> RacingGame.newInstance(carNames, 5, movingStrategy));
+        assertThat(exception.getMessage()).isEqualToIgnoringCase("자동차 대수는 NULL 이거나 비어있을 수 없습니다.");
+    }
 
     @Test
     @DisplayName("게임을 시작하면 RacingResult 객체를 반환한다")
     void testStart() {
         //given
-        int numberOfCars = 3;
+        List<String> carNames = Stream.of("junwoo", "junwoochoi", "junu")
+                .collect(Collectors.toList());
         int countOfTry = 5;
-        RacingGame racingGame = RacingGame.newInstance(numberOfCars, countOfTry, movingStrategy);
+        RacingGame racingGame = RacingGame.newInstance(carNames, countOfTry, movingStrategy);
 
         //when
         RacingResult racingResult = racingGame.proceedAllAndGetResult();
