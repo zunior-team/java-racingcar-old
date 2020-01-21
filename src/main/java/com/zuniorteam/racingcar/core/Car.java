@@ -29,8 +29,13 @@ public class Car {
         }
     }
 
-    public MoveHistory getLastMoveHistory() {
-        return new MoveHistory(carName, position);
+    public String getCarName() {
+        return carName;
     }
+
+    public int getPosition() {
+        return position;
+    }
+
 
 }

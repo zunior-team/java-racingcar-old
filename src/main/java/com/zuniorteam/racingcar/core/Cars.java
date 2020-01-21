@@ -38,21 +38,18 @@ public class Cars {
 
     public List<MoveHistory> getLastMoveHistories() {
         return cars.stream()
-                .map(Car::getLastMoveHistory)
+                .map(car -> new MoveHistory(car.getCarName(), car.getPosition()))
                 .collect(toList());
     }
 
     public List<String> getCarNamesHasTopPosition() {
-        final List<MoveHistory> sortedMoveHistoriesByPosition = cars.stream()
-                .map(Car::getLastMoveHistory)
-                .sorted(Comparator.comparingInt(MoveHistory::getPosition).reversed())
-                .collect(toList());
+        final Integer topPosition = cars.stream()
+                .max(Comparator.comparingInt(Car::getPosition))
+                .map(Car::getPosition).get();
 
-        final MoveHistory winnerMoveHistory = sortedMoveHistoriesByPosition.get(0);
-
-        return sortedMoveHistoriesByPosition.stream()
-                .filter(history -> winnerMoveHistory.getPosition() == history.getPosition())
-                .map(MoveHistory::getCarName)
+        return cars.stream()
+                .filter(car -> car.getPosition() == topPosition)
+                .map(Car::getCarName)
                 .collect(toList());
     }
 }
