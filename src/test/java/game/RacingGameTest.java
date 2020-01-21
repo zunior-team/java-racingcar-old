@@ -62,19 +62,5 @@ class RacingGameTest {
         assertThat(exception.getMessage()).isEqualToIgnoringCase("자동차 대수는 NULL 이거나 비어있을 수 없습니다.");
     }
 
-    @Test
-    @DisplayName("게임을 시작하면 RacingResult 객체를 반환한다")
-    void testStart() {
-        //given
-        List<String> carNames = Stream.of("junwoo", "junwoochoi", "junu")
-                .collect(Collectors.toList());
-        int countOfTry = 5;
-        RacingGame racingGame = RacingGame.newInstance(carNames, countOfTry, movingStrategy);
 
-        //when
-        RacingResult racingResult = racingGame.proceedAllAndGetResult();
-
-        //then
-        assertThat(racingResult).isNotNull();
-    }
 }

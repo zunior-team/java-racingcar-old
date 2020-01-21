@@ -5,7 +5,6 @@ import strategy.MovingStrategy;
 public class Car {
     public static final int MOVE_DISTANCE = 1;
     public static final String PATH_MARK = "-";
-    public static final String START_LINE = "|";
     private int position = 0;
     private String name;
 
@@ -18,7 +17,8 @@ public class Car {
     }
 
     public String getTrack() {
-        StringBuilder track = new StringBuilder(START_LINE);
+        StringBuilder track = new StringBuilder(this.name);
+        track.append(" : ");
         for (int i = 0; i < position; i++) {
             track.append(PATH_MARK);
         }
@@ -31,5 +31,13 @@ public class Car {
         }
 
         this.position += MOVE_DISTANCE;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getPosition() {
+        return this.position;
     }
 }
