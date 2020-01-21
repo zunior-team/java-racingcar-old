@@ -66,7 +66,7 @@ class CarsTest {
 
         //when
         cars.moveAll(movingStrategy);
-        final List<String> carNamesHasTopPosition = cars.getCarNamesHasTopPosition();
+        final List<String> carNamesHasTopPosition = cars.getNamesOfCarAtTopPosition();
 
         //then
         assertThat(carNamesHasTopPosition.size()).isEqualTo(carNames.size());

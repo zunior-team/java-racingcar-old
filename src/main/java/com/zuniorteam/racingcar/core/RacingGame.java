@@ -4,7 +4,6 @@ import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
 import com.zuniorteam.racingcar.dto.GameInput;
 import com.zuniorteam.racingcar.dto.GameResult;
 import com.zuniorteam.racingcar.dto.StepResult;
-import com.zuniorteam.racingcar.vo.MoveHistory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +35,7 @@ public class RacingGame {
             stepResults.add(doStep(cars, movingStrategy));
         }
 
-        final List<String> winner = cars.getCarNamesHasTopPosition();
+        final List<String> winner = cars.getNamesOfCarAtTopPosition();
 
         return new GameResult(winner, stepResults);
     }

@@ -42,7 +42,7 @@ public class Cars {
                 .collect(toList());
     }
 
-    public List<String> getCarNamesHasTopPosition() {
+    public List<String> getNamesOfCarAtTopPosition() {
         final Integer topPosition = cars.stream()
                 .max(Comparator.comparingInt(Car::getPosition))
                 .map(Car::getPosition).get();

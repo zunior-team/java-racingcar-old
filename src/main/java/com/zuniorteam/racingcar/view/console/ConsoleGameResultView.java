@@ -14,23 +14,25 @@ public class ConsoleGameResultView implements GameResultView {
     private static final String BORDER = " : ";
 
     public void draw(GameResult result) {
+        System.out.println("실행 결과");
+        System.out.println(describeGameResult(result));
+    }
 
+    private String describeGameResult(GameResult result) {
         final StringBuilder drawing = new StringBuilder();
 
         final List<StepResult> stepResults = result.getStepResults();
+
         for (StepResult stepResult : stepResults) {
             drawing.append(drawStep(stepResult))
                     .append(NEW_LINE);
         }
 
-
         drawing.append(NEW_LINE);
         drawing.append(NEW_LINE);
 
         drawing.append(drawWinners(result.getWinners()));
-
-        System.out.println("실행 결과");
-        System.out.println(drawing.toString().trim());
+        return drawing.toString().trim();
     }
 
     private String drawStep(StepResult stepResult) {
