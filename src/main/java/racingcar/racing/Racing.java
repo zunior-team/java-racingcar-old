@@ -50,7 +50,7 @@ public class Racing {
     }
 
     public RacingResult result() {
-//        return new RacingResult(raceHistory.toString());
-        return null;
+        return new RacingResult(raceHistory.toString(), cars.getWinners());
     }
+
 }

@@ -7,6 +7,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.racing.Car;
 import racingcar.strategy.MoveStrategy;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -62,5 +64,21 @@ public class CarTest {
                 Arguments.of((MoveStrategy) () -> true, 1),
                 Arguments.of((MoveStrategy) () -> false, 0)
         );
+    }
+
+
+    @Test
+    public void checkWinnerTest() {
+        Car car = new Car("test", () -> true);
+        List<Car> winners = new ArrayList<>();
+
+        assertThat(winners.size()).isEqualTo(0);
+
+        car.move();
+        car.checkWinner(winners, 1);
+
+        assertThat(winners.size()).isEqualTo(1);
+        assertThat(winners.get(0)).isEqualTo(car);
+
     }
 }

@@ -1,5 +1,6 @@
 package racingcar.racing;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,4 +41,20 @@ public class Cars {
         return stringBuilder.toString();
     }
 
+    public int getLeaderPosition() {
+
+        return cars.stream()
+                .mapToInt(Car::currentPosition)
+                .max()
+                .orElse(0);
+    }
+
+    public List<Car> getWinners() {
+        int winnerPosition = getLeaderPosition();
+        List<Car> winners = new ArrayList<>();
+
+        cars.forEach(car -> car.checkWinner(winners, winnerPosition));
+
+        return winners;
+    }
 }

@@ -62,4 +62,36 @@ public class CarsTest {
 
         assertThat(cars.showCurrentState()).isEqualTo(expectedString);
     }
+
+    @Test
+    public void getWinnersTest() {
+        Car nokcha = new Car("nokcha", () -> true);
+        Car nokchax = new Car("nokchax", () -> false);
+        Car nokchaxx = new Car("nokchaxx", () -> true);
+
+        carCandidate = new Car[]{nokcha, nokchax, nokchaxx};
+
+        Cars cars = new Cars(carCandidate);
+
+        cars.moveCars();
+
+        List<Car> winners = cars.getWinners();
+
+        assertThat(winners.contains(nokcha)).isTrue();
+        assertThat(winners.contains(nokchaxx)).isTrue();
+    }
+
+    @Test
+    public void getLeaderPositionTest() {
+        Car nokcha = new Car("nokcha", () -> true);
+        Car nokchax = new Car("nokchax", () -> false);
+        Car nokchaxx = new Car("nokchaxx", () -> true);
+
+        carCandidate = new Car[]{nokcha, nokchax, nokchaxx};
+        Cars cars = new Cars(carCandidate);
+
+        cars.moveCars();
+        assertThat(cars.getLeaderPosition()).isEqualTo(1);
+
+    }
 }

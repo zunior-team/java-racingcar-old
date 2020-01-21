@@ -3,6 +3,7 @@ package racingcar.racing;
 import racingcar.strategy.MoveStrategy;
 import racingcar.strategy.RandomMoveStrategy;
 
+import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -43,5 +44,11 @@ public class Car {
                 .forEach(x -> stringBuilder.append(DASH_MARK));
 
         return stringBuilder.toString();
+    }
+
+    public void checkWinner(List<Car> winners, int winnerPosition) {
+        if(position == winnerPosition) {
+            winners.add(this);
+        }
     }
 }
