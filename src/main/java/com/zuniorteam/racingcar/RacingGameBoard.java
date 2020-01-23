@@ -12,23 +12,23 @@ import java.util.Objects;
 public class RacingGameBoard {
 
     private final GameInputView gameInputView;
-    private final GameResultView gameResultVew;
+    private final GameResultView gameResultView;
 
     public RacingGameBoard(GameInputView gameInputView, GameResultView gameResultView) {
         assert gameInputView != null;
         assert gameResultView != null;
 
         this.gameInputView = gameInputView;
-        this.gameResultVew = gameResultView;
+        this.gameResultView = gameResultView;
     }
 
     public void start(MovingStrategy movingStrategy) {
         validate(movingStrategy);
 
         final GameInput gameInput = gameInputView.listen();
-        final GameResult result = doGame(gameInput, movingStrategy);
+        final GameResult result = playGame(gameInput, movingStrategy);
 
-        gameResultVew.draw(result);
+        gameResultView.draw(result);
     }
 
     private void validate(MovingStrategy movingStrategy) {
@@ -37,9 +37,9 @@ public class RacingGameBoard {
         }
     }
 
-    private GameResult doGame(GameInput gameInput, MovingStrategy movingStrategy) {
+    private GameResult playGame(GameInput gameInput, MovingStrategy movingStrategy) {
         final RacingGame racingGame = new RacingGame(gameInput);
-        return racingGame.doGame(movingStrategy);
+        return racingGame.playGame(movingStrategy);
     }
 
 }

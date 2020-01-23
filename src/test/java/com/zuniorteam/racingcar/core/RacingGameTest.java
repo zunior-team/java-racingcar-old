@@ -47,6 +47,6 @@ class RacingGameTest {
         given(mockMovingStrategy.isMovable()).willReturn(true);
 
         //when, then
-        assertDoesNotThrow(() -> racingGame.doGame(mockMovingStrategy));
+        assertDoesNotThrow(() -> racingGame.playGame(mockMovingStrategy));
     }
 }
