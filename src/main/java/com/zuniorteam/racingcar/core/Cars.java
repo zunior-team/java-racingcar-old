@@ -45,10 +45,10 @@ public class Cars {
     public List<String> getNamesOfCarAtTopPosition() {
         final Integer topPosition = cars.stream()
                 .max(Comparator.comparingInt(Car::getPosition))
-                .map(Car::getPosition).get();
+                .map(Car::getPosition).orElse(0);
 
         return cars.stream()
-                .filter(car -> car.getPosition() == topPosition)
+                .filter(car -> topPosition.equals(car.getPosition()))
                 .map(Car::getCarName)
                 .collect(toList());
     }
