@@ -1,5 +1,6 @@
 package racingcar.racing;
 
+import racingcar.history.CarSnapshot;
 import racingcar.strategy.MoveStrategy;
 import racingcar.strategy.RandomMoveStrategy;
 
@@ -50,5 +51,9 @@ public class Car {
         if(position == winnerPosition) {
             winners.add(this);
         }
+    }
+
+    public CarSnapshot snapshot() {
+        return new CarSnapshot(this);
     }
 }

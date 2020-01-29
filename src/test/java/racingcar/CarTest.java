@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.history.CarSnapshot;
 import racingcar.racing.Car;
 import racingcar.strategy.MoveStrategy;
 
@@ -79,6 +80,16 @@ public class CarTest {
 
         assertThat(winners.size()).isEqualTo(1);
         assertThat(winners.get(0)).isEqualTo(car);
+    }
 
+    @Test
+    public void carSnapshotTest() {
+        Car car = new Car("test", () -> true);
+        CarSnapshot expectedSnapshot = new CarSnapshot("test", 0);
+
+        CarSnapshot carSnapshot = car.snapshot();
+
+        assertThat(carSnapshot).isNotNull();
+        assertThat(carSnapshot).isEqualTo(expectedSnapshot);
     }
 }

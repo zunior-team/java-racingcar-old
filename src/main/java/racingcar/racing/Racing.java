@@ -3,7 +3,6 @@ package racingcar.racing;
 import racingcar.dto.RacingCarInput;
 import racingcar.dto.RacingResult;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Racing {
