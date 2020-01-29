@@ -1,5 +1,6 @@
 package car;
 
+import spark.utils.Assert;
 import strategy.MovingStrategy;
 
 public class Car {
@@ -9,6 +10,7 @@ public class Car {
     private String name;
 
     private Car(String name) {
+        Assert.notNull(name);
         this.name = name;
     }
 
