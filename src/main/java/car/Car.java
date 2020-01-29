@@ -17,7 +17,7 @@ public class Car {
     }
 
     public String getTrack() {
-        StringBuilder track = new StringBuilder(this.name);
+        StringBuilder track = new StringBuilder(this.name + " : ");
         track.append(" : ");
         for (int i = 0; i < position; i++) {
             track.append(PATH_MARK);
