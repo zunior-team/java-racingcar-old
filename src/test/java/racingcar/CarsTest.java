@@ -2,6 +2,7 @@ package racingcar;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import racingcar.history.RoundHistory;
 import racingcar.racing.Car;
 import racingcar.racing.Cars;
 
@@ -93,5 +94,10 @@ public class CarsTest {
         cars.moveCars();
         assertThat(cars.getLeaderPosition()).isEqualTo(1);
 
+    }
+
+    @Test
+    public void recordRoundHistoryTest() {
+        assertThat(cars.recordRoundHistory()).isNotNull();
     }
 }

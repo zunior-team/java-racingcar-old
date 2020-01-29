@@ -1,5 +1,7 @@
 package racingcar.racing;
 
+import racingcar.history.RoundHistory;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,6 +41,14 @@ public class Cars {
         );
 
         return stringBuilder.toString();
+    }
+
+    public RoundHistory recordRoundHistory() {
+        return new RoundHistory(
+                cars.stream()
+                .map(Car::snapshot)
+                .collect(Collectors.toList())
+        );
     }
 
     public int getLeaderPosition() {
