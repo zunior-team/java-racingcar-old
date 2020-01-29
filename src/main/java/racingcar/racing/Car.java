@@ -6,7 +6,6 @@ import racingcar.strategy.RandomMoveStrategy;
 
 import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 public class Car {
     public static final String DASH_MARK = "-";
@@ -36,15 +35,6 @@ public class Car {
 
     public String getName() {
         return name;
-    }
-
-    public String printPosition() {
-        StringBuilder stringBuilder = new StringBuilder(this.name + " : ");
-
-        IntStream.rangeClosed(0, position)
-                .forEach(x -> stringBuilder.append(DASH_MARK));
-
-        return stringBuilder.toString();
     }
 
     public void checkWinner(List<Car> winners, int winnerPosition) {

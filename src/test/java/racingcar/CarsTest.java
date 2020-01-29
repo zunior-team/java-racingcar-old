@@ -2,7 +2,6 @@ package racingcar;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import racingcar.history.RoundHistory;
 import racingcar.racing.Car;
 import racingcar.racing.Cars;
 
@@ -50,19 +49,6 @@ public class CarsTest {
                 });
     }
 
-
-    @Test
-    void showCurrentStateTest() {
-        assertThat(cars.showCurrentState()).isEqualTo("nokcha : -\nnokchax : -\nnokchaxx : -\n");
-
-        String expectedString = "nokcha : --\n" +
-                "nokchax : --\n" +
-                "nokchaxx : --\n";
-
-        cars.moveCars();
-
-        assertThat(cars.showCurrentState()).isEqualTo(expectedString);
-    }
 
     @Test
     public void getWinnersTest() {

@@ -4,8 +4,12 @@ import racingcar.racing.Car;
 import spark.utils.StringUtils;
 
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class CarSnapshot {
+    private static final String SPLIT_MARK = " : ";
+    private static final char DASH_MARK = '-';
+
     private String carName;
     private Integer position;
 
@@ -21,6 +25,15 @@ public class CarSnapshot {
 
         this.carName = name;
         this.position = position;
+    }
+
+    public String showCarSnapShot() {
+        StringBuilder stringBuilder = new StringBuilder(this.carName + SPLIT_MARK);
+
+        IntStream.rangeClosed(0, position)
+                .forEach(x -> stringBuilder.append(DASH_MARK));
+
+        return stringBuilder.toString();
     }
 
     @Override

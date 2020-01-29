@@ -17,7 +17,6 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static racingcar.racing.Car.DASH_MARK;
 
 public class RacingTest {
     private static Car car;
@@ -70,7 +69,7 @@ public class RacingTest {
 
         Racing racing = new Racing(new Cars(candidates.toArray(new Car[]{})), 2);
 
-        assertThat(racing.showCurrentState()).isEqualTo(
+        assertThat(racing.result().getRaceHistory()).isEqualTo(
                         " : -\n" +
                         " : -\n" +
                         " : -\n" +
@@ -80,12 +79,34 @@ public class RacingTest {
                         " : -\n" +
                         " : -\n" +
                         " : -\n" +
-                        " : -\n"
+                        " : -\n\n"
         );
 
         racing.race();
 
-        assertThat(racing.showCurrentState()).isEqualTo(
+        assertThat(racing.result().getRaceHistory()).isEqualTo(
+                        " : -\n" +
+                        " : -\n" +
+                        " : -\n" +
+                        " : -\n" +
+                        " : -\n" +
+                        " : -\n" +
+                        " : -\n" +
+                        " : -\n" +
+                        " : -\n" +
+                        " : -\n" +
+                        "\n" +
+                        " : --\n" +
+                        " : -\n" +
+                        " : --\n" +
+                        " : -\n" +
+                        " : --\n" +
+                        " : -\n" +
+                        " : --\n" +
+                        " : -\n" +
+                        " : --\n" +
+                        " : -\n" +
+                        "\n" +
                         " : ---\n" +
                         " : -\n" +
                         " : ---\n" +
@@ -95,7 +116,8 @@ public class RacingTest {
                         " : ---\n" +
                         " : -\n" +
                         " : ---\n" +
-                        " : -\n"
+                        " : -\n" +
+                        "\n"
         );
     }
 
@@ -107,9 +129,9 @@ public class RacingTest {
 
         Racing racing = new Racing(new Cars(candidates.toArray(new Car[]{})), 2);
 
-        assertThat(racing.showCurrentState()).isEqualTo(
+        assertThat(racing.result().getRaceHistory()).isEqualTo(
                         " : -\n" +
-                        " : -\n"
+                        " : -\n\n"
         );
 
         racing.race();

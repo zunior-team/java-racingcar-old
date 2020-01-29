@@ -32,17 +32,6 @@ public class Cars {
         cars.forEach(Car::move);
     }
 
-    public String showCurrentState() {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        cars.forEach(car ->
-                stringBuilder.append(car.printPosition())
-                        .append('\n')
-        );
-
-        return stringBuilder.toString();
-    }
-
     public RoundHistory recordRoundHistory() {
         return new RoundHistory(
                 cars.stream()
