@@ -76,11 +76,10 @@ public class RacingGame {
     }
 
     private int findMaxPosition() {
-        int max = 0;
-        for (Car car : cars) {
-            max = Math.max(max, car.getPosition());
-        }
-        return max;
+        return cars.stream()
+                .map(Car::getPosition)
+                .max(Integer::compareTo)
+                .orElse(0);
     }
 
 
