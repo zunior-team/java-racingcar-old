@@ -13,14 +13,7 @@ public class RoundHistory {
         this.carSnapshots = carSnapshots;
     }
 
-    public String showRoundHistory() {
-        StringBuilder roundHistory = new StringBuilder();
-
-        for(CarSnapshot snapshot : carSnapshots) {
-            roundHistory.append(snapshot.showCarSnapShot())
-                    .append('\n');
-        }
-
-        return roundHistory.toString();
+    public List<CarSnapshot> getCarSnapshots() {
+        return carSnapshots;
     }
 }

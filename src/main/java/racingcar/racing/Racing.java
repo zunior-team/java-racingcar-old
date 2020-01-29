@@ -42,7 +42,7 @@ public class Racing {
     }
 
     public RacingResult result() {
-        return new RacingResult(racingHistory.showRacingHistory(), cars.getWinners());
+        return new RacingResult(racingHistory, cars.getWinners());
     }
 
 }

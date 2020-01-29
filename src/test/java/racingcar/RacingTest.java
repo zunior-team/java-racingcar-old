@@ -69,7 +69,7 @@ public class RacingTest {
 
         Racing racing = new Racing(new Cars(candidates.toArray(new Car[]{})), 2);
 
-        assertThat(racing.result().getRaceHistory()).isEqualTo(
+        assertThat(racing.result().showRacingHistory()).isEqualTo(
                         " : -\n" +
                         " : -\n" +
                         " : -\n" +
@@ -84,7 +84,7 @@ public class RacingTest {
 
         racing.race();
 
-        assertThat(racing.result().getRaceHistory()).isEqualTo(
+        assertThat(racing.result().showRacingHistory()).isEqualTo(
                         " : -\n" +
                         " : -\n" +
                         " : -\n" +
@@ -129,14 +129,14 @@ public class RacingTest {
 
         Racing racing = new Racing(new Cars(candidates.toArray(new Car[]{})), 2);
 
-        assertThat(racing.result().getRaceHistory()).isEqualTo(
+        assertThat(racing.result().showRacingHistory()).isEqualTo(
                         " : -\n" +
                         " : -\n\n"
         );
 
         racing.race();
 
-        assertThat(racing.result().getRaceHistory()).isEqualTo(
+        assertThat(racing.result().showRacingHistory()).isEqualTo(
                         " : -\n" +
                         " : -\n\n" +
                         " : --\n" +
