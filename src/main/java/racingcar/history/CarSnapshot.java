@@ -16,7 +16,7 @@ public class CarSnapshot {
 
     public CarSnapshot(String name, int position) {
         if(StringUtils.isEmpty(name)) {
-            throw new IllegalArgumentException("name is must not null");
+            throw new IllegalArgumentException("Name must not a null");
         }
 
         this.carName = name;

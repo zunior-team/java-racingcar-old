@@ -1,8 +1,6 @@
-package racingcar.roundHistory;
+package racingcar.history;
 
 import org.junit.jupiter.api.Test;
-import racingcar.history.CarSnapshot;
-import racingcar.history.RoundHistory;
 import racingcar.racing.Car;
 
 import java.util.Arrays;
