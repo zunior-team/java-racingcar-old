@@ -28,6 +28,7 @@ public class Car {
     }
 
     public void move(MovingStrategy movingStrategy) {
+        Assert.notNull(movingStrategy);
         if (!movingStrategy.isMovable()) {
             return;
         }
