@@ -1,6 +1,6 @@
 package game.racing.car.model;
 
-import game.racing.car.model.vo.CarPosition;
+import game.racing.car.model.dto.CarPosition;
 import game.racing.car.service.impl.RandomMovingStrategy;
 
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package game.racing.car.model;
 
-import game.racing.car.model.vo.CarPosition;
+import game.racing.car.model.dto.CarPosition;
 import game.racing.car.service.MovingStrategy;
 
 public class Car {
@@ -9,9 +9,7 @@ public class Car {
     private final MovingStrategy movingStrategy;
 
     public Car(String carName, MovingStrategy movingStrategy) {
-        this.carName = carName;
-        this.location = 0;
-        this.movingStrategy = movingStrategy;
+        this(carName, 0, movingStrategy);
     }
 
     public Car(String carName, Integer currentPosition, MovingStrategy movingStrategy) {

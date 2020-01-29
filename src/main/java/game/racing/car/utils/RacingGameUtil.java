@@ -12,8 +12,8 @@ public class RacingGameUtil {
         return line.split(COMMA_DELIMITER);
     }
 
-    public static Boolean isAllNotEmpty(String[] strings) {
-        return !Arrays.stream(strings)
-                .anyMatch(carName -> StringUtils.isEmpty(carName));
+    public static Boolean isNoneEmpty(String[] strings) {
+        return Arrays.stream(strings)
+                .noneMatch(carName -> StringUtils.isEmpty(carName));
     }
 }

@@ -1,6 +1,6 @@
 package game.racing.car.view.impl;
 
-import game.racing.car.model.vo.CarPosition;
+import game.racing.car.model.dto.CarPosition;
 import game.racing.car.view.RacingGameView;
 
 import java.util.List;

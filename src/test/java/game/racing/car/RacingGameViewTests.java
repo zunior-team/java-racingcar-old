@@ -1,7 +1,7 @@
 package game.racing.car;
 
 import game.racing.car.model.Car;
-import game.racing.car.model.vo.CarPosition;
+import game.racing.car.model.dto.CarPosition;
 import game.racing.car.service.MovingStrategy;
 import game.racing.car.view.RacingGameView;
 import game.racing.car.view.impl.RacingGameConsoleView;

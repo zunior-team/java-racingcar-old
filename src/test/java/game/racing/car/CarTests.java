@@ -2,7 +2,7 @@ package game.racing.car;
 
 import game.racing.car.model.Car;
 import game.racing.car.model.Cars;
-import game.racing.car.model.vo.CarPosition;
+import game.racing.car.model.dto.CarPosition;
 import game.racing.car.service.impl.RandomMovingStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;

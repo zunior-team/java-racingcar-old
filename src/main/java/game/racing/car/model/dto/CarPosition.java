@@ -1,4 +1,4 @@
-package game.racing.car.model.vo;
+package game.racing.car.model.dto;
 
 /**
  * Car 객체의 이름과 위치만 전달하는 DTO

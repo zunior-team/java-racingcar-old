@@ -4,12 +4,12 @@ import game.racing.car.event.Events;
 import game.racing.car.event.GameOverEvent;
 import game.racing.car.event.RoundOverEvent;
 import game.racing.car.model.Cars;
-import game.racing.car.model.vo.CarPosition;
+import game.racing.car.model.dto.CarPosition;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static game.racing.car.utils.RacingGameUtil.isAllNotEmpty;
+import static game.racing.car.utils.RacingGameUtil.isNoneEmpty;
 import static game.racing.car.utils.RacingGameUtil.separateCarNames;
 
 public class RacingGame {
@@ -46,7 +46,7 @@ public class RacingGame {
     }
 
     private void validate(String[] carNames, Integer roundCount) {
-        if(!isAllNotEmpty(carNames)) {
+        if(!isNoneEmpty(carNames)) {
             throw new RuntimeException("car name length mush be bigger than zero.");
         }
 
