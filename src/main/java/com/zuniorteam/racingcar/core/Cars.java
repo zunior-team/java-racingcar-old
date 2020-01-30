@@ -17,6 +17,8 @@ public class Cars {
     }
 
     private List<Car> createCars(List<String> carNames) {
+        assert carNames != null : "CarNames is Null!";
+
         validate(carNames);
 
         return carNames.stream()
