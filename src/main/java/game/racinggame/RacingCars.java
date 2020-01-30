@@ -1,5 +1,6 @@
 package game.racinggame;
 
+import game.racinggame.dto.RacingCreateDto;
 import game.racinggame.strategy.RandomMovementStrategy;
 
 import java.util.ArrayList;
@@ -12,25 +13,16 @@ final class RacingCars {
 
     RacingCars() {}
 
-    void setUpRacing(final Object obj){
+    void setUpRacing(final RacingCreateDto dto){
 
-        final RacingDataTransferObject dto = (RacingDataTransferObject) obj;
+        final int carsSize = dto.getCarNames().size();
 
-        IntStream.range(0, dto.getCarNumber())
+        IntStream.range(0, carsSize)
                 .forEach(i -> racingCars.add(
                         new RacingCar(
-                                getTryCountByDto(dto),
-                                getNameByDto(dto, i),
+                                dto.getTryCount(),
+                                dto.getCarNames().get(i),
                                 new RandomMovementStrategy())));
-    }
-
-    private int getTryCountByDto(final RacingDataTransferObject dto){
-        return dto.getTryCount();
-    }
-
-    private String getNameByDto(final RacingDataTransferObject dto, final int index){
-        return dto.getCarNames()
-                .get(index);
     }
 
     int getRacingCarsCount(){
