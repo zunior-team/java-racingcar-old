@@ -99,7 +99,7 @@ class RacingGameTest {
     }
 
     @Test
-    @DisplayName("모든 턴을 플레이하지 않았으면 승자가 없으므로 빈 리스트를 리턴한다.")
+    @DisplayName("모든 턴을 플레이하지 않았으면 현재까지의 승자를 리턴한다.")
     void testEmptyWinner() {
         //given
         List<String> carNames = Stream.of("junwoo", "junwoochoi", "junu")
@@ -110,7 +110,7 @@ class RacingGameTest {
         final List<Car> winner = racingGame.getWinner();
 
         //then
-        assertThat(winner).isEmpty();
+        assertThat(winner).isNotEmpty();
     }
 
 

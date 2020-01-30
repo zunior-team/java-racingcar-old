@@ -1,18 +1,15 @@
 package game;
 
 import car.Car;
+import car.Cars;
 import spark.utils.CollectionUtils;
 import strategy.MovingStrategy;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingGame {
-    public static final String NEXT_LINE = "\n";
-    private final List<Car> cars = new ArrayList<>();
+    private final Cars cars;
     private final MovingStrategy movingStrategy;
-    private final List<Car> winners = new ArrayList<>();
     private int countOfTurns;
 
     private RacingGame(List<String> carNames, int countOfTurns, MovingStrategy movingStrategy) {
@@ -20,7 +17,7 @@ public class RacingGame {
 
         this.movingStrategy = movingStrategy;
         this.countOfTurns = countOfTurns;
-        cars.addAll(createCars(carNames));
+        cars = Cars.createCars(carNames);
     }
 
     private void validate(List<String> carNames, int countOfTry) {
@@ -41,32 +38,15 @@ public class RacingGame {
         return this.countOfTurns == 0;
     }
 
-    public List<String> proceedAndGetTrack() {
+    public TrackDto proceedAndGetTrack() {
         proceedOneTurn();
-        return cars.stream()
-                .map(Car::getTrack)
-                .collect(Collectors.toList());
-    }
-
-    private List<Car> createCars(List<String> carNames) {
-        return carNames.stream()
-                .map(Car::newInstance)
-                .collect(Collectors.toList());
+        return cars.getTracks();
     }
 
     private void proceedOneTurn() {
         validateLeftTurnCounts();
-        for (Car car : cars) {
-            car.move(movingStrategy);
-        }
+        cars.moveAll(movingStrategy);
         this.countOfTurns--;
-
-        if (countOfTurns == 0) {
-            final int max = findMaxPosition();
-            cars.stream()
-                    .filter(car -> car.getPosition() == max)
-                    .forEach(winners::add);
-        }
     }
 
     private void validateLeftTurnCounts() {
@@ -75,15 +55,7 @@ public class RacingGame {
         }
     }
 
-    private int findMaxPosition() {
-        return cars.stream()
-                .map(Car::getPosition)
-                .max(Integer::compareTo)
-                .orElse(0);
-    }
-
-
     public List<Car> getWinner() {
-        return winners;
+        return cars.getWinners();
     }
 }

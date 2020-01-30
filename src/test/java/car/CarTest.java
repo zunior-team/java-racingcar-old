@@ -21,22 +21,6 @@ class CarTest {
         assertThat(car).isNotNull();
     }
 
-    @ParameterizedTest
-    @DisplayName("car는 자신이 지나온 길을 String타입의 Track로 보여준다")
-    @CsvSource({"4,junwoochoi : ----", "2,junwoochoi : --"})
-    void testTrack(int countOfMove, String expectedTrack) {
-        //given
-        Car car = Car.newInstance("junwoochoi");
-        for (int i = 0; i < countOfMove; i++) {
-            car.move(() -> true);
-        }
-
-        //when
-        final String track = car.getTrack();
-
-        //then
-        assertThat(track).isEqualTo(expectedTrack);
-    }
 
     @ParameterizedTest
     @DisplayName(" 자동차는 자기이름을 반환한다")
