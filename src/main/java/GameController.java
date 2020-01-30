@@ -7,9 +7,9 @@ import view.OutputView;
 import java.util.List;
 import java.util.Random;
 
-public class GameRunner {
+public class GameController {
 
-    public static void main(String[] args) {
+    public void init() {
         final List<String> inputCarNames = InputView.inputCarNames();
         final int countOfTurns = InputView.inputCountOfTurns();
 
