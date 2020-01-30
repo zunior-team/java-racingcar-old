@@ -1,6 +1,5 @@
 package com.zuniorteam.racingcar.core;
 
-import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
 import com.zuniorteam.racingcar.dto.GameInput;
 import com.zuniorteam.racingcar.dto.GameResult;
 import com.zuniorteam.racingcar.dto.StepResult;

@@ -3,7 +3,7 @@ package com.zuniorteam.racingcar;
 import com.zuniorteam.racingcar.core.RacingGame;
 import com.zuniorteam.racingcar.dto.GameInput;
 import com.zuniorteam.racingcar.dto.GameResult;
-import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
+import com.zuniorteam.racingcar.core.MovingStrategy;
 import com.zuniorteam.racingcar.view.GameInputView;
 import com.zuniorteam.racingcar.view.GameResultView;
 

@@ -1,8 +1,6 @@
 package com.zuniorteam.racingcar.core;
 
-import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
 import com.zuniorteam.racingcar.util.StringUtils;
-import com.zuniorteam.racingcar.vo.MoveHistory;
 
 import java.util.Objects;
 

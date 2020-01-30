@@ -1,6 +1,5 @@
 package com.zuniorteam.racingcar.core;
 
-import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
 import com.zuniorteam.racingcar.vo.MoveHistory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
