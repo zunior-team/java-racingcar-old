@@ -1,4 +1,4 @@
-package com.zuniorteam.racingcar.core.strategy;
+package com.zuniorteam.racingcar.core;
 
 @FunctionalInterface
 public interface MovingStrategy {

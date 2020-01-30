@@ -1,7 +1,5 @@
 package com.zuniorteam.racingcar.core;
 
-import com.sun.istack.internal.NotNull;
-import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
 import com.zuniorteam.racingcar.dto.GameInput;
 import com.zuniorteam.racingcar.dto.GameResult;
 import com.zuniorteam.racingcar.dto.StepResult;
@@ -30,11 +28,11 @@ public class RacingGame {
     }
 
 
-    public GameResult doGame(MovingStrategy movingStrategy) {
+    public GameResult playGame(MovingStrategy movingStrategy) {
         final List<StepResult> stepResults = new ArrayList<>();
 
         for (int step = 0; step < numberOfStep; step++) {
-            stepResults.add(doStep(cars, movingStrategy));
+            stepResults.add(runStep(cars, movingStrategy));
         }
 
         final List<String> winners = cars.getNamesOfCarAtTopPosition();
@@ -42,7 +40,7 @@ public class RacingGame {
         return new GameResult(winners, stepResults);
     }
 
-    private StepResult doStep(Cars cars, MovingStrategy movingStrategy) {
+    private StepResult runStep(Cars cars, MovingStrategy movingStrategy) {
         cars.moveAll(movingStrategy);
         return new StepResult(cars.getLastMoveHistories());
     }

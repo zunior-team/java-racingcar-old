@@ -1,6 +1,6 @@
 package com.zuniorteam.racingcar;
 
-import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
+import com.zuniorteam.racingcar.core.MovingStrategy;
 import com.zuniorteam.racingcar.core.strategy.RandomMovingStrategy;
 import com.zuniorteam.racingcar.view.console.ConsoleGameInputView;
 import com.zuniorteam.racingcar.view.console.ConsoleGameResultView;

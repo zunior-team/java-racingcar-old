@@ -40,8 +40,7 @@ public class ConsoleGameResultView implements GameResultView {
         final List<MoveHistory> moveHistories = stepResult.getMoveHistories();
 
         for (MoveHistory moveHistory : moveHistories) {
-            stepDrawing
-                    .append(moveHistory.getCarName())
+            stepDrawing.append(moveHistory.getCarName())
                     .append(BORDER)
                     .append(drawLine(moveHistory.getPosition()))
                     .append(NEW_LINE);

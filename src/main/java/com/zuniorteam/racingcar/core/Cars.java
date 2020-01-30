@@ -1,9 +1,7 @@
 package com.zuniorteam.racingcar.core;
 
-import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
 import com.zuniorteam.racingcar.vo.MoveHistory;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -17,6 +15,8 @@ public class Cars {
     }
 
     private List<Car> createCars(List<String> carNames) {
+        assert carNames != null : "CarNames is Null!";
+
         validate(carNames);
 
         return carNames.stream()
@@ -45,10 +45,10 @@ public class Cars {
     public List<String> getNamesOfCarAtTopPosition() {
         final Integer topPosition = cars.stream()
                 .max(Comparator.comparingInt(Car::getPosition))
-                .map(Car::getPosition).get();
+                .map(Car::getPosition).orElse(0);
 
         return cars.stream()
-                .filter(car -> car.getPosition() == topPosition)
+                .filter(car -> topPosition.equals(car.getPosition()))
                 .map(Car::getCarName)
                 .collect(toList());
     }

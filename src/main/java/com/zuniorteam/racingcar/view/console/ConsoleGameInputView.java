@@ -12,12 +12,7 @@ import java.util.stream.Collectors;
 public class ConsoleGameInputView implements GameInputView {
 
     private static final String CAR_NAMES_SPLIT_TOKEN = ",";
-
-    private final Scanner scanner;
-
-    public ConsoleGameInputView() {
-        this.scanner = new Scanner(System.in);
-    }
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     @Override
     public GameInput listen() {
@@ -34,7 +29,7 @@ public class ConsoleGameInputView implements GameInputView {
     private String scanCarNames() {
         System.out.println("자동차 이름들을 입력해주세요. [,] 구분");
 
-        final String carNames = scanner.nextLine();
+        final String carNames = SCANNER.nextLine();
 
         validateCarNames(carNames);
 
@@ -50,7 +45,7 @@ public class ConsoleGameInputView implements GameInputView {
 
     private int scanNumberOfStep() {
         System.out.println("시도할 횟수는 몇회인가요?");
-        return scanner.nextInt();
+        return SCANNER.nextInt();
     }
 
 }
