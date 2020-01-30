@@ -1,0 +1,24 @@
+import game.RacingGame;
+import random.RandomGenerator;
+import strategy.RandomMovingStrategy;
+import view.InputView;
+import view.OutputView;
+
+import java.util.List;
+import java.util.Random;
+
+public class GameRunner {
+
+    public static void main(String[] args) {
+        final List<String> inputCarNames = InputView.inputCarNames();
+        final int countOfTurns = InputView.inputCountOfTurns();
+
+
+        final Random generate = RandomGenerator.generate();
+        final RandomMovingStrategy movingStrategy = new RandomMovingStrategy(generate);
+        final RacingGame racingGame = RacingGame.newInstance(inputCarNames, countOfTurns, movingStrategy);
+
+
+        OutputView.print(racingGame);
+    }
+}
