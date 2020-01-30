@@ -15,13 +15,14 @@ final class RacingCars {
 
     void setUpRacing(final RacingCreateDto dto){
 
-        final int carsSize = dto.getCarNames().size();
+        final int carsSize = dto.getCarNames()
+                                .size();
 
         IntStream.range(0, carsSize)
-                .forEach(i -> racingCars.add(
+                .forEach(index -> racingCars.add(
                         new RacingCar(
                                 dto.getTryCount(),
-                                dto.getCarNames().get(i),
+                                dto.getCarNameByIndex(index),
                                 new RandomMovementStrategy())));
     }
 
