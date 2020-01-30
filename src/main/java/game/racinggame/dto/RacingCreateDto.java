@@ -25,4 +25,8 @@ public class RacingCreateDto {
     public String getCarNameByIndex(final int index) {
         return carNames.get(index);
     }
+
+    public int getCarSize() {
+        return carNames.size();
+    }
 }
