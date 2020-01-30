@@ -31,7 +31,15 @@ final class RacingCars {
         racingCars.forEach(RacingCar::move);
     }
 
-    List<RacingCar> getRacingCars() {
-        return this.racingCars;
+    String getTracesByRound(final int round) {
+        return null;
     }
+
+    String getLastTraces(){
+        return null;
+    }
+
+//    List<RacingCar> getRacingCars() {
+//        return this.racingCars;
+//    }
 }

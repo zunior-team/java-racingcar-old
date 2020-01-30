@@ -18,10 +18,6 @@ public class RacingCreateDto {
         return tryCount;
     }
 
-    public List<String> getCarNames() {
-        return carNames;
-    }
-
     public String getCarNameByIndex(final int index) {
         return carNames.get(index);
     }

@@ -19,8 +19,7 @@ public final class RacingCar {
     private List<String> traces = null;
 
     private RacingCar(){
-        this.traces = new ArrayList<>();
-        this.setupTraces();
+        this.traces = new ArrayList<String>(){{add(STOP);}};
     }
 
     RacingCar(final int tryCount, final String name){
@@ -36,10 +35,6 @@ public final class RacingCar {
 
     static RacingCar createEmptyRacingCar(){
         return new RacingCar();
-    }
-
-    private void setupTraces(){
-        this.traces.add(STOP);
     }
 
     public void updateStrategy(final MovementStrategy strategy){
