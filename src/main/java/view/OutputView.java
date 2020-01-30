@@ -17,7 +17,6 @@ public class OutputView {
     }
 
     public static void print(RacingGame racingGame) {
-        int lap = 1;
         while (!racingGame.isDone()) {
             printTracks(racingGame.proceedAndGetTrack());
             System.out.println("\n------------\n");
