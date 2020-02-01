@@ -8,8 +8,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.List;
-
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.mockito.BDDMockito.given;
 
@@ -38,8 +36,7 @@ class RacingCarTest {
         // given
         given(movementStrategy.getNumberByStrategy()).willReturn(strategyNumber);
 
-        final RacingCar racingCar = new RacingCar(tryCount, name);
-        racingCar.updateStrategy(movementStrategy);
+        final RacingCar racingCar = new RacingCar(tryCount, name, movementStrategy);
 
         // when
         racingCar.move();
