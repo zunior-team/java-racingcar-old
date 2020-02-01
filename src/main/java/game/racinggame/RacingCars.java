@@ -45,19 +45,19 @@ final class RacingCars {
         }
     }
 
-    int getRacingCarsCount(){
-        return racingCars.size();
+    private int getTryCount() {
+        return racingCars.get(0).getTryCount();
     }
 
-    int getTryCount() {
-        return racingCars.get(0).getTryCount();
+    int getRacingCarsCount(){
+        return racingCars.size();
     }
 
     void go(){
         racingCars.forEach(RacingCar::move);
     }
 
-    RacingTracer getRacingTracer(){
-        return new RacingTracer(this.racingCars);
+    RacingTracer createRacingTracer(){
+        return new RacingTracer(this.racingCars, this.getTryCount());
     }
 }

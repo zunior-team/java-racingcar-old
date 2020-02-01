@@ -27,6 +27,6 @@ public final class RacingGame implements Game {
 
         racingCars.go();
 
-//        racingOutDevice.showResult(racingCars.getRacingCars());
+        racingOutputDevice.showResult(racingCars.createRacingTracer());
     }
 }

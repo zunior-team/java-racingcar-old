@@ -34,30 +34,28 @@ public final class RacingCar {
     }
 
     static RacingCar createEmptyRacingCar(){
-        return new RacingCar();
+        return new RacingCar(0, "empty");
     }
 
-    public void updateStrategy(final MovementStrategy strategy){
-        this.movementStrategy = strategy;
-    }
-
-    public void updateName(final String name) {
+    void updateRacingCar(final int tryCount, final String name, final MovementStrategy movementStrategy){
+        this.tryCount = tryCount;
         this.name = name;
+        this.movementStrategy = movementStrategy;
     }
 
-    public int getTryCount() {
+    int getTryCount() {
         return tryCount;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public String getMyTracesByRound(final int round) {
+    String getMyTracesByRound(final int round) {
         return name + COLON + traces.get(round);
     }
 
-    public int getMyLastTracesLength(){
+    int getMyLastTracesLength(){
 
         final int lastRound = traces.size() - 1;
 
