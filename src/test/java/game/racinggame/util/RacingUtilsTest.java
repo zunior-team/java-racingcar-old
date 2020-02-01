@@ -29,9 +29,11 @@ class RacingUtilsTest {
     @DisplayName("들어온 문자열이 널이거나 공백인 경우 에러가 발생한다.")
     void illegalArgumentExceptionTest(final String str) {
 
+        // given & when
         final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
                 RacingUtils.splitLineByComma(str));
 
+        // then
         assertEquals("경주할 자동차 이름에 공백 또는 null 입력되었습니다.", exception.getMessage());
     }
 
