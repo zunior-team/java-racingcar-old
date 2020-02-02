@@ -5,38 +5,62 @@ import game.racinggame.strategy.RandomMovementStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-final class RacingCar {
+public class RacingCar {
 
+    private static final String COLON = " : ";
     private static final String STOP = "";
     private static final String FORWARD = "-";
 
-    private Integer tryCount = null;
-    private MovementStrategy movementStrategy = null;
+    private String name = "";
+    private Integer tryCount = 0;
+    private MovementStrategy movementStrategy = new RandomMovementStrategy();
     private List<String> traces = null;
 
     private RacingCar(){
-        this.tryCount = 0;
-        this.movementStrategy = new RandomMovementStrategy();
-        this.traces = new ArrayList<>();
-        traces.add(STOP);
+        this.traces = new ArrayList<String>(){{add(STOP);}};
     }
 
-    RacingCar(final int tryCount){
+    RacingCar(final int tryCount, final String name){
         this();
         this.tryCount = tryCount;
+        this.name = name;
     }
 
-    public void updateStrategy(MovementStrategy strategy){
-        this.movementStrategy = strategy;
+    RacingCar(final int tryCount, final String name, final MovementStrategy movementStrategy){
+        this(tryCount, name);
+        this.movementStrategy = movementStrategy;
     }
 
-    public int getTryCount(){
-        return this.tryCount;
+    static RacingCar createEmptyRacingCar(){
+        return new RacingCar(0, "empty");
     }
 
-    public List<String> getTraces(){
-        return this.traces;
+    void updateRacingCar(final int tryCount, final String name, final MovementStrategy movementStrategy){
+        this.tryCount = tryCount;
+        this.name = name;
+        this.movementStrategy = movementStrategy;
+    }
+
+    int getTryCount() {
+        return tryCount;
+    }
+
+    String getName() {
+        return name;
+    }
+
+    String getMyTracesByRound(final int round) {
+        return name + COLON + traces.get(round);
+    }
+
+    int getMyLastTracesLength(){
+
+        final int lastRound = traces.size() - 1;
+
+        return traces.get(lastRound)
+                .length();
     }
 
     void move(){

@@ -8,8 +8,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.List;
-
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.mockito.BDDMockito.given;
 
@@ -20,32 +18,35 @@ class RacingCarTest {
     @Mock
     private MovementStrategy movementStrategy;
 
-    @ParameterizedTest(name = "랜덤값 {0} 을 반환, {1} 회 수행, {2} 이동 ")
+    @ParameterizedTest(name = "랜덤 {0} 반환, {1} 회 수행, {2} 의 결과 : {3} ")
     @CsvSource({
-            "5, 5, -----",
-            "6, 5, -----",
-            "7, 5, -----",
-            "8, 5, -----",
-            "9, 5, -----",
-            "4, 5, -----",
-            "3, 5, ''",
-            "2, 5, ''",
-            "1, 5, ''",
-    })
+            "5, 5, 붕붕, 붕붕 : -----",
+            "6, 5, 씽씽, 씽씽 : -----",
+            "7, 5, 하하, 하하 : -----",
+            "8, 5, 줌줌, 줌줌 : -----",
+            "9, 5, 고고, 고고 : -----",
+            "4, 5, 긱긱, 긱긱 : -----",
+            "3, 5, 희희, 희희 :",
+            "2, 5, 푸푸, 푸푸 :",
+            "1, 5, 루루, 루루 :",
+})
     @DisplayName("이동을 하거나 이동을 하지 못한다.")
-    void moveTest(final int strategyNumber, final int tryCount, final String expectRoad) {
+    void moveTest(final int strategyNumber, final int tryCount, final String name, final String expectRoad) {
 
         // given
         given(movementStrategy.getNumberByStrategy()).willReturn(strategyNumber);
 
-        final RacingCar racingCar = new RacingCar(tryCount);
-        racingCar.updateStrategy(movementStrategy);
+        final RacingCar racingCar = new RacingCar(tryCount, name, movementStrategy);
 
         // when
         racingCar.move();
-        final List<String> traced = racingCar.getTraces();
+        final String traces = racingCar.getMyTracesByRound(tryCount);
 
         // then
-        assertThat(traced.get(5)).isEqualTo(expectRoad);
+        if(strategyNumber <= 3) {
+            assertThat(traces).isEqualTo(expectRoad + " ");
+        } else {
+            assertThat(traces).isEqualTo(expectRoad);
+        }
     }
 }

@@ -1,19 +1,19 @@
 package game.racinggame;
 
 import game.Game;
-import game.InputDevice;
-import game.OutputDevice;
+import game.racinggame.console.RacingInputDevice;
+import game.racinggame.console.RacingOutputDevice;
 
 public final class RacingGame implements Game {
 
     private final RacingCars racingCars;
-    private final InputDevice racingInDevice;
-    private final OutputDevice racingOutDevice;
+    private final RacingInputDevice racingInputDevice;
+    private final RacingOutputDevice racingOutputDevice;
 
     private RacingGame(){
-        racingCars = new RacingCars();
-        racingInDevice = new RacingConsole();
-        racingOutDevice = new RacingConsole();
+        this.racingCars = new RacingCars();
+        this.racingInputDevice = new RacingInputDevice();
+        this.racingOutputDevice = new RacingOutputDevice();
     }
 
     public static RacingGame create() {
@@ -23,10 +23,10 @@ public final class RacingGame implements Game {
     @Override
     public void start() {
 
-        racingCars.setUpRacing(racingInDevice.doInput());
+        racingCars.setUpRacing(racingInputDevice.doInput());
 
         racingCars.go();
 
-        racingOutDevice.showResult(racingCars.getTraces());
+        racingOutputDevice.showResult(racingCars.createRacingTracer());
     }
 }
