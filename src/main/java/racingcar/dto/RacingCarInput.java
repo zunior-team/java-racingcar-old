@@ -1,16 +1,18 @@
 package racingcar.dto;
 
+import java.util.List;
+
 public class RacingCarInput {
-    private int numberOfCar;
+    private List<String> raceCandidates;
     private int numberOfRound;
 
-    public RacingCarInput(int numberOfCar, int numberOfRound) {
-        this.numberOfCar = numberOfCar;
+    public RacingCarInput(List<String> raceCandidates, int numberOfRound) {
+        this.raceCandidates = raceCandidates;
         this.numberOfRound = numberOfRound;
     }
 
-    public int getNumberOfCar() {
-        return numberOfCar;
+    public List<String> getRaceCandidates() {
+        return raceCandidates;
     }
 
     public int getNumberOfRound() {

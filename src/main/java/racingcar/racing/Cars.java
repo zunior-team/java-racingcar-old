@@ -1,38 +1,59 @@
 package racingcar.racing;
 
+import racingcar.history.RoundHistory;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Cars {
     private List<Car> cars;
 
-    public Cars(int numberOfCars) {
-        if(numberOfCars < 0) {
+    public Cars(List<String> raceCandidates) {
+        if(raceCandidates == null || raceCandidates.size() <= 0) {
             throw new IllegalArgumentException("Number of cars must be positive");
         }
 
-        this.cars = IntStream.range(0, numberOfCars)
-                .mapToObj(x -> new Car())
+        this.cars = raceCandidates.stream()
+                .map(Car::new)
                 .collect(Collectors.toList());
     }
 
-    public Cars(List<Car> cars) {
-        this.cars = cars;
+    public Cars(Car[] cars) {
+        if(cars == null || cars.length == 0) {
+            throw new IllegalArgumentException("Number of cars must be positive");
+        }
+
+        this.cars = Arrays.asList(cars);
     }
 
     public void moveCars() {
         cars.forEach(Car::move);
     }
 
-    public String showCurrentState() {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        cars.forEach(car ->
-                stringBuilder.append(car.printPosition())
-                        .append('\n')
+    public RoundHistory recordRoundHistory() {
+        return new RoundHistory(
+                cars.stream()
+                .map(Car::snapshot)
+                .collect(Collectors.toList())
         );
+    }
 
-        return stringBuilder.toString();
+    public int getLeaderPosition() {
+
+        return cars.stream()
+                .mapToInt(Car::currentPosition)
+                .max()
+                .orElse(0);
+    }
+
+    public List<Car> getWinners() {
+        int winnerPosition = getLeaderPosition();
+        List<Car> winners = new ArrayList<>();
+
+        cars.forEach(car -> car.checkWinner(winners, winnerPosition));
+
+        return winners;
     }
 }

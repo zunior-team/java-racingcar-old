@@ -5,65 +5,85 @@ import org.junit.jupiter.api.Test;
 import racingcar.racing.Car;
 import racingcar.racing.Cars;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CarsTest {
-    private static List<Car> candidates;
+    private static List<String> candidates;
+    private static Car[] carCandidate;
     private static Cars cars;
 
     @BeforeEach
     void init() {
-        candidates = IntStream.range(0, 5)
-                .mapToObj(x -> new Car(() -> true))
-                .collect(Collectors.toList());
+        candidates = Arrays.asList("nokcha", "nokchax", "nokchaxx");
+        carCandidate = new Car[]{
+                new Car("nokcha", () -> true),
+                new Car("nokchax", () -> true),
+                new Car("nokchaxx", () -> true)
+        };
 
-        cars = new Cars(candidates);
+        cars = new Cars(carCandidate);
     }
 
     @Test
     void constructorTest() {
-        List<Car> candidates = IntStream.range(0, 5)
-                .mapToObj(x -> new Car(() -> true))
-                .collect(Collectors.toList());
-
-        new Cars(candidates);
-        new Cars(candidates.size());
+        // 이정도로 충분할까?
+        assertThat(new Cars(candidates)).isNotNull();
     }
 
     @Test
     void constructorFailTest() {
-        assertThrows(IllegalArgumentException.class, () -> new Cars(-1));
+        assertThrows(IllegalArgumentException.class, () -> new Cars(Arrays.asList()));
     }
 
     @Test
     void moveCarsTest() {
         cars.moveCars();
 
-
-        StringBuilder outputs = new StringBuilder();
-        candidates.forEach(car -> outputs.append(car.printPosition()));
-
-        assertThat(outputs.toString()).isEqualTo("----------");
+        Arrays.stream(carCandidate)
+                .forEach(car -> {
+                    assertThat(car.currentPosition()).isEqualTo(1);
+                });
     }
 
 
     @Test
-    void showCurrentStateTest() {
-        assertThat(cars.showCurrentState()).isEqualTo("-\n-\n-\n-\n-\n");
+    public void getWinnersTest() {
+        Car nokcha = new Car("nokcha", () -> true);
+        Car nokchax = new Car("nokchax", () -> false);
+        Car nokchaxx = new Car("nokchaxx", () -> true);
 
-        String expectedString = "--\n" +
-                "--\n" +
-                "--\n" +
-                "--\n" +
-                "--\n";
+        carCandidate = new Car[]{nokcha, nokchax, nokchaxx};
+
+        Cars cars = new Cars(carCandidate);
 
         cars.moveCars();
 
-        assertThat(cars.showCurrentState()).isEqualTo(expectedString);
+        List<Car> winners = cars.getWinners();
+
+        assertThat(winners.contains(nokcha)).isTrue();
+        assertThat(winners.contains(nokchaxx)).isTrue();
+    }
+
+    @Test
+    public void getLeaderPositionTest() {
+        Car nokcha = new Car("nokcha", () -> true);
+        Car nokchax = new Car("nokchax", () -> false);
+        Car nokchaxx = new Car("nokchaxx", () -> true);
+
+        carCandidate = new Car[]{nokcha, nokchax, nokchaxx};
+        Cars cars = new Cars(carCandidate);
+
+        cars.moveCars();
+        assertThat(cars.getLeaderPosition()).isEqualTo(1);
+
+    }
+
+    @Test
+    public void recordRoundHistoryTest() {
+        assertThat(cars.recordRoundHistory()).isNotNull();
     }
 }

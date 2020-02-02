@@ -2,23 +2,26 @@ package racingcar.view;
 
 import racingcar.dto.RacingCarInput;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
+    private static final String SPLIT_REGEX = ",";
     private static final Scanner scanner = new Scanner(System.in);
 
     public static RacingCarInput receiveInput() {
         printRequestNumberOfCar();
-        int numberOfCar = scanner.nextInt();
+        List<String> candidates = Arrays.asList(scanner.nextLine().split(SPLIT_REGEX));
 
         printRequestNumberOfRound();
         int numberOfRound = scanner.nextInt();
 
-        return new RacingCarInput(numberOfCar, numberOfRound);
+        return new RacingCarInput(candidates, numberOfRound);
     }
 
     private static void printRequestNumberOfCar() {
-        System.out.print("자동차 대수는 몇 대 인가요? ");
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분). ");
     }
 
     private static void printRequestNumberOfRound() {

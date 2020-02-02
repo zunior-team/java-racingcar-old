@@ -2,19 +2,22 @@ package racingcar.racing;
 
 import racingcar.dto.RacingCarInput;
 import racingcar.dto.RacingResult;
+import racingcar.history.RacingHistory;
+
+import java.util.List;
 
 public class Racing {
     private Cars cars;
-    private StringBuilder raceHistory;
+    private RacingHistory racingHistory;
     private int round;
     private int currentRound;
 
     public Racing(RacingCarInput racingCarInput) {
-        this(racingCarInput.getNumberOfCar(), racingCarInput.getNumberOfRound());
+        this(racingCarInput.getRaceCandidates(), racingCarInput.getNumberOfRound());
     }
 
-    public Racing(int numberOfCar, int round) {
-        this(new Cars(numberOfCar), round);
+    public Racing(List<String> raceCandidates, int round) {
+        this(new Cars(raceCandidates), round);
     }
 
     public Racing(Cars cars, int round) {
@@ -25,28 +28,21 @@ public class Racing {
         this.cars = cars;
         this.round = round;
         this.currentRound = 0;
-        this.raceHistory = new StringBuilder();
-        registerHistory(cars.showCurrentState());
+        this.racingHistory = new RacingHistory();
+
+        racingHistory.recordRoundHistory(cars.recordRoundHistory());
     }
 
     public void race() {
         for( ; currentRound < round ; ++currentRound) {
             cars.moveCars();
 
-            registerHistory(cars.showCurrentState());
+            racingHistory.recordRoundHistory(cars.recordRoundHistory());
         }
     }
 
-    private void registerHistory(String state) {
-        raceHistory.append(state)
-                .append('\n');
-    }
-
-    public String showCurrentState() {
-        return cars.showCurrentState();
-    }
-
     public RacingResult result() {
-        return new RacingResult(raceHistory.toString());
+        return new RacingResult(racingHistory, cars.getWinners());
     }
+
 }
