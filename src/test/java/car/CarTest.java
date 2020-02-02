@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,30 +12,28 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CarTest {
 
     @Test
-    @DisplayName("car.Car 객체를 생성한다.")
+    @DisplayName("Car는 자기자신의 이름이 주어지면 객체를 생성한다.")
     void createCarTest() {
         //when
-        Car car = Car.newInstance(0);
+        Car car = Car.newInstance("junwoochoi");
 
         //then
         assertThat(car).isNotNull();
     }
 
+
     @ParameterizedTest
-    @DisplayName("car는 자신이 지나온 길을 String타입의 Track로 보여준다")
-    @CsvSource({"4, |----", "2,|--", "0,|"})
-    void testTrack(int countOfMove, String expectedTrack) {
+    @DisplayName(" 자동차는 자기이름을 반환한다")
+    @ValueSource(strings = {"junwoo", "hello?"})
+    void testName(String expectedName) {
         //given
-        Car car = Car.newInstance(1);
-        for (int i = 0; i < countOfMove; i++) {
-            car.move(() -> true);
-        }
+        Car car = Car.newInstance(expectedName);
 
         //when
-        final String track = car.getTrack();
+        final String carName = car.getName();
 
         //then
-        assertThat(track).isEqualTo(expectedTrack);
+        assertThat(carName).isEqualTo(expectedName);
     }
 
 
@@ -44,7 +43,7 @@ class CarTest {
     @CsvSource({"true,1", "false,0"})
     void testMove(boolean movingCondition, int result) {
         //when
-        Car car = Car.newInstance(1);
+        Car car = Car.newInstance("junwoochoi");
         String trackBeforeMove = car.getTrack();
         car.move(() -> movingCondition);
         String trackAfterMove = car.getTrack();

@@ -1,24 +1,26 @@
 package car;
 
+import spark.utils.Assert;
 import strategy.MovingStrategy;
 
 public class Car {
     public static final int MOVE_DISTANCE = 1;
     public static final String PATH_MARK = "-";
-    public static final String START_LINE = "|";
     private int position = 0;
-    private int carNumber;
+    private String name;
 
-    private Car(int carNumber) {
-        this.carNumber = carNumber;
+    private Car(String name) {
+        Assert.notNull(name);
+        this.name = name;
     }
 
-    public static Car newInstance(int carNumber) {
-        return new Car(carNumber);
+    public static Car newInstance(String name) {
+        return new Car(name);
     }
 
     public String getTrack() {
-        StringBuilder track = new StringBuilder(START_LINE);
+        StringBuilder track = new StringBuilder(this.name + " : ");
+        track.append(" : ");
         for (int i = 0; i < position; i++) {
             track.append(PATH_MARK);
         }
@@ -26,10 +28,19 @@ public class Car {
     }
 
     public void move(MovingStrategy movingStrategy) {
+        Assert.notNull(movingStrategy);
         if (!movingStrategy.isMovable()) {
             return;
         }
 
         this.position += MOVE_DISTANCE;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getPosition() {
+        return this.position;
     }
 }
