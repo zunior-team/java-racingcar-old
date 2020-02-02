@@ -2,6 +2,7 @@ package game.racing.car;
 
 import game.racing.car.model.Car;
 import game.racing.car.model.Cars;
+import game.racing.car.model.dto.CarPosition;
 import game.racing.car.service.impl.RandomMovingStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,20 +26,23 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
 @DisplayName("랜덤 값이 4 이상이면 움직이고, 4보다 작으면 움직이지 않는다.")
-@ExtendWith(MockitoExtension.class)
 public class CarTests {
 
     @Mock
     private Random random;
 
+    private static final String TEST_CAR_NAME = "test";
+
     @DisplayName("차 이동 테스트")
     @ParameterizedTest(name = "랜덤 값 : {0} -> 결과 : {1}")
+    @ExtendWith(MockitoExtension.class)
     @CsvSource({"0,0", "1,0", "2,0", "3,0", "4,1", "5,1", "6,1", "7,1", "8,1", "9,1"})
     void carRandomMovingTest(int randomNumber, int expectedPosition) {
         given(random.nextInt(anyInt())).willReturn(randomNumber);
         Car car = createCarWithRandomMovingStrategy();
         car.move();
-        assertThat(car.getPosition()).isEqualTo(expectedPosition);
+        CarPosition carPosition = car.getCarPosition();
+        assertThat(carPosition.getLocation()).isEqualTo(expectedPosition);
     }
 
     @DisplayName(value = "차 리스트 이동 테스트")
@@ -47,10 +51,19 @@ public class CarTests {
     @ExtendWith(MockitoExtension.class)
     void carListMovingTests(List<Integer> initPosition, List<Integer> randomNumbers, List<Integer> result) {
         Cars cars = new Cars(createCarList(initPosition, randomNumbers));
-        assertThat(cars.getPositionAll()).isEqualTo(initPosition);
+        List<Integer> notMovingPositions = extractPositions(cars);
+        assertThat(notMovingPositions).isEqualTo(initPosition);
 
         cars.moveAll();
-        assertThat(cars.getPositionAll()).isEqualTo(result);
+        List<Integer> movingPositions = extractPositions(cars);
+        assertThat(movingPositions).isEqualTo(result);
+    }
+
+    private List<Integer> extractPositions(Cars cars) {
+        return cars.getCarPositionAll()
+                    .stream()
+                    .map(carPosition -> carPosition.getLocation())
+                    .collect(Collectors.toList());
     }
 
     private List<Car> createCarList(List<Integer> initPosition, List<Integer> randomNumbers) {
@@ -60,13 +73,13 @@ public class CarTests {
     }
 
     private Car createCarWithRandomMovingStrategy() {
-        return new Car(new RandomMovingStrategy(random));
+        return new Car(TEST_CAR_NAME, new RandomMovingStrategy(random));
     }
 
     private Car createCar(Integer initPosition, Integer randomNumber) {
         Random mockRandom = mock(Random.class);
         given(mockRandom.nextInt(anyInt())).willReturn(randomNumber);
-        return new Car(initPosition, new RandomMovingStrategy(mockRandom));
+        return new Car(TEST_CAR_NAME, initPosition, new RandomMovingStrategy(mockRandom));
     }
 
     private static Stream carListMovingTests() {

@@ -1,34 +1,42 @@
 package game.racing.car;
 
 import game.racing.car.service.RacingGame;
-import game.racing.car.view.RacingGameView;
+import game.racing.car.utils.RacingGameUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.mock;
 
-@DisplayName("차 갯수 혹은 라운드 갯수가 0보다 작으면 에러가 발생한다.")
 @ExtendWith(MockitoExtension.class)
 public class RacingGameInputTests {
 
-    @DisplayName("두 변수 중 하나라도 0보다 작을 때")
+    private static final String TEST_CAR_NAME = "TEST";
+
+    @DisplayName("차 이름 테스트")
     @ParameterizedTest
-    @CsvSource({"0,-1", "-2,5", "-3,-6"})
-    void abnormalInputTest(int carCount, int roundCount) {
+    @ValueSource(strings = {"pobi,crong,honux", "t1,t2,t3", "abc,bcd,cde"})
+    void normalCarNamesInputTest(String carNames) {
+        assertDoesNotThrow(() -> RacingGameUtil.separateCarNames(carNames));
+    }
+
+    @DisplayName("라운드 갯수가 0보다 작으면 에러가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, -15})
+    void abnormalRoundCountInputTest(int roundCount) {
         assertThatThrownBy(() -> {
-            new RacingGame(carCount, roundCount);
+            new RacingGame(mock(String.class), roundCount);
         }).isInstanceOf(RuntimeException.class);
     }
 
-    @DisplayName("두 변수가 둘 다 0보다 같거나 클떄")
+    @DisplayName("라운드 갯수가 0보다 같거나 크면 정상.")
     @ParameterizedTest
-    @CsvSource({"0,0", "2,5", "3,12"})
-    void normalInputTest(int carCount, int roundCount) {
-        assertDoesNotThrow(() -> new RacingGame(carCount, roundCount));
+    @ValueSource(ints = {0, 2, 15})
+    void normalRoundCountInputTest(int roundCount) {
+        assertDoesNotThrow(() -> new RacingGame(TEST_CAR_NAME, roundCount));
     }
 }
