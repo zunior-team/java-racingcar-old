@@ -7,12 +7,12 @@ public class RacingOutputDevice {
 
     public void showResult(final RacingTracer racingTracer) {
 
-        final RacingTracerResultDevice result = racingTracer.createRacingTracerResult();
+        final RacingTracerResultDevice resultDevice = racingTracer.createRacingTracerResultDevice();
 
         System.out.println();
         System.out.println("실행결과");
-        System.out.println(result.getCarTraces());
+        System.out.println(resultDevice.getCarTraces());
         System.out.println();
-        System.out.println(result.getRacingWinners());
+        System.out.println(resultDevice.getRacingWinners());
     }
 }

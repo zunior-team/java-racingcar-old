@@ -8,7 +8,6 @@ public class RacingTracer {
     private static final String COMMA = ", ";
     private static final String NEW_LINE = "\n";
     private final int tryCount;
-    private final int carNumber;
     private final List<RacingCar> racingCars;
 
     RacingTracer(final List<RacingCar> racingCars, final int tryCount) {
@@ -17,11 +16,10 @@ public class RacingTracer {
         validateTryCount(tryCount);
 
         this.racingCars = racingCars;
-        this.carNumber = racingCars.size();
         this.tryCount = tryCount;
     }
 
-    public RacingTracerResultDevice createRacingTracerResult() {
+    public RacingTracerResultDevice createRacingTracerResultDevice() {
         return new RacingTracerResultDevice(this);
     }
 
