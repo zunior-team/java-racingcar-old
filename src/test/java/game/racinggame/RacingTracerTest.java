@@ -1,6 +1,5 @@
 package game.racinggame;
 
-import game.racinggame.strategy.RandomMovementStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,7 +17,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.lenient;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("레이싱카 추적기는")
@@ -34,7 +32,7 @@ class RacingTracerTest {
     private RacingCar secondCar;
 
     @ParameterizedTest
-    @MethodSource("providePoorNullOrEmptyRacingCar")
+    @MethodSource("provideNullOrEmptyRacingCar")
     @DisplayName("인자가 널 또는 사이즈가 0 이면 에러가 발생한다.")
     void constructorNullOrEmptyTest(final List<RacingCar> cars, final int tryCount, final String errorMessage) {
 
@@ -100,7 +98,7 @@ class RacingTracerTest {
         assertThat(winners).isEqualTo("붕붕, 씽씽");
     }
 
-    private static Stream<Arguments> providePoorNullOrEmptyRacingCar() {
+    private static Stream<Arguments> provideNullOrEmptyRacingCar() {
 
         final String errorMessage = "레이싱 카는 널 또는 사이즈가 0 이기 때문에 추적할 수 없습니다.";
 
