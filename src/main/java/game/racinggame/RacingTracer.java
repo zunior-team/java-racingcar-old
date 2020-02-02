@@ -50,7 +50,7 @@ public class RacingTracer {
         return traces.toString();
     }
 
-    String getWinners() {
+    List<String> getWinners() {
 
         final List<String> winners = new ArrayList<>();
 
@@ -63,15 +63,6 @@ public class RacingTracer {
                 .filter(racingCar -> racingCar.getMyLastTracesLength() >= maxTraces)
                 .forEach(racingCar -> winners.add(racingCar.getName()));
 
-        return winnerToString(winners);
-    }
-
-    private String winnerToString(final List<String> winners){
-
-        final StringJoiner joiner = new StringJoiner(COMMA);
-
-        winners.forEach(joiner::add);
-
-        return joiner.toString();
+        return winners;
     }
 }

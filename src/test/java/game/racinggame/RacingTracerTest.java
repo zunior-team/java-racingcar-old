@@ -92,10 +92,10 @@ class RacingTracerTest {
 
         // when
         RacingTracer racingTracer = new RacingTracer(cars, 5);
-        final String winners = racingTracer.getWinners();
+        final List<String> winners = racingTracer.getWinners();
 
         // then
-        assertThat(winners).isEqualTo("붕붕, 씽씽");
+        assertThat(winners.size()).isEqualTo(2);
     }
 
     private static Stream<Arguments> provideNullOrEmptyRacingCar() {
