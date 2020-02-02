@@ -40,14 +40,12 @@ public class RacingTracer {
         final StringBuilder traces = new StringBuilder();
 
         IntStream.rangeClosed(1, tryCount)
-                .forEach(
-                        round -> {
-                            racingCars.forEach(racingCar -> {
-                                traces.append(racingCar.getMyTracesByRound(round));
-                                traces.append(NEW_LINE);
-                            });
-                            traces.append(NEW_LINE);
-                        });
+                .forEach(round -> {
+                    racingCars.forEach(racingCar -> {
+                        traces.append(racingCar.getMyTracesByRound(round));
+                        traces.append(NEW_LINE); });
+                    traces.append(NEW_LINE);
+                });
 
         return traces.toString();
     }
