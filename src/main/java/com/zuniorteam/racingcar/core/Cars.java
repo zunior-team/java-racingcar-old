@@ -1,29 +1,31 @@
 package com.zuniorteam.racingcar.core;
 
-import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
+import com.zuniorteam.racingcar.vo.MoveHistory;
 
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.toList;
 
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(int numberOfCars) {
-        this.cars = createCars(numberOfCars);
+    public Cars(List<String> carNames) {
+        this.cars = createCars(carNames);
     }
 
-    private List<Car> createCars(int numberOfCars) {
-        validate(numberOfCars);
+    private List<Car> createCars(List<String> carNames) {
+        assert carNames != null : "CarNames is Null!";
 
-        return IntStream.range(0, numberOfCars)
-                .mapToObj((index) -> new Car())
-                .collect(Collectors.toList());
+        validate(carNames);
+
+        return carNames.stream()
+                .map(Car::new)
+                .collect(toList());
     }
 
-    private void validate(int numberOfCars) {
-        if (numberOfCars <= 0) {
+    private void validate(List<String> carNames) {
+        if (carNames.isEmpty()) {
             throw new RuntimeException("자동차가 0대 입니다");
         }
     }
@@ -34,13 +36,20 @@ public class Cars {
         }
     }
 
-    public List<Integer> getCurrentPositions() {
-        final List<Integer> carPositions = new ArrayList<>();
+    public List<MoveHistory> getLastMoveHistories() {
+        return cars.stream()
+                .map(car -> new MoveHistory(car.getCarName(), car.getPosition()))
+                .collect(toList());
+    }
 
-        for (Car car : cars) {
-            carPositions.add(car.getPosition());
-        }
+    public List<String> getNamesOfCarAtTopPosition() {
+        final Integer topPosition = cars.stream()
+                .max(Comparator.comparingInt(Car::getPosition))
+                .map(Car::getPosition).orElse(0);
 
-        return carPositions;
+        return cars.stream()
+                .filter(car -> topPosition.equals(car.getPosition()))
+                .map(Car::getCarName)
+                .collect(toList());
     }
 }

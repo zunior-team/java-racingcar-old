@@ -1,5 +1,7 @@
 package com.zuniorteam.racingcar.core.strategy;
 
+import com.zuniorteam.racingcar.core.MovingStrategy;
+
 import java.util.Random;
 
 public class RandomMovingStrategy implements MovingStrategy {

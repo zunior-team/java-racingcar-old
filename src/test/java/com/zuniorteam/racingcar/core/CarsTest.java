@@ -1,12 +1,14 @@
 package com.zuniorteam.racingcar.core;
 
-import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
+import com.zuniorteam.racingcar.vo.MoveHistory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mockito;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,53 +18,59 @@ import static org.mockito.BDDMockito.given;
 
 class CarsTest {
 
-    @DisplayName("생성")
+    @DisplayName("New Instance")
     @Test
     void testNewInstance01() {
-        assertDoesNotThrow(() -> new Cars(10));
+        assertDoesNotThrow(() -> new Cars(Collections.singletonList("helloCar")));
     }
 
-    @DisplayName("생성, 자동차 개수가 0 이하")
+    @DisplayName("New Instance, 자동차 이름이 없을 때")
+    @Test
+    void testNewInstance02() {
+        assertThrows(RuntimeException.class, () -> new Cars(Collections.emptyList()));
+    }
+
+    @DisplayName("moveAll()")
     @ParameterizedTest
-    @ValueSource(ints = {-1, 0})
-    void testNewInstance01(int numberOfCars) {
-        assertThrows(RuntimeException.class, () -> new Cars(numberOfCars));
-    }
-
-    @DisplayName("생성, 모든 자동차 현재 위치 가져오기")
-    @Test
-    void testGetCurrentPosition() {
+    @CsvSource({"true, 1", "false, 0"})
+    void testMoveAll(boolean isMovable, int position) {
         //given
-        final int numberOfCars = 100;
-        final Cars cars = new Cars(numberOfCars);
+        final String carName = "one";
+        final List<String> carNames = Collections.singletonList(carName);
+        final Cars cars = new Cars(carNames);
 
         final MovingStrategy movingStrategy = Mockito.mock(MovingStrategy.class);
-        given(movingStrategy.isMovable()).willReturn(true);
-
-        //when
-        final List<Integer> currentPositions = cars.getCurrentPositions();
-
-        assertThat(currentPositions.size()).isEqualTo(numberOfCars);
-    }
-
-
-    @DisplayName("생성, 모든 자동차 이동")
-    @Test
-    void testMoveAll() {
-        //given
-        final int numberOfCars = 1;
-        final Cars cars = new Cars(numberOfCars);
-
-        final MovingStrategy movingStrategy = Mockito.mock(MovingStrategy.class);
-        given(movingStrategy.isMovable()).willReturn(true);
-
+        given(movingStrategy.isMovable()).willReturn(isMovable);
 
         //when
         cars.moveAll(movingStrategy);
-        final List<Integer> currentPositions = cars.getCurrentPositions();
+        final List<MoveHistory> lastMoveHistories = cars.getLastMoveHistories();
 
         //then
-        assertThat(currentPositions.size()).isEqualTo(numberOfCars);
-        assertThat(currentPositions.get(0)).isEqualTo(1);
+        assertThat(lastMoveHistories.size()).isEqualTo(carNames.size());
+        assertThat(lastMoveHistories.get(0)).isEqualTo(new MoveHistory(carName, position));
+    }
+
+    @DisplayName("getCarNameHasTopPositions, 최상위 위치 자동차 이름 조회")
+    @Test
+    void testGetCarNameHasTopPositions() {
+        //given
+        final String carNameA = "one";
+        final String carNameB = "two";
+        final List<String> carNames = Arrays.asList(carNameA, carNameB);
+        final Cars cars = new Cars(carNames);
+
+        final MovingStrategy movingStrategy = Mockito.mock(MovingStrategy.class);
+        given(movingStrategy.isMovable()).willReturn(true);
+
+        //when
+        cars.moveAll(movingStrategy);
+        final List<String> carNamesHasTopPosition = cars.getNamesOfCarAtTopPosition();
+
+        //then
+        assertThat(carNamesHasTopPosition.size()).isEqualTo(carNames.size());
+        assertThat(carNamesHasTopPosition).contains(carNameA);
+        assertThat(carNamesHasTopPosition).contains(carNameB);
     }
 }
+

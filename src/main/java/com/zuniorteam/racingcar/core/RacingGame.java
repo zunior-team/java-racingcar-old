@@ -1,7 +1,6 @@
 package com.zuniorteam.racingcar.core;
 
-import com.sun.istack.internal.NotNull;
-import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
+import com.zuniorteam.racingcar.dto.GameInput;
 import com.zuniorteam.racingcar.dto.GameResult;
 import com.zuniorteam.racingcar.dto.StepResult;
 
@@ -10,13 +9,15 @@ import java.util.List;
 
 public class RacingGame {
 
-    private final int numberOfStep;
     private final Cars cars;
+    private final int numberOfStep;
 
-    public RacingGame(int numberOfCars, int numberOfStep) {
+    public RacingGame(GameInput gameInput) {
+        final int numberOfStep = gameInput.getNumberOfStep();
+
         validate(numberOfStep);
 
-        this.cars = new Cars(numberOfCars);
+        this.cars = new Cars(gameInput.getCarNames());
         this.numberOfStep = numberOfStep;
     }
 
@@ -26,22 +27,22 @@ public class RacingGame {
         }
     }
 
-    public GameResult doGame(@NotNull MovingStrategy movingStrategy) {
-        assert movingStrategy != null : "MovingStrategy is null";
 
+    public GameResult playGame(MovingStrategy movingStrategy) {
         final List<StepResult> stepResults = new ArrayList<>();
 
         for (int step = 0; step < numberOfStep; step++) {
-            stepResults.add(doStep(movingStrategy));
+            stepResults.add(runStep(cars, movingStrategy));
         }
 
-        return new GameResult(stepResults);
+        final List<String> winners = cars.getNamesOfCarAtTopPosition();
+
+        return new GameResult(winners, stepResults);
     }
 
-    private StepResult doStep(MovingStrategy movingStrategy) {
-
+    private StepResult runStep(Cars cars, MovingStrategy movingStrategy) {
         cars.moveAll(movingStrategy);
-
-        return new StepResult(cars.getCurrentPositions());
+        return new StepResult(cars.getLastMoveHistories());
     }
+
 }

@@ -1,29 +1,51 @@
 package com.zuniorteam.racingcar.view.console;
 
 import com.zuniorteam.racingcar.dto.GameInput;
+import com.zuniorteam.racingcar.util.StringUtils;
 import com.zuniorteam.racingcar.view.GameInputView;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class ConsoleGameInputView implements GameInputView {
+
+    private static final String CAR_NAMES_SPLIT_TOKEN = ",";
+    private static final Scanner SCANNER = new Scanner(System.in);
+
     @Override
     public GameInput listen() {
-        final Scanner scanner = new Scanner(System.in);
 
-        final int numberOfCars = scanNumberOfCars(scanner);
-        final int numberOfStep = scanNumberOfStep(scanner);
+        final List<String> carNames = Arrays.stream(scanCarNames().split(CAR_NAMES_SPLIT_TOKEN))
+                .map(String::trim)
+                .collect(Collectors.toList());
 
-        return new GameInput(numberOfCars, numberOfStep);
+        final int numberOfStep = scanNumberOfStep();
+
+        return new GameInput(carNames, numberOfStep);
     }
 
-    private int scanNumberOfCars(Scanner scanner) {
-        System.out.println("자동차 대수는 몇대인가요?");
-        return scanner.nextInt();
+    private String scanCarNames() {
+        System.out.println("자동차 이름들을 입력해주세요. [,] 구분");
+
+        final String carNames = SCANNER.nextLine();
+
+        validateCarNames(carNames);
+
+        return carNames;
     }
 
-    private int scanNumberOfStep(Scanner scanner) {
+    private void validateCarNames(String carNames) {
+        if (StringUtils.isEmpty(carNames)) {
+            throw new RuntimeException("자동차 이름들이 없습니다");
+        }
+    }
+
+
+    private int scanNumberOfStep() {
         System.out.println("시도할 횟수는 몇회인가요?");
-        return scanner.nextInt();
+        return SCANNER.nextInt();
     }
 
 }

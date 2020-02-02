@@ -1,18 +1,20 @@
 package com.zuniorteam.racingcar.dto;
 
+import com.zuniorteam.racingcar.vo.MoveHistory;
+
 import java.util.List;
 
 public class StepResult {
 
-    private final List<Integer> carPositions;
+    private final List<MoveHistory> moveHistories;
 
-    public StepResult(List<Integer> carPositions) {
-        assert carPositions != null;
+    public StepResult(List<MoveHistory> moveHistories) {
+        assert moveHistories != null;
 
-        this.carPositions = carPositions;
+        this.moveHistories = moveHistories;
     }
 
-    public List<Integer> getCarPositions() {
-        return carPositions;
+    public List<MoveHistory> getMoveHistories() {
+        return moveHistories;
     }
 }

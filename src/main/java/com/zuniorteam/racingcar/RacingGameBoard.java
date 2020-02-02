@@ -1,10 +1,9 @@
 package com.zuniorteam.racingcar;
 
-import com.sun.istack.internal.NotNull;
 import com.zuniorteam.racingcar.core.RacingGame;
 import com.zuniorteam.racingcar.dto.GameInput;
 import com.zuniorteam.racingcar.dto.GameResult;
-import com.zuniorteam.racingcar.core.strategy.MovingStrategy;
+import com.zuniorteam.racingcar.core.MovingStrategy;
 import com.zuniorteam.racingcar.view.GameInputView;
 import com.zuniorteam.racingcar.view.GameResultView;
 
@@ -12,28 +11,35 @@ import java.util.Objects;
 
 public class RacingGameBoard {
 
-    private final MovingStrategy movingStrategy;
+    private final GameInputView gameInputView;
+    private final GameResultView gameResultView;
 
-    public RacingGameBoard(MovingStrategy movingStrategy) {
-        assert movingStrategy != null;
-
-        this.movingStrategy = movingStrategy;
-    }
-
-    public void start(@NotNull GameInputView gameInputView, @NotNull GameResultView gameResultView) {
+    public RacingGameBoard(GameInputView gameInputView, GameResultView gameResultView) {
         assert gameInputView != null;
         assert gameResultView != null;
 
+        this.gameInputView = gameInputView;
+        this.gameResultView = gameResultView;
+    }
+
+    public void start(MovingStrategy movingStrategy) {
+        validate(movingStrategy);
 
         final GameInput gameInput = gameInputView.listen();
-        final GameResult result = doGame(gameInput.getNumberOfCars(), gameInput.getNumberOfStep());
+        final GameResult result = playGame(gameInput, movingStrategy);
 
         gameResultView.draw(result);
     }
 
-    private GameResult doGame(int numberOfCars, int numberOfStep) {
-        final RacingGame racingGame = new RacingGame(numberOfCars, numberOfStep);
-        return racingGame.doGame(movingStrategy);
+    private void validate(MovingStrategy movingStrategy) {
+        if (Objects.isNull(movingStrategy)) {
+            throw new RuntimeException("무빙전략을 지정해주세요");
+        }
+    }
+
+    private GameResult playGame(GameInput gameInput, MovingStrategy movingStrategy) {
+        final RacingGame racingGame = new RacingGame(gameInput);
+        return racingGame.playGame(movingStrategy);
     }
 
 }
