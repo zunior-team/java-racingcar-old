@@ -4,8 +4,7 @@ import java.util.*;
 import java.util.stream.IntStream;
 
 public class RacingTracer {
-
-    private static final String COMMA = ", ";
+    
     private static final String NEW_LINE = "\n";
     private final int tryCount;
     private final List<RacingCar> racingCars;
