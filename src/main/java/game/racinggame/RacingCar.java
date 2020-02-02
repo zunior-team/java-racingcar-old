@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public final class RacingCar {
+public class RacingCar {
 
     private static final String COLON = " : ";
     private static final String STOP = "";
